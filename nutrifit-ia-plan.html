@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NutriFit — IA + Plan 30 Días</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --negro:       #000000;
+  --blanco:      #FFFFFF;
+  --verde:       #22C55E;
+  --verde-dark:  #16A34A;
+  --verde-light: rgba(34,197,94,0.08);
+  --gris-oscuro: #1A1A1A;
+  --gris-medio:  #6B7280;
+  --gris-claro:  #F5F5F5;
+  --gris-borde:  #E5E7EB;
+  --amarillo:    #F59E0B;
+  --rojo:        #EF4444;
+  --azul:        #3B82F6;
+  --morado:      #8B5CF6;
+  --cyan:        #06B6D4;
+  --naranja:     #F97316;
+  --radius:      16px;
+  --radius-sm:   10px;
+  --shadow:      0 4px 24px rgba(0,0,0,0.07);
+  --shadow-md:   0 8px 32px rgba(0,0,0,0.12);
+  --transition:  all 0.3s ease;
+  --max-width:   1100px;
+}
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body { font-family:'Inter',sans-serif; background:var(--gris-claro); color:var(--gris-oscuro); }
+a { color:inherit; text-decoration:none; }
+button { cursor:pointer; font-family:inherit; border:none; outline:none; }
+
+/* NAVBAR */
+.navbar {
+  background:var(--negro); height:64px; display:flex; align-items:center;
+  padding:0 24px; position:sticky; top:0; z-index:200;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.navbar-inner { max-width:var(--max-width); margin:0 auto; width:100%; display:flex; align-items:center; justify-content:space-between; }
+.logo { font-family:'Bebas Neue'; font-size:26px; color:var(--blanco); letter-spacing:3px; }
+.logo span { color:var(--verde); }
+.nav-phases { display:flex; gap:8px; }
+.phase-pill {
+  padding:6px 14px; border-radius:100px;
+  font-family:'Montserrat'; font-weight:700; font-size:11px;
+  border:1px solid rgba(255,255,255,0.15); color:rgba(255,255,255,0.6);
+  transition:var(--transition);
+}
+.phase-pill:hover,.phase-pill.activo { background:var(--verde); border-color:var(--verde); color:var(--negro); }
+
+/* HERO DOBLE */
+.hero {
+  background:linear-gradient(135deg,#000 0%,#0a1a0a 60%,#001a00 100%);
+  padding:60px 24px; text-align:center; position:relative; overflow:hidden;
+}
+.hero::before {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse 70% 60% at 50% 100%,rgba(34,197,94,0.1) 0%,transparent 70%);
+}
+.hero-inner { max-width:var(--max-width); margin:0 auto; position:relative; z-index:1; }
+.hero-badges { display:flex; gap:10px; justify-content:center; margin-bottom:20px; flex-wrap:wrap; }
+.hero-badge {
+  padding:6px 14px; border-radius:100px; font-family:'Montserrat'; font-weight:700; font-size:11px;
+  letter-spacing:0.5px; text-transform:uppercase;
+}
+.hero h1 { font-family:'Bebas Neue'; font-size:clamp(40px,7vw,72px); color:var(--blanco); letter-spacing:3px; line-height:1; margin-bottom:12px; }
+.hero h1 span { color:var(--verde); }
+.hero p { color:rgba(255,255,255,0.5); font-size:16px; max-width:560px; margin:0 auto 32px; line-height:1.7; }
+.hero-stats { display:flex; gap:32px; justify-content:center; flex-wrap:wrap; }
+.hero-stat { text-align:center; }
+.hero-stat-num { font-family:'Bebas Neue'; font-size:36px; color:var(--verde); line-height:1; }
+.hero-stat-txt { font-size:12px; color:rgba(255,255,255,0.4); font-family:'Montserrat'; font-weight:600; margin-top:2px; }
+
+/* LAYOUT */
+.main { max-width:var(--max-width); margin:0 auto; padding:40px 24px 80px; }
+.seccion { margin-bottom:40px; }
+.card { background:var(--blanco); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; margin-bottom:24px; }
+.card-head {
+  padding:24px 28px; border-bottom:1px solid var(--gris-borde);
+  display:flex; align-items:center; gap:14px;
+}
+.card-head-ico { font-size:32px; }
+.card-head h2 { font-family:'Montserrat'; font-weight:800; font-size:20px; color:var(--negro); }
+.card-head p  { font-size:13px; color:var(--gris-medio); margin-top:3px; }
+.card-body { padding:28px; }
+
+/* BADGES */
+.badge { display:inline-block; padding:3px 10px; border-radius:100px; font-family:'Montserrat'; font-weight:800; font-size:11px; }
+.b-verde   { background:rgba(34,197,94,0.12);  color:#15803D; }
+.b-amarillo{ background:rgba(245,158,11,0.12); color:#92400E; }
+.b-rojo    { background:rgba(239,68,68,0.12);  color:#991B1B; }
+.b-azul    { background:rgba(59,130,246,0.12); color:#1E40AF; }
+.b-morado  { background:rgba(139,92,246,0.12); color:#5B21B6; }
+.b-negro   { background:rgba(0,0,0,0.07);      color:#1A1A1A; }
+.b-cyan    { background:rgba(6,182,212,0.12);  color:#0E7490; }
+.b-naranja { background:rgba(249,115,22,0.12); color:#C2410C; }
+
+/* ═══════════════
+   FASE 9 — IA
+   ═══════════════ */
+.ia-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:20px; }
+.ia-card {
+  border:2px solid var(--gris-borde); border-radius:var(--radius);
+  overflow:hidden; transition:var(--transition);
+}
+.ia-card:hover { border-color:var(--verde); transform:translateY(-4px); box-shadow:var(--shadow-md); }
+.ia-card-header { padding:20px; display:flex; align-items:center; gap:14px; }
+.ia-logo {
+  width:52px; height:52px; border-radius:14px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center; font-size:26px;
+}
+.ia-nombre { font-family:'Montserrat'; font-weight:800; font-size:16px; color:var(--negro); margin-bottom:3px; }
+.ia-tipo   { font-size:12px; color:var(--gris-medio); }
+.ia-body   { padding:0 20px 20px; }
+.ia-desc   { font-size:13px; color:var(--gris-medio); line-height:1.6; margin-bottom:14px; }
+.ia-usos   { display:flex; flex-direction:column; gap:6px; margin-bottom:14px; }
+.ia-uso {
+  display:flex; align-items:flex-start; gap:8px;
+  font-size:13px; color:var(--gris-oscuro); line-height:1.4;
+}
+.ia-uso::before { content:'→'; color:var(--verde); font-weight:700; flex-shrink:0; }
+.ia-footer {
+  display:flex; align-items:center; justify-content:space-between;
+  padding-top:14px; border-top:1px solid var(--gris-borde);
+}
+.ia-precio { font-family:'Montserrat'; font-weight:700; font-size:13px; color:var(--negro); }
+.ia-link {
+  font-family:'Montserrat'; font-weight:700; font-size:12px; color:var(--verde);
+  display:flex; align-items:center; gap:4px;
+}
+
+/* PROMPTS IA */
+.prompts-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+.prompt-card {
+  background:var(--gris-claro); border-radius:var(--radius-sm);
+  border:1px solid var(--gris-borde); overflow:hidden; transition:var(--transition);
+}
+.prompt-card:hover { border-color:var(--verde); }
+.prompt-head {
+  background:var(--negro); padding:12px 16px;
+  display:flex; align-items:center; gap:10px;
+}
+.prompt-head-ico { font-size:18px; }
+.prompt-head-titulo { font-family:'Montserrat'; font-weight:700; font-size:13px; color:var(--blanco); }
+.prompt-body { padding:16px; }
+.prompt-texto {
+  font-size:12px; color:var(--gris-oscuro); line-height:1.7;
+  font-family:'Inter'; background:var(--blanco);
+  border:1px solid var(--gris-borde); border-radius:8px;
+  padding:12px; margin-bottom:10px; white-space:pre-wrap;
+}
+.prompt-copy {
+  width:100%; background:var(--negro); color:var(--blanco);
+  border-radius:8px; padding:8px;
+  font-family:'Montserrat'; font-weight:700; font-size:12px;
+  transition:var(--transition);
+}
+.prompt-copy:hover { background:var(--verde); color:var(--negro); }
+
+/* FLUJO IA */
+.flujo-ia { display:flex; flex-direction:column; gap:0; }
+.flujo-paso {
+  display:grid; grid-template-columns:48px 1fr;
+  gap:0; position:relative;
+}
+.flujo-paso:not(:last-child)::before {
+  content:''; position:absolute; left:23px; top:48px;
+  width:2px; height:calc(100% - 24px);
+  background:linear-gradient(to bottom,var(--verde),rgba(34,197,94,0.2));
+}
+.flujo-num {
+  width:48px; height:48px; border-radius:50%;
+  background:var(--negro); color:var(--blanco);
+  font-family:'Bebas Neue'; font-size:22px; letter-spacing:1px;
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; position:relative; z-index:1;
+  border:3px solid var(--verde);
+}
+.flujo-contenido { padding:0 0 32px 20px; }
+.flujo-titulo {
+  font-family:'Montserrat'; font-weight:800; font-size:16px;
+  color:var(--negro); margin-bottom:4px; padding-top:10px;
+}
+.flujo-herramienta {
+  display:inline-flex; align-items:center; gap:6px;
+  background:var(--verde-light); border:1px solid rgba(34,197,94,0.2);
+  color:var(--verde-dark); padding:3px 10px; border-radius:100px;
+  font-family:'Montserrat'; font-weight:700; font-size:11px;
+  margin-bottom:8px;
+}
+.flujo-desc { font-size:13px; color:var(--gris-medio); line-height:1.6; }
+
+/* ═══════════════════
+   FASE 10 — 30 DÍAS
+   ═══════════════════ */
+.progreso-30 {
+  background:var(--negro); border-radius:var(--radius); padding:28px; margin-bottom:32px;
+  display:flex; align-items:center; gap:24px; flex-wrap:wrap;
+}
+.prog-titulo { font-family:'Bebas Neue'; font-size:32px; color:var(--blanco); letter-spacing:2px; flex-shrink:0; }
+.prog-barra-container { flex:1; min-width:200px; }
+.prog-barra-label { font-family:'Montserrat'; font-weight:600; font-size:12px; color:rgba(255,255,255,0.45); margin-bottom:8px; display:flex; justify-content:space-between; }
+.prog-barra-bg { background:rgba(255,255,255,0.1); border-radius:100px; height:12px; overflow:hidden; }
+.prog-barra-fill { background:linear-gradient(to right,var(--verde),#16A34A); height:100%; border-radius:100px; transition:width 0.5s ease; }
+.prog-num-grande { font-family:'Bebas Neue'; font-size:52px; color:var(--verde); line-height:1; flex-shrink:0; }
+.prog-num-label  { font-size:12px; color:rgba(255,255,255,0.4); font-family:'Montserrat'; font-weight:600; }
+
+/* SEMANAS */
+.semanas-tabs { display:flex; gap:8px; margin-bottom:24px; flex-wrap:wrap; }
+.semana-tab {
+  padding:10px 20px; border-radius:var(--radius-sm);
+  font-family:'Montserrat'; font-weight:700; font-size:13px;
+  border:2px solid var(--gris-borde); background:var(--blanco);
+  color:var(--gris-medio); cursor:pointer; transition:var(--transition);
+}
+.semana-tab:hover,.semana-tab.activo { background:var(--negro); border-color:var(--negro); color:var(--blanco); }
+.semana-tab.activo { border-color:var(--verde); }
+
+/* DÍAS */
+.dias-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; }
+.dia-card {
+  border-radius:var(--radius-sm); border:2px solid var(--gris-borde);
+  overflow:hidden; transition:var(--transition); background:var(--blanco);
+}
+.dia-card:hover { border-color:var(--verde); box-shadow:var(--shadow); transform:translateY(-3px); }
+.dia-card.completado { border-color:var(--verde); background:var(--verde-light); }
+.dia-header {
+  padding:14px 16px; display:flex; align-items:center; justify-content:space-between;
+  border-bottom:1px solid var(--gris-borde);
+}
+.dia-card.completado .dia-header { border-color:rgba(34,197,94,0.2); }
+.dia-num {
+  font-family:'Bebas Neue'; font-size:28px; color:var(--negro); letter-spacing:1px; line-height:1;
+}
+.dia-card.completado .dia-num { color:var(--verde); }
+.dia-fase-badge { font-size:10px; }
+.dia-check {
+  width:28px; height:28px; border-radius:50%;
+  border:2px solid var(--gris-borde); background:var(--blanco);
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; font-size:14px; transition:var(--transition);
+}
+.dia-card.completado .dia-check { background:var(--verde); border-color:var(--verde); color:var(--blanco); }
+.dia-body { padding:14px 16px; }
+.dia-titulo { font-family:'Montserrat'; font-weight:800; font-size:14px; color:var(--negro); margin-bottom:8px; }
+.dia-tareas { display:flex; flex-direction:column; gap:5px; }
+.dia-tarea { display:flex; align-items:flex-start; gap:7px; font-size:12px; color:var(--gris-medio); line-height:1.4; }
+.dia-tarea-ico { flex-shrink:0; font-size:13px; }
+.dia-tiempo {
+  margin-top:10px; padding-top:10px; border-top:1px solid var(--gris-borde);
+  font-family:'Montserrat'; font-weight:700; font-size:11px; color:var(--gris-medio);
+  display:flex; align-items:center; gap:6px;
+}
+
+/* RESUMEN SEMANA */
+.semana-resumen {
+  background:var(--negro); border-radius:var(--radius-sm); padding:20px;
+  margin-bottom:20px; display:flex; align-items:center; gap:20px; flex-wrap:wrap;
+}
+.semana-resumen-titulo { font-family:'Bebas Neue'; font-size:24px; color:var(--blanco); letter-spacing:2px; }
+.semana-meta { font-size:13px; color:rgba(255,255,255,0.55); flex:1; line-height:1.5; }
+.semana-entregable {
+  background:rgba(34,197,94,0.15); border:1px solid rgba(34,197,94,0.25);
+  border-radius:8px; padding:8px 14px;
+  font-family:'Montserrat'; font-weight:700; font-size:12px; color:var(--verde);
+  white-space:nowrap;
+}
+
+/* HITOS */
+.hitos-timeline { display:flex; flex-direction:column; gap:0; }
+.hito {
+  display:grid; grid-template-columns:100px 1fr;
+  border-bottom:1px solid var(--gris-borde); padding:20px 0;
+}
+.hito:last-child { border-bottom:none; }
+.hito-dia {
+  font-family:'Bebas Neue'; font-size:22px; letter-spacing:1px;
+  display:flex; align-items:center; justify-content:center;
+  flex-direction:column; text-align:center;
+}
+.hito-dia-num { font-size:36px; color:var(--verde); line-height:1; }
+.hito-dia-txt { font-size:12px; color:var(--gris-medio); }
+.hito-content { padding-left:20px; border-left:3px solid var(--verde); }
+.hito-titulo { font-family:'Montserrat'; font-weight:800; font-size:16px; color:var(--negro); margin-bottom:4px; }
+.hito-desc { font-size:13px; color:var(--gris-medio); line-height:1.6; margin-bottom:8px; }
+
+/* MÉTRICAS */
+.metricas-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+.metrica-card {
+  background:var(--blanco); border-radius:var(--radius-sm);
+  border:2px solid var(--gris-borde); padding:20px; text-align:center;
+  transition:var(--transition);
+}
+.metrica-card:hover { border-color:var(--verde); }
+.metrica-ico  { font-size:32px; margin-bottom:8px; }
+.metrica-val  { font-family:'Bebas Neue'; font-size:32px; color:var(--negro); line-height:1; margin-bottom:4px; }
+.metrica-label{ font-family:'Montserrat'; font-weight:700; font-size:12px; color:var(--gris-medio); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px; }
+.metrica-input{
+  width:100%; padding:6px 10px; border:2px solid var(--gris-borde); border-radius:6px;
+  font-family:'Montserrat'; font-weight:700; font-size:14px; text-align:center;
+  transition:var(--transition);
+}
+.metrica-input:focus { outline:none; border-color:var(--verde); }
+
+/* TOAST */
+.toast {
+  position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(80px);
+  background:var(--negro); color:var(--blanco); padding:12px 24px; border-radius:100px;
+  font-family:'Montserrat'; font-weight:700; font-size:14px;
+  box-shadow:var(--shadow-md); transition:var(--transition); z-index:999;
+  opacity:0; pointer-events:none; white-space:nowrap; border-left:4px solid var(--verde);
+}
+.toast.visible { transform:translateX(-50%) translateY(0); opacity:1; }
+
+/* RESPONSIVE */
+@media(max-width:768px) {
+  .prompts-grid   { grid-template-columns:1fr; }
+  .metricas-grid  { grid-template-columns:repeat(2,1fr); }
+  .hito           { grid-template-columns:80px 1fr; }
+  .nav-phases     { display:none; }
+}
+@media(max-width:480px) {
+  .metricas-grid  { grid-template-columns:1fr 1fr; }
+  .dias-grid      { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <div class="logo">NUTRI<span>FIT</span></div>
+    <div class="nav-phases">
+      <a href="#fase9" class="phase-pill activo">Fase 9 — IA</a>
+      <a href="#fase10" class="phase-pill">Fase 10 — 30 Días</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badges">
+      <span class="hero-badge" style="background:rgba(139,92,246,0.15);color:#A78BFA;border:1px solid rgba(139,92,246,0.25);">🤖 Fase 9 — Automatización IA</span>
+      <span class="hero-badge" style="background:rgba(34,197,94,0.12);color:var(--verde);border:1px solid rgba(34,197,94,0.25);">📅 Fase 10 — Plan 30 Días</span>
+    </div>
+    <h1>LANZA NUTRIFIT<br>CON <span>INTELIGENCIA</span></h1>
+    <p>Las herramientas de IA que te ahorran horas de trabajo y el plan día a día para tener tu tienda activa y vendiendo en 30 días.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-num">12</div><div class="hero-stat-txt">Herramientas IA</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">30</div><div class="hero-stat-txt">Días al lanzamiento</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">8</div><div class="hero-stat-txt">Prompts listos</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">∞</div><div class="hero-stat-txt">Potencial de ventas</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- ════════════════════════════════════════════
+     FASE 9 — AUTOMATIZACIÓN CON IA
+     ════════════════════════════════════════════ -->
+<div id="fase9">
+
+  <!-- HERRAMIENTAS IA -->
+  <div class="seccion">
+    <div class="card">
+      <div class="card-head">
+        <div class="card-head-ico">🤖</div>
+        <div>
+          <h2>12 Herramientas de IA para NutriFit</h2>
+          <p>Organizadas por categoría. La mayoría tienen plan gratuito para empezar.</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="ia-grid" id="ia-grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLUJO DE TRABAJO IA -->
+  <div class="seccion">
+    <div class="card">
+      <div class="card-head">
+        <div class="card-head-ico">⚡</div>
+        <div>
+          <h2>Flujo de Trabajo Semanal con IA</h2>
+          <p>Cómo usar la IA cada semana para crear contenido en menos de 2 horas</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="flujo-ia" id="flujo-ia"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROMPTS LISTOS -->
+  <div class="seccion">
+    <div class="card">
+      <div class="card-head">
+        <div class="card-head-ico">💬</div>
+        <div>
+          <h2>8 Prompts Listos para Usar</h2>
+          <p>Copia, pega en Claude o ChatGPT y obtén resultados en segundos</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="prompts-grid" id="prompts-grid"></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /fase9 -->
+
+
+<!-- ════════════════════════════════════════════
+     FASE 10 — PLAN 30 DÍAS
+     ════════════════════════════════════════════ -->
+<div id="fase10">
+
+  <!-- PROGRESO -->
+  <div class="progreso-30">
+    <div class="prog-titulo">PLAN 30 DÍAS</div>
+    <div class="prog-barra-container">
+      <div class="prog-barra-label">
+        <span>Progreso general</span>
+        <span id="prog-label-pct">0 de 30 días</span>
+      </div>
+      <div class="prog-barra-bg">
+        <div class="prog-barra-fill" id="prog-barra" style="width:0%"></div>
+      </div>
+    </div>
+    <div>
+      <div class="prog-num-grande" id="prog-dias-num">0</div>
+      <div class="prog-num-label">días completados</div>
+    </div>
+  </div>
+
+  <!-- TABS SEMANAS -->
+  <div class="semanas-tabs">
+    <button class="semana-tab activo" onclick="mostrarSemana(1,this)">📐 Semana 1<br><small>Fundamentos</small></button>
+    <button class="semana-tab" onclick="mostrarSemana(2,this)">🎨 Semana 2<br><small>Diseño y Contenido</small></button>
+    <button class="semana-tab" onclick="mostrarSemana(3,this)">🛒 Semana 3<br><small>Ventas y SEO</small></button>
+    <button class="semana-tab" onclick="mostrarSemana(4,this)">🚀 Semana 4<br><small>Lanzamiento</small></button>
+  </div>
+
+  <!-- CONTENEDOR DÍAS -->
+  <div id="dias-container"></div>
+
+  <!-- HITOS CLAVE -->
+  <div class="card">
+    <div class="card-head">
+      <div class="card-head-ico">🏆</div>
+      <div>
+        <h2>Hitos Clave del Lanzamiento</h2>
+        <p>Los momentos más importantes en el camino a tu primera venta</p>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="hitos-timeline" id="hitos"></div>
+    </div>
+  </div>
+
+  <!-- MÉTRICAS OBJETIVO -->
+  <div class="card">
+    <div class="card-head">
+      <div class="card-head-ico">📊</div>
+      <div>
+        <h2>Métricas Objetivo — Mes 1</h2>
+        <p>Edita los campos con tus metas reales. Son alcanzables con el plan completo.</p>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="metricas-grid">
+        <div class="metrica-card">
+          <div class="metrica-ico">👥</div>
+          <div class="metrica-label">Visitas mensuales</div>
+          <input type="number" class="metrica-input" value="500" oninput="calcularMetricas()">
+          <div style="font-size:11px;color:var(--gris-medio);margin-top:6px;">Meta realista mes 1</div>
+        </div>
+        <div class="metrica-card">
+          <div class="metrica-ico">🛒</div>
+          <div class="metrica-label">Tasa de conversión</div>
+          <input type="number" class="metrica-input" value="2" step="0.5" oninput="calcularMetricas()">
+          <div style="font-size:11px;color:var(--gris-medio);margin-top:6px;">% de visitas que compran</div>
+        </div>
+        <div class="metrica-card">
+          <div class="metrica-ico">💰</div>
+          <div class="metrica-label">Ticket promedio</div>
+          <input type="number" class="metrica-input" value="25000" step="1000" oninput="calcularMetricas()">
+          <div style="font-size:11px;color:var(--gris-medio);margin-top:6px;">Pesos por pedido</div>
+        </div>
+        <div class="metrica-card">
+          <div class="metrica-ico">📈</div>
+          <div class="metrica-label">Ventas estimadas</div>
+          <div class="metrica-val" id="ventas-est">$250.000</div>
+          <div style="font-size:11px;color:var(--verde);font-family:'Montserrat';font-weight:700;margin-top:6px;" id="pedidos-est">10 pedidos</div>
+        </div>
+      </div>
+      <div style="margin-top:20px;background:var(--verde-light);border-radius:var(--radius-sm);padding:16px;border-left:3px solid var(--verde);">
+        <p style="font-size:13px;color:var(--gris-oscuro);line-height:1.7;">
+          <strong>💡 Proyección realista:</strong> Con 500 visitas mensuales y 2% de conversión,
+          obtienes <strong id="proj-pedidos">10 pedidos</strong> con un ingreso estimado de
+          <strong id="proj-ventas">$250.000 CLP</strong> en tu primer mes.
+          En el mes 3, con SEO y redes sociales activas, esto puede triplicarse.
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /fase10 -->
+</div><!-- /main -->
+
+<div class="toast" id="toast"></div>
+
+<script>
+
+/* ════════════════════════════════════
+   DATOS IA
+   ════════════════════════════════════ */
+const HERRAMIENTAS_IA = [
+  { emoji:'🤖', color:'#7C3AED', bg:'rgba(139,92,246,0.12)',
+    nombre:'Claude (Anthropic)', tipo:'Redacción & Estrategia', badgeClass:'b-morado',
+    desc:'El mejor para generar descripciones de productos, artículos de blog, copys de venta y estrategia de contenido para NutriFit.',
+    usos:['Escribir fichas de producto persuasivas en segundos','Generar artículos de blog SEO completos','Crear respuestas para WhatsApp y atención al cliente','Planificar campañas y estrategias de contenido'],
+    precio:'Gratis / Pro $20 USD/mes', link:'claude.ai' },
+
+  { emoji:'🎨', color:'#EC4899', bg:'rgba(236,72,153,0.12)',
+    nombre:'Midjourney / DALL-E 3', tipo:'Imágenes de Producto', badgeClass:'b-rojo',
+    desc:'Genera imágenes profesionales de tus productos, banners para redes sociales y fondos creativos sin necesidad de fotógrafo.',
+    usos:['Imágenes hero para la página web','Banners de oferta para Instagram y TikTok','Mockups de producto sobre fondos creativos','Infografías de beneficios de suplementos'],
+    precio:'Midjourney $10/mes · DALL-E 3 gratis en Bing', link:'midjourney.com' },
+
+  { emoji:'🎬', color:'#0EA5E9', bg:'rgba(14,165,233,0.12)',
+    nombre:'CapCut / Runway', tipo:'Videos & Reels', badgeClass:'b-cyan',
+    desc:'Crea reels de productos, videos de testimonios y contenido para TikTok con edición asistida por IA.',
+    usos:['Reels de "antes y después" de clientes','Videos de unboxing con subtítulos automáticos','Templates de video para promociones','Contenido para TikTok e Instagram automático'],
+    precio:'CapCut gratis · Runway desde $12/mes', link:'capcut.com' },
+
+  { emoji:'🖼️', color:'#F59E0B', bg:'rgba(245,158,11,0.12)',
+    nombre:'Canva Magic', tipo:'Diseño de Banners', badgeClass:'b-amarillo',
+    desc:'Diseña banners, publicaciones y materiales de marketing con IA integrada. Perfecto para quien no sabe diseño.',
+    usos:['Banners de oferta y descuento en segundos','Posts para Instagram con paleta NutriFit','Historias de WhatsApp para lanzamientos','Etiquetas de producto y packaging digital'],
+    precio:'Gratis / Pro $15 USD/mes', link:'canva.com' },
+
+  { emoji:'📧', color:'#10B981', bg:'rgba(16,185,129,0.12)',
+    nombre:'Brevo (ex Sendinblue)', tipo:'Email Marketing', badgeClass:'b-verde',
+    desc:'Envía campañas de email automáticas: bienvenida, recuperación de carrito, ofertas semanales y seguimiento post-compra.',
+    usos:['Email de bienvenida con descuento automático','Secuencia de nurturing para leads nuevos','Recuperación de carrito abandonado por email','Boletín semanal con ofertas y blog'],
+    precio:'Gratis hasta 300 emails/día', link:'brevo.com' },
+
+  { emoji:'📊', color:'#6366F1', bg:'rgba(99,102,241,0.12)',
+    nombre:'Google Looker Studio', tipo:'Análisis de Ventas', badgeClass:'b-morado',
+    desc:'Conecta Google Analytics con tus datos de ventas y crea dashboards visuales para tomar decisiones basadas en datos reales.',
+    usos:['Dashboard de ventas en tiempo real','Análisis de productos más vendidos','Seguimiento de tráfico web y conversiones','Reportes automáticos semanales y mensuales'],
+    precio:'100% Gratis', link:'lookerstudio.google.com' },
+
+  { emoji:'💬', color:'#25D366', bg:'rgba(37,211,102,0.12)',
+    nombre:'Tidio / ManyChat', tipo:'Chatbot WhatsApp', badgeClass:'b-verde',
+    desc:'Automatiza respuestas frecuentes en WhatsApp e Instagram. Atiende clientes 24/7 sin esfuerzo manual.',
+    usos:['Respuesta automática fuera de horario','FAQ automática por WhatsApp','Captación de leads con flujo automatizado','Recuperación de carrito por mensaje directo'],
+    precio:'Tidio gratis (básico) · ManyChat desde $15/mes', link:'tidio.com' },
+
+  { emoji:'🔍', color:'#EF4444', bg:'rgba(239,68,68,0.12)',
+    nombre:'Surfer SEO / Ubersuggest', tipo:'SEO con IA', badgeClass:'b-rojo',
+    desc:'Optimiza tus artículos de blog con IA para posicionarlos en Google. Analiza a la competencia y sugiere mejoras.',
+    usos:['Análisis de palabras clave con IA','Optimización de artículos en tiempo real','Auditoría SEO de tu sitio completo','Seguimiento de posiciones en Google Chile'],
+    precio:'Ubersuggest gratis (limitado) · Surfer $89/mes', link:'ubersuggest.com' },
+
+  { emoji:'🎙️', color:'#F97316', bg:'rgba(249,115,22,0.12)',
+    nombre:'ElevenLabs / Murf', tipo:'Voiceover & Podcasts', badgeClass:'b-naranja',
+    desc:'Crea locuciones profesionales para videos, tutoriales y contenido de audio con voz en español chileno.',
+    usos:['Narración de videos de producto','Contenido de podcast sobre nutrición','Guías de audio para uso de suplementos','Anuncios con voz profesional'],
+    precio:'ElevenLabs gratis (limitado) · Murf desde $19/mes', link:'elevenlabs.io' },
+
+  { emoji:'📱', color:'#06B6D4', bg:'rgba(6,182,212,0.12)',
+    nombre:'Buffer / Later', tipo:'Redes Sociales', badgeClass:'b-cyan',
+    desc:'Programa tus posts en Instagram, TikTok y Facebook con semanas de anticipación. IA sugiere el mejor horario.',
+    usos:['Programar 1 semana de contenido en 1 hora','Análisis de mejores horarios para Chile','Sugerencias de hashtags con IA','Reprogramación automática de posts'],
+    precio:'Buffer gratis (3 canales) · Later desde $16/mes', link:'buffer.com' },
+
+  { emoji:'🧪', color:'#8B5CF6', bg:'rgba(139,92,246,0.12)',
+    nombre:'Microsoft Clarity', tipo:'Análisis de Comportamiento', badgeClass:'b-morado',
+    desc:'Graba las sesiones de tus visitantes y analiza dónde hacen clic, hasta dónde hacen scroll y dónde se van.',
+    usos:['Grabaciones de sesiones de usuarios reales','Mapas de calor de clics y scroll','Detecta dónde se pierden las conversiones','Mejora el diseño con datos reales'],
+    precio:'100% Gratis', link:'clarity.microsoft.com' },
+
+  { emoji:'⚡', color:'#10B981', bg:'rgba(16,185,129,0.12)',
+    nombre:'Zapier / Make', tipo:'Automatización', badgeClass:'b-verde',
+    desc:'Conecta todas tus herramientas. Cuando alguien compra por WhatsApp, automáticamente se registra en tu hoja de cálculo.',
+    usos:['Auto-registro de pedidos en Google Sheets','Notificación en email al recibir un pedido','Sincronización de inventario automática','Alertas de WhatsApp al hacer una venta'],
+    precio:'Zapier gratis (100 tareas/mes) · Make desde $9/mes', link:'zapier.com' },
+];
+
+/* FLUJO IA */
+const FLUJO = [
+  { num:'1', titulo:'Lunes: Planificación de contenido', herramienta:'Claude',
+    desc:'Pide a Claude que planifique 7 posts para Instagram esta semana enfocados en los beneficios de la Creatina. Incluye caption, hashtags y horario sugerido.' },
+  { num:'2', titulo:'Martes: Crear imágenes', herramienta:'Canva Magic + DALL-E',
+    desc:'Usa Canva con la paleta NutriFit para crear los 7 posts. Si necesitas una imagen especial de producto, genera el fondo con DALL-E 3 (gratis en Bing).' },
+  { num:'3', titulo:'Miércoles: Artículo de Blog', herramienta:'Claude + Surfer SEO',
+    desc:'Pide a Claude el artículo completo con la estructura que definimos en la Fase 8. Verifica la optimización SEO con Ubersuggest antes de publicar.' },
+  { num:'4', titulo:'Jueves: Respuestas WhatsApp', herramienta:'Claude + Tidio',
+    desc:'Genera con Claude 10 respuestas modelo para las preguntas frecuentes. Configúralas en Tidio para que se envíen automáticamente fuera de horario.' },
+  { num:'5', titulo:'Viernes: Programar semana siguiente', herramienta:'Buffer / Later',
+    desc:'Programa los 7 posts creados el martes para la semana siguiente. Buffer los publica automáticamente en el mejor horario para tu audiencia chilena.' },
+  { num:'6', titulo:'Sábado: Análisis y métricas', herramienta:'GA4 + Clarity',
+    desc:'Revisa cuántas visitas llegaron, qué productos vieron más y dónde abandonaron. Ajusta la estrategia de la semana siguiente con lo que aprendiste.' },
+];
+
+/* PROMPTS */
+const PROMPTS = [
+  { ico:'📝', titulo:'Descripción de producto',
+    texto:`Eres un experto en copywriting para tiendas de suplementos en Chile.
+Crea una descripción persuasiva para el siguiente producto:
+- Producto: [NOMBRE DEL PRODUCTO]
+- Beneficios principales: [LISTA]
+- Público: hombres y mujeres de 18-45 años que entrenan en gym
+- Tono: directo, motivador, lenguaje chileno
+- Incluye: título, descripción corta (20 palabras), descripción larga (80 palabras), 5 beneficios con bullet points y CTA para WhatsApp.` },
+
+  { ico:'📸', titulo:'Caption para Instagram',
+    texto:`Crea 3 opciones de caption para Instagram para NutriFit Chile.
+Producto: [PRODUCTO]
+Objetivo del post: [VENDER / EDUCAR / INSPIRAR]
+Tono: energético, cercano, en español chileno
+Cada opción debe tener:
+- Hook poderoso en la primera línea
+- Desarrollo de 3-4 líneas
+- CTA claro (link en bio / WhatsApp)
+- 10 hashtags relevantes para Chile` },
+
+  { ico:'🎯', titulo:'Email de bienvenida',
+    texto:`Escribe un email de bienvenida para nuevos suscriptores de NutriFit Chile.
+El email debe:
+- Asunto: máximo 50 caracteres, con emoji
+- Cuerpo: 150-200 palabras
+- Incluir el código de descuento BIENVENIDO10
+- Presentar los 3 productos más vendidos
+- Invitar a seguirnos en Instagram y escribir por WhatsApp
+- Tono cálido, motivador y chileno` },
+
+  { ico:'💬', titulo:'Respuesta WhatsApp',
+    texto:`Crea una respuesta para WhatsApp para NutriFit Chile ante esta situación:
+Cliente: "[MENSAJE DEL CLIENTE]"
+Contexto: somos una tienda de suplementos. Queremos responder:
+- En menos de 60 palabras
+- Respondiendo la duda específica
+- Sugiriendo un producto si aplica
+- Cerrando con un CTA amable
+- Usando un tono chileno y cercano, sin ser demasiado formal` },
+
+  { ico:'📊', titulo:'Artículo de blog SEO',
+    texto:`Escribe un artículo de blog SEO para NutriFit Chile.
+Keyword principal: [KEYWORD]
+Búsquedas mensuales: [NÚMERO]
+Longitud: 1.000 palabras
+Incluir:
+- Título H1 con la keyword
+- Meta description de 155 caracteres
+- 4 secciones H2 con contenido de valor
+- 2 secciones H3 dentro de cada H2
+- Mención natural del producto NutriFit relacionado
+- CTA final hacia la tienda online` },
+
+  { ico:'🎬', titulo:'Script para Reel TikTok',
+    texto:`Escribe un script de 30 segundos para un Reel de TikTok para NutriFit Chile.
+Tema: [TEMA O PRODUCTO]
+Formato: educativo-entretenido
+Estructura:
+- Segundos 0-3: Hook que detenga el scroll
+- Segundos 4-20: Información de valor (3 puntos)
+- Segundos 21-27: Producto NutriFit como solución
+- Segundos 28-30: CTA (link en bio / WhatsApp)
+Tono: dinámico, juvenil, lenguaje chileno` },
+
+  { ico:'⭐', titulo:'Respuesta a reseña negativa',
+    texto:`Redacta una respuesta profesional y empática para esta reseña negativa de NutriFit:
+Reseña: "[TEXTO DE LA RESEÑA NEGATIVA]"
+La respuesta debe:
+- Agradecer el feedback
+- Disculparse genuinamente sin admitir culpa excesiva
+- Ofrecer una solución concreta
+- Invitar a contactar por WhatsApp para resolver
+- Máximo 80 palabras
+- Tono profesional pero humano` },
+
+  { ico:'🏷️', titulo:'Oferta flash para WhatsApp',
+    texto:`Crea un mensaje de oferta flash para enviar por WhatsApp a clientes de NutriFit.
+Producto en oferta: [PRODUCTO]
+Descuento: [%]
+Duración: [HORAS]
+El mensaje debe:
+- Empezar con emoji llamativo
+- Crear urgencia real
+- Explicar el descuento claramente
+- Incluir el código de cupón
+- Máximo 100 palabras
+- Link directo a la tienda
+- Terminar con "¿Te lo reservo?" para generar respuesta` },
+];
+
+/* ════════════════════════════════════
+   DATOS 30 DÍAS
+   ════════════════════════════════════ */
+const DIAS = {
+  1: [
+    { dia:1, titulo:'Investigación y Planificación',
+      fase:'📐 Fundamentos', tiempo:'3 hrs',
+      tareas:[
+        {ico:'🔍', txt:'Lee y estudia la Fase 1 (investigación de competencia)'},
+        {ico:'📋', txt:'Define tus 6 productos y sus precios definitivos'},
+        {ico:'📱', txt:'Crea cuentas: Instagram, TikTok, Facebook para NutriFit'},
+        {ico:'💡', txt:'Define tu presupuesto de lanzamiento y objetivos del mes 1'},
+      ]},
+    { dia:2, titulo:'Dominio y Hosting',
+      fase:'📐 Fundamentos', tiempo:'2 hrs',
+      tareas:[
+        {ico:'🌐', txt:'Compra el dominio nutrifit.cl (HostGator, Namecheap o CPanel Chile)'},
+        {ico:'🖥️', txt:'Contrata un hosting básico (SiteGround, Hostinger Chile ~$5/mes)'},
+        {ico:'📧', txt:'Configura email corporativo contacto@nutrifit.cl'},
+        {ico:'🔒', txt:'Activa SSL (HTTPS) gratuito desde cPanel'},
+      ]},
+    { dia:3, titulo:'Identidad Visual',
+      fase:'📐 Fundamentos', tiempo:'3 hrs',
+      tareas:[
+        {ico:'🎨', txt:'Diseña el logo en Canva (fuente Bebas Neue + verde #22C55E)'},
+        {ico:'🖼️', txt:'Crea los 6 tamaños de logo: SVG, PNG blanco, PNG negro, favicon'},
+        {ico:'📐', txt:'Define paleta de colores oficial y tipografías en Canva'},
+        {ico:'📱', txt:'Crea la foto de perfil y portada para todas las redes sociales'},
+      ]},
+    { dia:4, titulo:'Fotografía de Productos',
+      fase:'📐 Fundamentos', tiempo:'4 hrs',
+      tareas:[
+        {ico:'📸', txt:'Fotografía cada producto con fondo blanco (usa tu celular + luz natural)'},
+        {ico:'🖼️', txt:'Toma fotos adicionales: uso, lifestyle, close-up del producto'},
+        {ico:'⚡', txt:'Convierte todas las fotos a WebP con squoosh.app'},
+        {ico:'📁', txt:'Nombra los archivos: proteina-whey-nutrifit.webp (formato SEO)'},
+      ]},
+    { dia:5, titulo:'Textos y Copywriting',
+      fase:'📐 Fundamentos', tiempo:'3 hrs',
+      tareas:[
+        {ico:'✍️', txt:'Usa Claude para generar las 6 fichas de producto (Prompts Fase 9)'},
+        {ico:'📝', txt:'Escribe los textos del Hero, Objetivos y Por qué NutriFit'},
+        {ico:'💬', txt:'Redacta las 8 respuestas FAQ definitivas'},
+        {ico:'🔍', txt:'Verifica que cada texto incluya la keyword SEO correspondiente'},
+      ]},
+    { dia:6, titulo:'Configuración WhatsApp Business',
+      fase:'📐 Fundamentos', tiempo:'2 hrs',
+      tareas:[
+        {ico:'💬', txt:'Descarga WhatsApp Business e instala con número dedicado'},
+        {ico:'🏪', txt:'Configura perfil: foto, descripción, horario, dirección web'},
+        {ico:'⚡', txt:'Crea 10 respuestas rápidas para las preguntas más frecuentes'},
+        {ico:'🤖', txt:'Configura mensaje de bienvenida y mensaje de ausencia automático'},
+      ]},
+    { dia:7, titulo:'Revisión Semana 1',
+      fase:'📐 Fundamentos', tiempo:'1 hr',
+      tareas:[
+        {ico:'✅', txt:'Verifica que dominio, hosting y email estén funcionando'},
+        {ico:'📁', txt:'Organiza todas las fotos e imágenes en carpetas ordenadas'},
+        {ico:'📋', txt:'Revisa que todos los textos estén listos y aprobados'},
+        {ico:'🎯', txt:'Planifica las tareas de la semana 2 con el plan de esta guía'},
+      ]},
+  ],
+  2: [
+    { dia:8, titulo:'Subir el HTML a Hosting',
+      fase:'🎨 Diseño', tiempo:'2 hrs',
+      tareas:[
+        {ico:'📤', txt:'Sube nutrifit.html al hosting via cPanel → File Manager o FTP'},
+        {ico:'🌐', txt:'Renombra como index.html para que sea la página principal'},
+        {ico:'🔗', txt:'Verifica que se vea correctamente en nutrifit.cl'},
+        {ico:'📱', txt:'Prueba desde el celular que el diseño se vea bien'},
+      ]},
+    { dia:9, titulo:'Integrar Fotos Reales',
+      fase:'🎨 Diseño', tiempo:'3 hrs',
+      tareas:[
+        {ico:'🖼️', txt:'Reemplaza los emojis de producto por las fotos reales en el HTML'},
+        {ico:'📐', txt:'Ajusta los tamaños: 800×800px para fichas, 1920×1080 para hero'},
+        {ico:'⚡', txt:'Verifica que todas las imágenes cargan en menos de 2 segundos'},
+        {ico:'🔍', txt:'Agrega el atributo alt a cada imagen con keyword relevante'},
+      ]},
+    { dia:10, titulo:'Actualizar Precios y Datos',
+      fase:'🎨 Diseño', tiempo:'2 hrs',
+      tareas:[
+        {ico:'💰', txt:'Actualiza todos los precios reales en el array PRODUCTOS del JS'},
+        {ico:'📞', txt:'Reemplaza +56912345678 por tu número WhatsApp real en todos los links'},
+        {ico:'📧', txt:'Actualiza contacto@nutrifit.cl en footer y formulario de contacto'},
+        {ico:'🏷️', txt:'Configura los cupones reales que usarás en el lanzamiento'},
+      ]},
+    { dia:11, titulo:'Instalar Analytics',
+      fase:'🎨 Diseño', tiempo:'2 hrs',
+      tareas:[
+        {ico:'📊', txt:'Crea propiedad en Google Analytics 4 (analytics.google.com)'},
+        {ico:'💻', txt:'Agrega el código GA4 en el <head> de tu index.html'},
+        {ico:'🔍', txt:'Agrega tu sitio en Google Search Console (search.google.com/search-console)'},
+        {ico:'✅', txt:'Verifica que Analytics recibe datos haciendo una visita de prueba'},
+      ]},
+    { dia:12, titulo:'SEO Técnico Básico',
+      fase:'🎨 Diseño', tiempo:'2 hrs',
+      tareas:[
+        {ico:'🏷️', txt:'Verifica Title Tag y Meta Description en todas las páginas'},
+        {ico:'🧬', txt:'Agrega el Schema de Organización en el <head> del HTML'},
+        {ico:'🗺️', txt:'Crea y sube el sitemap.xml al hosting'},
+        {ico:'🤖', txt:'Crea y sube el robots.txt al hosting'},
+      ]},
+    { dia:13, titulo:'Google My Business',
+      fase:'🎨 Diseño', tiempo:'2 hrs',
+      tareas:[
+        {ico:'🗺️', txt:'Crea el perfil en business.google.com'},
+        {ico:'📸', txt:'Sube 10 fotos de productos y del "negocio"'},
+        {ico:'📝', txt:'Completa toda la información: horarios, descripción, categoría'},
+        {ico:'🔗', txt:'Agrega el link de tu web y WhatsApp en el perfil'},
+      ]},
+    { dia:14, titulo:'Revisión Semana 2',
+      fase:'🎨 Diseño', tiempo:'1 hr',
+      tareas:[
+        {ico:'👀', txt:'Haz un recorrido completo por la web como si fueras cliente'},
+        {ico:'📱', txt:'Prueba el proceso completo de compra por WhatsApp'},
+        {ico:'🔍', txt:'Pide a 3 amigos que revisen la web y den feedback'},
+        {ico:'📋', txt:'Anota todos los bugs y mejoras para corregir antes del lanzamiento'},
+      ]},
+  ],
+  3: [
+    { dia:15, titulo:'Configurar Pagos Webpay',
+      fase:'🛒 Ventas', tiempo:'3 hrs',
+      tareas:[
+        {ico:'💳', txt:'Crea cuenta en Transbank (transbank.cl) → Webpay Plus'},
+        {ico:'📄', txt:'Sube documentos: RUT, comprobante de domicilio, datos bancarios'},
+        {ico:'🔗', txt:'Agrega el link de pago Webpay en el botón checkout de tu web'},
+        {ico:'🧪', txt:'Haz una compra de prueba con el ambiente sandbox de Transbank'},
+      ]},
+    { dia:16, titulo:'Configurar Mercado Pago',
+      fase:'🛒 Ventas', tiempo:'2 hrs',
+      tareas:[
+        {ico:'🔵', txt:'Crea cuenta en Mercado Pago Chile (mercadopago.cl)'},
+        {ico:'🔗', txt:'Genera tu link de cobro personalizado para cada producto'},
+        {ico:'💻', txt:'Agrega los links de MP en los botones de checkout'},
+        {ico:'📱', txt:'Instala la app de Mercado Pago para recibir notificaciones de pago'},
+      ]},
+    { dia:17, titulo:'Sistema de Envíos',
+      fase:'🛒 Ventas', tiempo:'2 hrs',
+      tareas:[
+        {ico:'🚚', txt:'Crea cuenta en Starken (starken.cl) o Chilexpress'},
+        {ico:'📦', txt:'Compra materiales de empaque: cajas, papel burbuja, stickers'},
+        {ico:'🏷️', txt:'Diseña la etiqueta de empaque NutriFit en Canva'},
+        {ico:'💰', txt:'Define tu política: envío gratis sobre $50.000, tiempo de despacho'},
+      ]},
+    { dia:18, titulo:'Primer Artículo de Blog',
+      fase:'🛒 Ventas', tiempo:'3 hrs',
+      tareas:[
+        {ico:'✍️', txt:'Usa Claude para generar: "Creatina: guía completa 2025" (3.200 búsquedas)'},
+        {ico:'🖼️', txt:'Crea la imagen destacada del artículo (800×450px WebP)'},
+        {ico:'🔗', txt:'Incluye 2 links internos a productos de la tienda'},
+        {ico:'📤', txt:'Publica el artículo y envía la URL a Search Console para indexar'},
+      ]},
+    { dia:19, titulo:'Contenido Redes Sociales',
+      fase:'🛒 Ventas', tiempo:'3 hrs',
+      tareas:[
+        {ico:'📸', txt:'Diseña 7 posts en Canva para la primera semana post-lanzamiento'},
+        {ico:'🎬', txt:'Graba 2 Reels de producto usando los scripts de la Fase 9'},
+        {ico:'📱', txt:'Programa todos los posts en Buffer para la semana del lanzamiento'},
+        {ico:'#️⃣', txt:'Investiga 30 hashtags fitness chilenos y crea tu lista maestra'},
+      ]},
+    { dia:20, titulo:'Estrategia de Lanzamiento',
+      fase:'🛒 Ventas', tiempo:'2 hrs',
+      tareas:[
+        {ico:'🔥', txt:'Define la oferta de lanzamiento: 20% OFF primeras 48 horas'},
+        {ico:'💬', txt:'Crea el mensaje de lanzamiento para WhatsApp (para enviar a contactos)'},
+        {ico:'📧', txt:'Configura el email de bienvenida en Brevo con cupón BIENVENIDO'},
+        {ico:'🎯', txt:'Lista tus primeros 50 contactos potenciales a quienes avisarás'},
+      ]},
+    { dia:21, titulo:'Revisión Semana 3',
+      fase:'🛒 Ventas', tiempo:'2 hrs',
+      tareas:[
+        {ico:'🧪', txt:'Haz prueba completa: visita web → agrega producto → paga por WhatsApp'},
+        {ico:'💳', txt:'Verifica que Webpay y Mercado Pago funcionan correctamente'},
+        {ico:'📦', txt:'Ten al menos 5 unidades de cada producto en stock listo para despachar'},
+        {ico:'✅', txt:'Checklist final: ¿está todo listo para lanzar mañana?'},
+      ]},
+  ],
+  4: [
+    { dia:22, titulo:'🚀 DÍA DE LANZAMIENTO',
+      fase:'🚀 Lanzamiento', tiempo:'Todo el día',
+      tareas:[
+        {ico:'🎉', txt:'Publica el primer post en Instagram y TikTok anunciando el lanzamiento'},
+        {ico:'💬', txt:'Envía mensaje de lanzamiento a todos tus contactos de WhatsApp'},
+        {ico:'📧', txt:'Envía email de lanzamiento a tu lista de suscriptores'},
+        {ico:'🔔', txt:'Activa las notificaciones en tu celular para responder pedidos inmediatamente'},
+      ]},
+    { dia:23, titulo:'Primera Semana de Ventas',
+      fase:'🚀 Lanzamiento', tiempo:'2 hrs',
+      tareas:[
+        {ico:'⚡', txt:'Responde todos los mensajes de WhatsApp en menos de 1 hora'},
+        {ico:'📦', txt:'Despacha los primeros pedidos el mismo día o al día siguiente'},
+        {ico:'📸', txt:'Fotografía tu primer despacho y publícalo en stories'},
+        {ico:'⭐', txt:'Pide reseña a cada cliente que compre esta semana'},
+      ]},
+    { dia:24, titulo:'Segundo Artículo de Blog',
+      fase:'🚀 Lanzamiento', tiempo:'2 hrs',
+      tareas:[
+        {ico:'✍️', txt:'Publica: "¿La Proteína Whey engorda o adelgaza?" (1.500 búsquedas)'},
+        {ico:'🔗', txt:'Link interno al producto Whey y a la tienda'},
+        {ico:'📤', txt:'Comparte el artículo en Instagram, Facebook y grupos de fitness'},
+        {ico:'🔍', txt:'Envía la URL a Google Search Console para indexación rápida'},
+      ]},
+    { dia:25, titulo:'Análisis de Primeros Resultados',
+      fase:'🚀 Lanzamiento', tiempo:'2 hrs',
+      tareas:[
+        {ico:'📊', txt:'Revisa Google Analytics: visitas, páginas vistas, tiempo en sitio'},
+        {ico:'💬', txt:'Analiza qué productos generaron más consultas por WhatsApp'},
+        {ico:'📈', txt:'Registra tus primeras ventas en una hoja de cálculo simple'},
+        {ico:'🎯', txt:'Identifica qué funcionó y qué mejorar para la semana 2'},
+      ]},
+    { dia:26, titulo:'Fidelización de Primeros Clientes',
+      fase:'🚀 Lanzamiento', tiempo:'2 hrs',
+      tareas:[
+        {ico:'💬', txt:'Envía mensaje de seguimiento a clientes que ya recibieron su pedido'},
+        {ico:'⭐', txt:'Pide reseña en Google My Business con link directo'},
+        {ico:'🎁', txt:'Ofrece descuento especial del 10% en su segunda compra'},
+        {ico:'📸', txt:'Pide foto usando el producto para usar como testimonio (con permiso)'},
+      ]},
+    { dia:27, titulo:'Optimización Post-Lanzamiento',
+      fase:'🚀 Lanzamiento', tiempo:'2 hrs',
+      tareas:[
+        {ico:'🔍', txt:'Revisa Search Console: ¿qué keywords empiezan a mostrarse?'},
+        {ico:'📱', txt:'Analiza qué posts de Instagram/TikTok tuvieron más alcance'},
+        {ico:'🖼️', txt:'Mejora las fotos o textos de los productos menos visitados'},
+        {ico:'💡', txt:'Identifica la próxima oferta o bundle para la semana siguiente'},
+      ]},
+    { dia:28, titulo:'Tercer Artículo + Redes',
+      fase:'🚀 Lanzamiento', tiempo:'3 hrs',
+      tareas:[
+        {ico:'✍️', txt:'Publica: "Ashwagandha: 7 beneficios comprobados" (2.800 búsquedas)'},
+        {ico:'🎬', txt:'Graba 2 nuevos Reels de producto o testimonio de cliente'},
+        {ico:'📱', txt:'Programa el contenido de la semana 5 en Buffer'},
+        {ico:'💬', txt:'Envía oferta de fin de semana a tu lista de WhatsApp'},
+      ]},
+    { dia:29, titulo:'Revisión 30 Días',
+      fase:'🚀 Lanzamiento', tiempo:'2 hrs',
+      tareas:[
+        {ico:'📊', txt:'Calcula: visitas totales, pedidos totales, ingresos del mes'},
+        {ico:'🔍', txt:'Revisa qué keywords empezaron a posicionar en Search Console'},
+        {ico:'⭐', txt:'Cuenta las reseñas obtenidas y el rating promedio'},
+        {ico:'📋', txt:'Documenta las lecciones aprendidas para el mes 2'},
+      ]},
+    { dia:30, titulo:'🏆 PLAN MES 2',
+      fase:'🚀 Lanzamiento', tiempo:'2 hrs',
+      tareas:[
+        {ico:'🎯', txt:'Define objetivos mes 2: duplicar visitas y ventas'},
+        {ico:'📝', txt:'Planifica 8 artículos de blog para el mes 2'},
+        {ico:'💰', txt:'Evalúa si activar publicidad pagada (Google Ads o Meta Ads)'},
+        {ico:'🚀', txt:'¡Felicitaciones! NutriFit está en línea. El trabajo real apenas empieza.'},
+      ]},
+  ],
+};
+
+const HITOS_DATA = [
+  { dia:'DÍA 2',  num:2,  titulo:'Dominio y Hosting activos',
+    desc:'nutrifit.cl comprado y hosting configurado. Tu espacio en internet está reservado.',
+    badges:['b-azul'] },
+  { dia:'DÍA 7',  num:7,  titulo:'Identidad visual completa',
+    desc:'Logo, colores, tipografías y fotos de producto listos. NutriFit tiene una cara.',
+    badges:['b-morado'] },
+  { dia:'DÍA 8',  num:8,  titulo:'Página web publicada',
+    desc:'Tu sitio está en línea en nutrifit.cl. Primer hito técnico completado.',
+    badges:['b-verde'] },
+  { dia:'DÍA 11', num:11, titulo:'Analytics instalado',
+    desc:'Empiezas a medir todo. Cada visita queda registrada para tomar decisiones.',
+    badges:['b-naranja'] },
+  { dia:'DÍA 15', num:15, titulo:'Pagos configurados',
+    desc:'Webpay y Mercado Pago activos. Ya puedes recibir dinero por tu web.',
+    badges:['b-azul'] },
+  { dia:'DÍA 18', num:18, titulo:'Primer artículo de blog publicado',
+    desc:'El motor SEO está encendido. Google empieza a indexar tu contenido.',
+    badges:['b-verde'] },
+  { dia:'DÍA 22', num:22, titulo:'🚀 LANZAMIENTO OFICIAL',
+    desc:'NutriFit sale al mundo. Primera campaña en redes, primer mensaje a contactos.',
+    badges:['b-rojo'] },
+  { dia:'DÍA 23', num:23, titulo:'🎉 PRIMERA VENTA',
+    desc:'El momento que lo justifica todo. Tu primer cliente de NutriFit.',
+    badges:['b-verde'] },
+  { dia:'DÍA 30', num:30, titulo:'Análisis y Plan Mes 2',
+    desc:'Revisas métricas reales y planificas el siguiente mes con datos concretos.',
+    badges:['b-negro'] },
+];
+
+/* ════════════════════════════════════
+   RENDER IA
+   ════════════════════════════════════ */
+function renderIA() {
+  document.getElementById('ia-grid').innerHTML = HERRAMIENTAS_IA.map(h => `
+    <div class="ia-card">
+      <div class="ia-card-header">
+        <div class="ia-logo" style="background:${h.bg};color:${h.color};">${h.emoji}</div>
+        <div>
+          <div class="ia-nombre">${h.nombre}</div>
+          <div class="ia-tipo"><span class="badge ${h.badgeClass}">${h.tipo}</span></div>
+        </div>
+      </div>
+      <div class="ia-body">
+        <p class="ia-desc">${h.desc}</p>
+        <div class="ia-usos">${h.usos.map(u=>`<div class="ia-uso">${u}</div>`).join('')}</div>
+        <div class="ia-footer">
+          <span class="ia-precio">💰 ${h.precio}</span>
+          <span class="ia-link">🔗 ${h.link} →</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderFlujo() {
+  document.getElementById('flujo-ia').innerHTML = FLUJO.map(f => `
+    <div class="flujo-paso">
+      <div class="flujo-num">${f.num}</div>
+      <div class="flujo-contenido">
+        <div class="flujo-titulo">${f.titulo}</div>
+        <div class="flujo-herramienta">🤖 ${f.herramienta}</div>
+        <p class="flujo-desc">${f.desc}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderPrompts() {
+  document.getElementById('prompts-grid').innerHTML = PROMPTS.map((p,i) => `
+    <div class="prompt-card">
+      <div class="prompt-head">
+        <span class="prompt-head-ico">${p.ico}</span>
+        <span class="prompt-head-titulo">${p.titulo}</span>
+      </div>
+      <div class="prompt-body">
+        <div class="prompt-texto">${p.texto}</div>
+        <button class="prompt-copy" onclick="copiarPrompt(${i},this)">📋 Copiar prompt</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function copiarPrompt(i, btn) {
+  navigator.clipboard.writeText(PROMPTS[i].texto).then(() => {
+    btn.textContent = '✅ Copiado';
+    setTimeout(()=> btn.textContent = '📋 Copiar prompt', 2000);
+  });
+}
+
+/* ════════════════════════════════════
+   RENDER 30 DÍAS
+   ════════════════════════════════════ */
+let semanaActual = 1;
+let diasCompletados = new Set(JSON.parse(localStorage.getItem('nf_dias') || '[]'));
+
+function mostrarSemana(num, btn) {
+  semanaActual = num;
+  document.querySelectorAll('.semana-tab').forEach(b => b.classList.remove('activo'));
+  btn.classList.add('activo');
+  renderDias();
+}
+
+const SEMANA_INFO = {
+  1: { titulo:'SEMANA 1 — FUNDAMENTOS', meta:'Dominio, hosting, identidad visual y contenido base listos', entregable:'✅ Web en borrador + fotos de producto', color:'#16A34A' },
+  2: { titulo:'SEMANA 2 — DISEÑO Y ANALYTICS', meta:'Página web publicada en nutrifit.cl con Analytics y Search Console activos', entregable:'✅ nutrifit.cl publicado', color:'#2563EB' },
+  3: { titulo:'SEMANA 3 — VENTAS Y SEO', meta:'Sistema de pagos activo, primer artículo de blog publicado y redes sociales con contenido', entregable:'✅ Primer artículo + pagos activos', color:'#7C3AED' },
+  4: { titulo:'SEMANA 4 — LANZAMIENTO', meta:'NutriFit sale al mundo. Primera venta. Primeras reseñas. Primeros datos reales.', entregable:'🚀 Primera venta NutriFit', color:'#DC2626' },
+};
+
+function renderDias() {
+  const info = SEMANA_INFO[semanaActual];
+  const diasSemana = DIAS[semanaActual];
+  const el = document.getElementById('dias-container');
+
+  el.innerHTML = `
+    <div class="semana-resumen">
+      <div class="semana-resumen-titulo">${info.titulo}</div>
+      <div class="semana-meta">${info.meta}</div>
+      <div class="semana-entregable">${info.entregable}</div>
+    </div>
+    <div class="dias-grid">
+      ${diasSemana.map(d => {
+        const comp = diasCompletados.has(d.dia);
+        return `
+        <div class="dia-card ${comp ? 'completado' : ''}" id="dia-card-${d.dia}">
+          <div class="dia-header">
+            <div>
+              <div class="dia-num">DÍA ${d.dia}</div>
+              <span class="badge b-negro dia-fase-badge">${d.fase}</span>
+            </div>
+            <div class="dia-check" onclick="toggleDia(${d.dia})">${comp ? '✓' : ''}</div>
+          </div>
+          <div class="dia-body">
+            <div class="dia-titulo">${d.titulo}</div>
+            <div class="dia-tareas">
+              ${d.tareas.map(t=>`
+                <div class="dia-tarea">
+                  <span class="dia-tarea-ico">${t.ico}</span>
+                  <span>${t.txt}</span>
+                </div>
+              `).join('')}
+            </div>
+            <div class="dia-tiempo">⏱ Tiempo estimado: ${d.tiempo}</div>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>
+  `;
+}
+
+function toggleDia(num) {
+  if (diasCompletados.has(num)) diasCompletados.delete(num);
+  else diasCompletados.add(num);
+  localStorage.setItem('nf_dias', JSON.stringify([...diasCompletados]));
+  actualizarProgreso30();
+  renderDias();
+  mostrarToast(diasCompletados.has(num) ? `✅ Día ${num} completado` : `↩️ Día ${num} desmarcado`);
+}
+
+function actualizarProgreso30() {
+  const total = 30;
+  const comp = diasCompletados.size;
+  const pct = Math.round((comp / total) * 100);
+  document.getElementById('prog-barra').style.width = pct + '%';
+  document.getElementById('prog-label-pct').textContent = `${comp} de ${total} días`;
+  document.getElementById('prog-dias-num').textContent = comp;
+}
+
+function renderHitos() {
+  document.getElementById('hitos').innerHTML = HITOS_DATA.map(h => `
+    <div class="hito">
+      <div class="hito-dia">
+        <div class="hito-dia-num">${h.num}</div>
+        <div class="hito-dia-txt">${h.dia}</div>
+      </div>
+      <div class="hito-content">
+        <div class="hito-titulo">${h.titulo}</div>
+        <p class="hito-desc">${h.desc}</p>
+        <div>${h.badges.map(b=>`<span class="badge ${b}">${h.dia}</span>`).join('')}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function calcularMetricas() {
+  const inputs = document.querySelectorAll('.metrica-input');
+  const visitas = parseInt(inputs[0].value) || 0;
+  const conv    = parseFloat(inputs[1].value) || 0;
+  const ticket  = parseInt(inputs[2].value) || 0;
+  const pedidos = Math.round(visitas * conv / 100);
+  const ventas  = pedidos * ticket;
+  document.getElementById('ventas-est').textContent   = '$' + ventas.toLocaleString('es-CL');
+  document.getElementById('pedidos-est').textContent  = pedidos + ' pedidos';
+  document.getElementById('proj-pedidos').textContent = pedidos + ' pedidos';
+  document.getElementById('proj-ventas').textContent  = '$' + ventas.toLocaleString('es-CL') + ' CLP';
+}
+
+/* TOAST */
+let toastTimer;
+function mostrarToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('visible');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('visible'), 3000);
+}
+
+/* INIT */
+renderIA();
+renderFlujo();
+renderPrompts();
+renderDias();
+renderHitos();
+actualizarProgreso30();
+calcularMetricas();
+</script>
+</body>
+</html>

@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NutriFit — Catálogo de Productos</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --negro: #000000;
+  --blanco: #FFFFFF;
+  --verde: #22C55E;
+  --verde-dark: #16A34A;
+  --verde-light: rgba(34,197,94,0.08);
+  --gris-oscuro: #1A1A1A;
+  --gris-medio: #6B7280;
+  --gris-claro: #F5F5F5;
+  --gris-borde: #E5E7EB;
+  --amarillo: #F59E0B;
+  --azul: #3B82F6;
+  --rojo: #EF4444;
+  --max-width: 1100px;
+  --radius: 20px;
+  --radius-sm: 10px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.07);
+  --shadow-hover: 0 16px 48px rgba(0,0,0,0.13);
+  --transition: all 0.3s ease;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: var(--gris-claro); color: var(--gris-oscuro); }
+
+/* NAVBAR */
+.navbar {
+  background: var(--negro); padding: 0 32px; height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 100;
+}
+.logo { font-family: 'Bebas Neue'; font-size: 26px; color: var(--blanco); letter-spacing: 3px; }
+.logo span { color: var(--verde); }
+.back-btn {
+  color: rgba(255,255,255,0.6); font-size: 13px; font-family: 'Montserrat', sans-serif;
+  font-weight: 600; display: flex; align-items: center; gap: 6px;
+  transition: var(--transition); text-decoration: none;
+}
+.back-btn:hover { color: var(--verde); }
+
+/* HERO CATÁLOGO */
+.catalogo-hero {
+  background: linear-gradient(135deg, var(--negro) 0%, #0d1a0d 100%);
+  padding: 56px 32px; text-align: center;
+}
+.catalogo-hero h1 {
+  font-family: 'Bebas Neue'; font-size: clamp(40px, 6vw, 64px);
+  color: var(--blanco); letter-spacing: 3px; margin-bottom: 12px;
+}
+.catalogo-hero h1 span { color: var(--verde); }
+.catalogo-hero p { color: rgba(255,255,255,0.55); font-size: 16px; max-width: 540px; margin: 0 auto 28px; line-height: 1.6; }
+.filtros-hero { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.filtro-btn {
+  padding: 8px 20px; border-radius: 100px;
+  font-family: 'Montserrat'; font-weight: 700; font-size: 13px;
+  cursor: pointer; transition: var(--transition); border: 2px solid rgba(255,255,255,0.2);
+  background: transparent; color: rgba(255,255,255,0.7);
+}
+.filtro-btn.activo, .filtro-btn:hover {
+  background: var(--verde); border-color: var(--verde); color: var(--negro);
+}
+
+/* LAYOUT PRINCIPAL */
+.main { max-width: var(--max-width); margin: 0 auto; padding: 40px 24px 80px; }
+
+/* GRID DE PRODUCTOS */
+.productos-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 28px; margin-bottom: 60px;
+}
+
+/* TARJETA DE PRODUCTO */
+.producto-card {
+  background: var(--blanco); border-radius: var(--radius);
+  box-shadow: var(--shadow); overflow: hidden;
+  transition: var(--transition); border: 2px solid transparent;
+  display: flex; flex-direction: column;
+}
+.producto-card:hover {
+  transform: translateY(-8px); box-shadow: var(--shadow-hover);
+  border-color: rgba(34,197,94,0.25);
+}
+.producto-card.expandida { grid-column: 1 / -1; flex-direction: row; }
+
+/* IMAGEN */
+.producto-imagen {
+  height: 200px; display: flex; align-items: center; justify-content: center;
+  font-size: 80px; position: relative; flex-shrink: 0;
+}
+.producto-card.expandida .producto-imagen {
+  width: 280px; height: auto; min-height: 280px; font-size: 100px;
+}
+.img-bg-musculo  { background: linear-gradient(135deg, #0a1a0a, #1a2d1a); }
+.img-bg-energia  { background: linear-gradient(135deg, #0a0a1a, #1a1a2d); }
+.img-bg-bienestar { background: linear-gradient(135deg, #1a0a0a, #2d1a1a); }
+.img-bg-mente    { background: linear-gradient(135deg, #0a1a1a, #1a2d2d); }
+.img-bg-sueno    { background: linear-gradient(135deg, #1a1a0a, #2d2d1a); }
+.img-bg-premium  { background: linear-gradient(135deg, #1a0a1a, #2d1a2d); }
+
+.badge-row {
+  position: absolute; top: 12px; left: 12px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.badge {
+  display: inline-block; padding: 4px 10px; border-radius: 100px;
+  font-family: 'Montserrat'; font-weight: 800; font-size: 10px; letter-spacing: 0.5px;
+}
+.badge-top    { background: var(--verde); color: var(--negro); }
+.badge-nuevo  { background: var(--azul); color: white; }
+.badge-oferta { background: var(--rojo); color: white; }
+.badge-premium { background: linear-gradient(135deg, #F59E0B, #D97706); color: var(--negro); }
+
+.like-btn {
+  position: absolute; top: 12px; right: 12px;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(255,255,255,0.15); border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; font-size: 16px;
+  transition: var(--transition);
+}
+.like-btn:hover { background: rgba(255,255,255,0.3); transform: scale(1.1); }
+.like-btn.activo { background: rgba(239,68,68,0.2); }
+
+/* INFO */
+.producto-info { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+.producto-card.expandida .producto-info { padding: 32px; }
+
+.producto-meta {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 8px;
+}
+.categoria-tag {
+  font-family: 'Montserrat'; font-weight: 700; font-size: 11px;
+  color: var(--verde); text-transform: uppercase; letter-spacing: 1px;
+}
+.contenido-tag {
+  font-size: 11px; color: var(--gris-medio); font-family: 'Montserrat'; font-weight: 600;
+}
+
+.producto-nombre {
+  font-family: 'Montserrat'; font-weight: 800; font-size: 18px;
+  color: var(--negro); margin-bottom: 6px; line-height: 1.3;
+}
+.producto-tagline {
+  font-size: 13px; color: var(--gris-medio); font-style: italic;
+  margin-bottom: 14px; line-height: 1.5;
+}
+
+/* ESTRELLAS */
+.rating-row {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 16px;
+}
+.estrellas { color: var(--amarillo); font-size: 14px; letter-spacing: 1px; }
+.rating-num { font-family: 'Montserrat'; font-weight: 700; font-size: 13px; color: var(--negro); }
+.rating-total { font-size: 12px; color: var(--gris-medio); }
+
+/* BENEFICIOS */
+.beneficios-lista {
+  list-style: none; margin-bottom: 18px; display: flex; flex-direction: column; gap: 7px;
+}
+.beneficios-lista li {
+  display: flex; align-items: flex-start; gap: 8px;
+  font-size: 13px; color: #374151; line-height: 1.5;
+}
+.beneficios-lista li::before {
+  content: '✓'; color: var(--verde); font-weight: 800;
+  font-size: 13px; flex-shrink: 0; margin-top: 1px;
+}
+
+/* MODO USO */
+.modo-uso {
+  background: var(--verde-light); border-left: 3px solid var(--verde);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 12px 14px; margin-bottom: 18px;
+}
+.modo-uso-titulo {
+  font-family: 'Montserrat'; font-weight: 800; font-size: 11px;
+  color: var(--verde-dark); text-transform: uppercase; letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+.modo-uso p { font-size: 13px; color: #374151; line-height: 1.6; }
+
+/* STACK */
+.stack-section { margin-bottom: 18px; }
+.stack-titulo {
+  font-family: 'Montserrat'; font-weight: 700; font-size: 11px;
+  color: var(--gris-medio); text-transform: uppercase; letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+.stack-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.stack-tag {
+  padding: 4px 10px; border-radius: 100px;
+  background: var(--gris-claro); border: 1px solid var(--gris-borde);
+  font-family: 'Montserrat'; font-weight: 600; font-size: 11px; color: var(--gris-oscuro);
+}
+
+/* PRECIO Y BOTONES */
+.precio-seccion { margin-top: auto; }
+.precio-row {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
+}
+.precio {
+  font-family: 'Montserrat'; font-weight: 800; font-size: 26px; color: var(--negro);
+}
+.precio-antes {
+  font-family: 'Montserrat'; font-weight: 600; font-size: 15px;
+  color: var(--gris-medio); text-decoration: line-through;
+}
+.descuento-badge {
+  background: rgba(239,68,68,0.1); color: var(--rojo);
+  font-family: 'Montserrat'; font-weight: 800; font-size: 12px;
+  padding: 3px 8px; border-radius: 6px;
+}
+.btns-row { display: flex; gap: 10px; }
+.btn-comprar {
+  flex: 1; background: var(--negro); color: var(--blanco);
+  border: none; border-radius: var(--radius-sm); padding: 14px;
+  font-family: 'Montserrat'; font-weight: 700; font-size: 14px;
+  cursor: pointer; transition: var(--transition);
+}
+.btn-comprar:hover { background: var(--verde); color: var(--negro); }
+.btn-wsp {
+  background: #25D366; color: white; border: none;
+  border-radius: var(--radius-sm); padding: 14px 16px;
+  font-size: 20px; cursor: pointer; transition: var(--transition);
+  text-decoration: none; display: flex; align-items: center;
+}
+.btn-wsp:hover { background: #128C7E; transform: scale(1.05); }
+.btn-ver-mas {
+  width: 100%; background: transparent; border: 2px solid var(--gris-borde);
+  border-radius: var(--radius-sm); padding: 10px;
+  font-family: 'Montserrat'; font-weight: 700; font-size: 13px;
+  color: var(--gris-medio); cursor: pointer; transition: var(--transition);
+  margin-top: 8px;
+}
+.btn-ver-mas:hover { border-color: var(--verde); color: var(--verde); }
+
+/* SECCIÓN DETALLE EXPANDIDO */
+.detalle-tabs {
+  display: flex; gap: 4px; margin-bottom: 20px;
+  background: var(--gris-claro); padding: 4px; border-radius: var(--radius-sm);
+}
+.tab-btn {
+  flex: 1; padding: 8px 12px; border-radius: 8px; border: none;
+  font-family: 'Montserrat'; font-weight: 700; font-size: 12px;
+  cursor: pointer; transition: var(--transition);
+  background: transparent; color: var(--gris-medio);
+}
+.tab-btn.activo { background: var(--blanco); color: var(--negro); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.tab-contenido { display: none; }
+.tab-contenido.activo { display: block; }
+
+/* INFO NUTRICIONAL */
+.tabla-nutricional {
+  width: 100%; border-collapse: collapse; font-size: 13px;
+  margin-bottom: 16px;
+}
+.tabla-nutricional th {
+  background: var(--negro); color: var(--blanco); padding: 10px 14px;
+  font-family: 'Montserrat'; font-weight: 700; font-size: 11px;
+  text-align: left; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.tabla-nutricional td { padding: 10px 14px; border-bottom: 1px solid var(--gris-borde); }
+.tabla-nutricional tr:last-child td { border-bottom: none; }
+.tabla-nutricional tr:nth-child(even) td { background: var(--gris-claro); }
+.tabla-nutricional td:last-child { font-family: 'Montserrat'; font-weight: 700; color: var(--negro); }
+
+/* COMPARADOR */
+.comparador-section {
+  background: var(--blanco); border-radius: var(--radius);
+  padding: 40px; box-shadow: var(--shadow); margin-bottom: 40px;
+}
+.comparador-section h2 {
+  font-family: 'Montserrat'; font-weight: 800; font-size: 22px;
+  color: var(--negro); margin-bottom: 8px;
+}
+.comparador-section p { font-size: 14px; color: var(--gris-medio); margin-bottom: 28px; }
+.comparador-tabla { width: 100%; border-collapse: collapse; font-size: 13px; }
+.comparador-tabla th {
+  background: var(--negro); color: var(--blanco); padding: 14px 16px;
+  font-family: 'Montserrat'; font-weight: 700; font-size: 12px;
+  text-align: center;
+}
+.comparador-tabla th:first-child { text-align: left; }
+.comparador-tabla td {
+  padding: 12px 16px; border-bottom: 1px solid var(--gris-borde);
+  text-align: center; color: var(--gris-medio); font-size: 13px;
+}
+.comparador-tabla td:first-child {
+  text-align: left; font-family: 'Montserrat'; font-weight: 700;
+  color: var(--negro); font-size: 13px;
+}
+.comparador-tabla tr:nth-child(even) td { background: var(--gris-claro); }
+.check-verde { color: var(--verde); font-size: 16px; font-weight: 800; }
+.check-rojo  { color: #D1D5DB; font-size: 16px; }
+
+/* STACK RECOMENDADO */
+.stacks-section {
+  background: var(--negro); border-radius: var(--radius);
+  padding: 40px; margin-bottom: 40px;
+}
+.stacks-section h2 {
+  font-family: 'Bebas Neue'; font-size: 36px; color: var(--blanco);
+  letter-spacing: 2px; margin-bottom: 8px;
+}
+.stacks-section > p { color: rgba(255,255,255,0.5); font-size: 14px; margin-bottom: 32px; }
+.stacks-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.stack-card {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-sm); padding: 24px; transition: var(--transition);
+}
+.stack-card:hover { border-color: rgba(34,197,94,0.4); background: rgba(34,197,94,0.04); }
+.stack-emoji { font-size: 36px; margin-bottom: 14px; }
+.stack-nombre {
+  font-family: 'Montserrat'; font-weight: 800; font-size: 16px;
+  color: var(--blanco); margin-bottom: 8px;
+}
+.stack-objetivo { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 16px; line-height: 1.5; }
+.stack-productos-lista {
+  display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;
+}
+.stack-producto-item {
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(255,255,255,0.06); border-radius: 8px; padding: 8px 12px;
+}
+.stack-producto-nombre { font-size: 13px; color: rgba(255,255,255,0.8); font-family: 'Montserrat'; font-weight: 600; }
+.stack-producto-precio { font-size: 13px; color: var(--verde); font-family: 'Montserrat'; font-weight: 700; }
+.stack-total {
+  display: flex; justify-content: space-between; padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,0.1); margin-bottom: 16px;
+}
+.stack-total-label { font-family: 'Montserrat'; font-weight: 700; font-size: 13px; color: rgba(255,255,255,0.6); }
+.stack-total-precio { font-family: 'Montserrat'; font-weight: 800; font-size: 16px; color: var(--verde); }
+.btn-stack {
+  width: 100%; background: var(--verde); color: var(--negro); border: none;
+  border-radius: var(--radius-sm); padding: 12px;
+  font-family: 'Montserrat'; font-weight: 700; font-size: 13px;
+  cursor: pointer; transition: var(--transition);
+}
+.btn-stack:hover { background: var(--verde-dark); color: var(--blanco); }
+
+/* GARANTÍA */
+.garantia-banner {
+  background: var(--verde-light); border: 2px solid rgba(34,197,94,0.2);
+  border-radius: var(--radius); padding: 32px; text-align: center; margin-bottom: 40px;
+}
+.garantia-banner h3 {
+  font-family: 'Montserrat'; font-weight: 800; font-size: 20px;
+  color: var(--negro); margin: 12px 0 8px;
+}
+.garantia-banner p { font-size: 14px; color: var(--gris-medio); max-width: 500px; margin: 0 auto; line-height: 1.6; }
+
+/* TOAST */
+.toast {
+  position: fixed; bottom: 80px; right: 24px; z-index: 999;
+  background: var(--negro); color: var(--blanco);
+  padding: 14px 20px; border-radius: var(--radius-sm);
+  font-family: 'Montserrat'; font-weight: 700; font-size: 14px;
+  border-left: 4px solid var(--verde);
+  transform: translateY(100px); opacity: 0;
+  transition: all 0.3s ease; pointer-events: none;
+}
+.toast.visible { transform: translateY(0); opacity: 1; }
+
+/* WSP FLOTANTE */
+.wsp-flotante {
+  position: fixed; bottom: 24px; right: 24px; z-index: 998;
+}
+.wsp-btn-float {
+  width: 58px; height: 58px; border-radius: 50%;
+  background: #25D366; display: flex; align-items: center;
+  justify-content: center; font-size: 26px;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.5);
+  text-decoration: none; animation: wsp-pulse 3s infinite;
+  transition: var(--transition);
+}
+.wsp-btn-float:hover { transform: scale(1.1); animation: none; }
+@keyframes wsp-pulse {
+  0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,0.5); }
+  50%      { box-shadow: 0 4px 40px rgba(37,211,102,0.8); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .stacks-grid { grid-template-columns: 1fr; }
+  .producto-card.expandida { flex-direction: column; }
+  .producto-card.expandida .producto-imagen { width: 100%; height: 200px; }
+  .navbar { padding: 0 16px; }
+}
+@media (max-width: 480px) {
+  .productos-grid { grid-template-columns: 1fr; }
+  .main { padding: 24px 16px 60px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo">NUTRI<span>FIT</span></div>
+  <a href="nutrifit.html" class="back-btn">← Volver a la tienda</a>
+</nav>
+
+<!-- HERO -->
+<div class="catalogo-hero">
+  <h1>CATÁLOGO <span>NUTRIFIT</span></h1>
+  <p>6 productos seleccionados para resultados reales. Cada uno con ficha completa, beneficios y modo de uso.</p>
+  <div class="filtros-hero">
+    <button class="filtro-btn activo" onclick="filtrar('todos', this)">Todos</button>
+    <button class="filtro-btn" onclick="filtrar('musculo', this)">💪 Músculo</button>
+    <button class="filtro-btn" onclick="filtrar('bienestar', this)">🧠 Bienestar</button>
+    <button class="filtro-btn" onclick="filtrar('recuperacion', this)">😴 Recuperación</button>
+    <button class="filtro-btn" onclick="filtrar('premium', this)">🏔️ Premium</button>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- GRID DE PRODUCTOS -->
+  <div class="productos-grid" id="productos-grid"></div>
+
+  <!-- STACKS RECOMENDADOS -->
+  <div class="stacks-section">
+    <h2>STACKS RECOMENDADOS</h2>
+    <p>Combinaciones de productos diseñadas para maximizar tus resultados según tu objetivo</p>
+    <div class="stacks-grid">
+      <div class="stack-card">
+        <div class="stack-emoji">💪</div>
+        <div class="stack-nombre">Stack Masa Muscular</div>
+        <p class="stack-objetivo">Para quienes entrenan fuerza y quieren ganar músculo de forma efectiva y sostenida.</p>
+        <div class="stack-productos-lista">
+          <div class="stack-producto-item">
+            <span class="stack-producto-nombre">🥛 Pro Whey</span>
+            <span class="stack-producto-precio">$24.990</span>
+          </div>
+          <div class="stack-producto-item">
+            <span class="stack-producto-nombre">⚡ Creatina</span>
+            <span class="stack-producto-precio">$19.990</span>
+          </div>
+          <div class="stack-producto-item">
+            <span class="stack-producto-nombre">💊 Magnesio</span>
+            <span class="stack-producto-precio">$16.990</span>
+          </div>
+        </div>
+        <div class="stack-total">
+          <span class="stack-total-label">Total stack:</span>
+          <span class="stack-total-precio">$61.970</span>
+        </div>
+        <button class="btn-stack" onclick="pedirStackWsp('Stack Masa Muscular', 'Pro Whey + Creatina + Magnesio', 61970)">Pedir este stack 💬</button>
+      </div>
+
+      <div class="stack-card">
+        <div class="stack-emoji">🔥</div>
+        <div class="stack-nombre">Stack Bienestar Total</div>
+        <p class="stack-objetivo">Para reducir el estrés, mejorar el sueño y mantener la mente clara durante el día.</p>
+        <div class="stack-productos-lista">
+          <div class="stack-producto-item">
+            <span class="stack-producto-nombre">🌿 Ashwagandha</span>
+            <span class="stack-producto-precio">$18.990</span>
+          </div>
+          <div class="stack-producto-item">
+            <span class="stack-producto-nombre">🍄 Melena de León</span>
+            <span class="stack-producto-precio">$21.990</span>
+          </div>
+          <div class="stack-producto-item">
+            <span class="stack-producto-nombre">💊 Magnesio</span>
+            <span class="stack-producto-precio">$16.990</span>
+          </div>
+        </div>
+        <div class="stack-total">
+          <span class="stack-total-label">Total stack:</span>
+          <span class="stack-total-precio">$57.970</span>
+        </div>
+        <button class="btn-stack" onclick="pedirStackWsp('Stack Bienestar Total', 'Ashwagandha + Melena de León + Magnesio', 57970)">Pedir este stack 💬</button>
+      </div>
+
+      <div class="stack-card">
+        <div class="stack-emoji">🏔️</div>
+        <div class="stack-nombre">Stack Premium Élite</div>
+        <p class="stack-objetivo">Lo mejor de NutriFit combinado. Para quienes buscan rendimiento físico y mental máximo.</p>
+        <div class="stack-productos-lista">
+          <div class="stack-producto-item">
+            <span class="stack-producto-nombre">🥛 Pro Whey</span>
+            <span class="stack-producto-precio">$24.990</span>
+          </div>
+          <div class="stack-producto-item">
+            <span class="stack-producto-nombre">🏔️ Shilajit</span>
+            <span class="stack-producto-precio">$27.990</span>
+          </div>
+          <div class="stack-producto-item">
+            <span class="stack-producto-nombre">🍄 Melena de León</span>
+            <span class="stack-producto-precio">$21.990</span>
+          </div>
+        </div>
+        <div class="stack-total">
+          <span class="stack-total-label">Total stack:</span>
+          <span class="stack-total-precio">$74.970</span>
+        </div>
+        <button class="btn-stack" onclick="pedirStackWsp('Stack Premium Élite', 'Pro Whey + Shilajit + Melena de León', 74970)">Pedir este stack 💬</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPARADOR -->
+  <div class="comparador-section">
+    <h2>🔍 Comparador de Productos</h2>
+    <p>¿No sabes cuál elegir? Compara las características de cada producto NutriFit de un vistazo.</p>
+    <div style="overflow-x:auto;">
+      <table class="comparador-tabla">
+        <thead>
+          <tr>
+            <th>Característica</th>
+            <th>🥛 Whey</th>
+            <th>⚡ Creatina</th>
+            <th>🌿 Ashwag.</th>
+            <th>🍄 Melena</th>
+            <th>💊 Magnesio</th>
+            <th>🏔️ Shilajit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Ganar músculo</td>
+            <td><span class="check-verde">●●●</span></td>
+            <td><span class="check-verde">●●●</span></td>
+            <td><span class="check-rojo">○</span></td>
+            <td><span class="check-rojo">○</span></td>
+            <td><span class="check-verde">●○</span></td>
+            <td><span class="check-verde">●●</span></td>
+          </tr>
+          <tr>
+            <td>Reducir estrés</td>
+            <td><span class="check-rojo">○</span></td>
+            <td><span class="check-rojo">○</span></td>
+            <td><span class="check-verde">●●●</span></td>
+            <td><span class="check-verde">●●</span></td>
+            <td><span class="check-verde">●●</span></td>
+            <td><span class="check-verde">●●</span></td>
+          </tr>
+          <tr>
+            <td>Mejorar sueño</td>
+            <td><span class="check-rojo">○</span></td>
+            <td><span class="check-rojo">○</span></td>
+            <td><span class="check-verde">●●</span></td>
+            <td><span class="check-rojo">○</span></td>
+            <td><span class="check-verde">●●●</span></td>
+            <td><span class="check-verde">●</span></td>
+          </tr>
+          <tr>
+            <td>Foco mental</td>
+            <td><span class="check-rojo">○</span></td>
+            <td><span class="check-verde">●</span></td>
+            <td><span class="check-verde">●</span></td>
+            <td><span class="check-verde">●●●</span></td>
+            <td><span class="check-rojo">○</span></td>
+            <td><span class="check-verde">●●</span></td>
+          </tr>
+          <tr>
+            <td>Energía sostenida</td>
+            <td><span class="check-verde">●</span></td>
+            <td><span class="check-verde">●●</span></td>
+            <td><span class="check-verde">●●</span></td>
+            <td><span class="check-verde">●●</span></td>
+            <td><span class="check-verde">●</span></td>
+            <td><span class="check-verde">●●●</span></td>
+          </tr>
+          <tr>
+            <td>Recuperación muscular</td>
+            <td><span class="check-verde">●●●</span></td>
+            <td><span class="check-verde">●●●</span></td>
+            <td><span class="check-rojo">○</span></td>
+            <td><span class="check-rojo">○</span></td>
+            <td><span class="check-verde">●●●</span></td>
+            <td><span class="check-verde">●●</span></td>
+          </tr>
+          <tr>
+            <td>Apto principiantes</td>
+            <td><span class="check-verde">✓</span></td>
+            <td><span class="check-verde">✓</span></td>
+            <td><span class="check-verde">✓</span></td>
+            <td><span class="check-verde">✓</span></td>
+            <td><span class="check-verde">✓</span></td>
+            <td><span class="check-verde">✓</span></td>
+          </tr>
+          <tr>
+            <td>Precio mensual</td>
+            <td>$24.990</td>
+            <td>$19.990</td>
+            <td>$9.495</td>
+            <td>$10.995</td>
+            <td>$5.663</td>
+            <td>$13.995</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12px;color:var(--gris-medio);margin-top:12px;text-align:center;">
+      ●●● = Efecto principal · ●● = Efecto secundario · ● = Efecto de apoyo · ○ = No aplica
+    </p>
+  </div>
+
+  <!-- GARANTÍA -->
+  <div class="garantia-banner">
+    <div style="font-size:48px;">🛡️</div>
+    <h3>Garantía de Satisfacción NutriFit</h3>
+    <p>Si tu producto llega en mal estado o no cumple tus expectativas, te lo reponemos sin preguntas. Somos chilenos y nos importa que quedes satisfecho.</p>
+  </div>
+
+</main>
+
+<!-- WSP FLOTANTE -->
+<div class="wsp-flotante">
+  <a href="https://wa.me/56912345678?text=Hola%20NutriFit%20👋%20Necesito%20ayuda%20para%20elegir%20un%20producto" target="_blank" class="wsp-btn-float">💬</a>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ==========================================
+// DATOS COMPLETOS DE PRODUCTOS
+// ==========================================
+const productos = [
+  {
+    id: 1,
+    emoji: '🥛',
+    nombre: 'NutriFit Pro Whey',
+    tagline: '"La proteína que se nota desde la primera semana."',
+    categoria: 'Ganar músculo',
+    filtro: 'musculo',
+    contenido: '1kg · 33 servicios',
+    precio: 24990,
+    precioAntes: 29990,
+    badges: [{ texto: '⭐ Más vendido', tipo: 'badge-top' }],
+    estrellas: 5,
+    rating: '4.9',
+    resenas: 248,
+    bgClass: 'img-bg-musculo',
+    beneficios: [
+      '25g de proteína de suero por porción',
+      'Acelera la recuperación post-entrenamiento',
+      'Aumenta y mantiene la masa muscular magra',
+      'Fácil digestión — sin inflamación ni molestias',
+      'Disponible en: Chocolate, Vainilla, Frutilla',
+      'Sin azúcares artificiales añadidos',
+    ],
+    modoUso: 'Mezcla 1 scoop (30g) con 250ml de agua o leche fría. Tomar preferentemente después del entrenamiento o como complemento en tus comidas del día.',
+    stack: ['⚡ Creatina', '💊 Magnesio'],
+    nutricion: [
+      ['Proteína', '25g', '50%'],
+      ['Carbohidratos', '4g', '2%'],
+      ['Grasas totales', '2g', '3%'],
+      ['Calorías', '130 kcal', '—'],
+      ['Sodio', '90mg', '4%'],
+      ['Azúcar', '1.5g', '—'],
+    ],
+  },
+  {
+    id: 2,
+    emoji: '⚡',
+    nombre: 'Creatina Monohidratada',
+    tagline: '"El suplemento más estudiado del mundo. Y funciona."',
+    categoria: 'Ganar músculo',
+    filtro: 'musculo',
+    contenido: '300g · 60 servicios',
+    precio: 19990,
+    precioAntes: null,
+    badges: [{ texto: '🔬 Respaldada ciencia', tipo: 'badge-nuevo' }],
+    estrellas: 5,
+    rating: '5.0',
+    resenas: 189,
+    bgClass: 'img-bg-energia',
+    beneficios: [
+      'Aumenta la fuerza y potencia en el entrenamiento',
+      'Mejora el rendimiento en ejercicios de alta intensidad',
+      'Acelera la recuperación entre series y sesiones',
+      'Favorece el aumento de masa muscular magra',
+      'Sin sabor — mezcla con cualquier líquido',
+      'No requiere fase de carga',
+    ],
+    modoUso: 'Tomar 3-5g diarios (1 cucharadita medidora) mezclados con agua, jugo o batido. Se puede tomar cualquier hora del día. No requiere ciclar.',
+    stack: ['🥛 Whey', '💊 Magnesio'],
+    nutricion: [
+      ['Creatina monohidratada', '5g', '—'],
+      ['Calorías', '0 kcal', '—'],
+      ['Carbohidratos', '0g', '—'],
+      ['Sodio', '0mg', '—'],
+    ],
+  },
+  {
+    id: 3,
+    emoji: '🌿',
+    nombre: 'Ashwagandha KSM-66',
+    tagline: '"Menos cortisol. Más energía. Mejor sueño."',
+    categoria: 'Bienestar',
+    filtro: 'bienestar',
+    contenido: '60 cápsulas · 2 meses',
+    precio: 18990,
+    precioAntes: 22990,
+    badges: [
+      { texto: '🌿 Adaptógeno', tipo: 'badge-top' },
+      { texto: 'NUEVO', tipo: 'badge-nuevo' },
+    ],
+    estrellas: 5,
+    rating: '4.8',
+    resenas: 134,
+    bgClass: 'img-bg-bienestar',
+    beneficios: [
+      'Reduce el estrés y la ansiedad cotidiana clínicamente probado',
+      'Mejora la calidad y profundidad del sueño',
+      'Aumenta los niveles naturales de testosterona',
+      'Mejora el rendimiento físico y mental sostenido',
+      'Protege el músculo de los efectos del cortisol',
+      'Extracto KSM-66 — el más potente del mercado',
+    ],
+    modoUso: '1 cápsula en la mañana con desayuno y 1 cápsula en la noche antes de dormir. Efectos notables desde las 2–4 semanas de uso continuo.',
+    stack: ['💊 Magnesio', '🍄 Melena de León'],
+    nutricion: [
+      ['Extracto KSM-66', '600mg', '—'],
+      ['Withanólidos', '≥5%', '—'],
+      ['Calorías', '0 kcal', '—'],
+      ['Excipientes', 'Ninguno relevante', '—'],
+    ],
+  },
+  {
+    id: 4,
+    emoji: '🍄',
+    nombre: 'Melena de León',
+    tagline: '"Claridad mental. Foco total. Sin estimulantes."',
+    categoria: 'Bienestar mental',
+    filtro: 'bienestar',
+    contenido: '60 cápsulas · 1 mes',
+    precio: 21990,
+    precioAntes: null,
+    badges: [{ texto: '🧠 Nootrópico', tipo: 'badge-nuevo' }],
+    estrellas: 5,
+    rating: '4.9',
+    resenas: 97,
+    bgClass: 'img-bg-mente',
+    beneficios: [
+      'Mejora la concentración y el foco mental sostenido',
+      'Reduce la niebla mental (brain fog) desde la primera semana',
+      'Apoya la memoria y la capacidad de aprendizaje',
+      'Estimula la producción de NGF (Factor de Crecimiento Nervioso)',
+      'Protege la salud neurológica a largo plazo',
+      'Sin cafeína — sin nerviosismo ni caída de energía',
+    ],
+    modoUso: '2 cápsulas en la mañana con o sin comida. Para mayor efecto cognitivo, combinar con Ashwagandha para manejo del estrés mental.',
+    stack: ['🌿 Ashwagandha', '🏔️ Shilajit'],
+    nutricion: [
+      ['Extracto Melena de León', '500mg', '—'],
+      ['Polisacáridos activos', '≥30%', '—'],
+      ['Calorías', '0 kcal', '—'],
+    ],
+  },
+  {
+    id: 5,
+    emoji: '💊',
+    nombre: 'Magnesio Glicinato',
+    tagline: '"El mineral que el 70% de los chilenos tiene en déficit."',
+    categoria: 'Recuperación & Sueño',
+    filtro: 'recuperacion',
+    contenido: '90 cápsulas · 3 meses',
+    precio: 16990,
+    precioAntes: 19990,
+    badges: [
+      { texto: '😴 Sueño profundo', tipo: 'badge-top' },
+      { texto: 'OFERTA', tipo: 'badge-oferta' },
+    ],
+    estrellas: 5,
+    rating: '4.9',
+    resenas: 201,
+    bgClass: 'img-bg-sueno',
+    beneficios: [
+      'Mejora profundamente la calidad y duración del sueño',
+      'Elimina calambres musculares nocturnos desde la primera semana',
+      'Acelera la recuperación post-entrenamiento',
+      'Reduce la fatiga física y mental crónica',
+      'Apoya la salud ósea y cardiovascular',
+      'Forma Glicinato — máxima absorción, mínimas molestias',
+    ],
+    modoUso: '2–3 cápsulas antes de dormir (30 min antes). Comenzarás a notar mejoras en el sueño desde los primeros días de uso.',
+    stack: ['🥛 Whey', '🌿 Ashwagandha'],
+    nutricion: [
+      ['Magnesio elemental', '120mg por cápsula', '—'],
+      ['Forma', 'Bisglicinato quelado', '—'],
+      ['Calorías', '0 kcal', '—'],
+      ['Excipientes', 'Cápsula vegetal', '—'],
+    ],
+  },
+  {
+    id: 6,
+    emoji: '🏔️',
+    nombre: 'Shilajit Himalaya Premium',
+    tagline: '"La resina de los Himalayas que restaura tu energía desde adentro."',
+    categoria: 'Premium',
+    filtro: 'premium',
+    contenido: '30g resina · 2-3 meses',
+    precio: 27990,
+    precioAntes: null,
+    badges: [{ texto: '🏔️ Premium', tipo: 'badge-premium' }],
+    estrellas: 5,
+    rating: '4.8',
+    resenas: 76,
+    bgClass: 'img-bg-premium',
+    beneficios: [
+      'Más de 85 minerales en forma iónica biodisponible',
+      'Aumenta la energía celular sin nerviosismo ni caída',
+      'Mejora la testosterona y vitalidad natural',
+      'Potencia la absorción de todos tus otros suplementos',
+      'Propiedades antioxidantes y antiinflamatorias potentes',
+      'Apoya la función cognitiva, memoria y enfoque',
+    ],
+    modoUso: 'Disuelve un trozo del tamaño de un grano de arroz (~300mg) en agua tibia, té o leche. Tomar en ayunas en la mañana. Empezar con dosis pequeña la primera semana.',
+    stack: ['🍄 Melena de León', '🌿 Ashwagandha'],
+    nutricion: [
+      ['Ácido fúlvico', '≥60%', '—'],
+      ['Minerales totales', '85+', '—'],
+      ['Forma', 'Resina pura', '—'],
+      ['Pureza', '100% natural', '—'],
+    ],
+  },
+];
+
+let filtroActual = 'todos';
+
+// ==========================================
+// RENDERIZAR PRODUCTOS
+// ==========================================
+function renderProductos() {
+  const grid = document.getElementById('productos-grid');
+  const filtrados = filtroActual === 'todos' ? productos : productos.filter(p => p.filtro === filtroActual);
+
+  grid.innerHTML = filtrados.map(p => {
+    const descuento = p.precioAntes ? Math.round((1 - p.precio / p.precioAntes) * 100) : null;
+    return `
+    <div class="producto-card" data-id="${p.id}" data-filtro="${p.filtro}">
+      <div class="producto-imagen ${p.bgClass}">
+        ${p.emoji}
+        <div class="badge-row">
+          ${p.badges.map(b => `<span class="badge ${b.tipo}">${b.texto}</span>`).join('')}
+        </div>
+        <button class="like-btn" onclick="toggleLike(this)" title="Guardar">🤍</button>
+      </div>
+
+      <div class="producto-info">
+        <div class="producto-meta">
+          <span class="categoria-tag">${p.categoria}</span>
+          <span class="contenido-tag">${p.contenido}</span>
+        </div>
+
+        <div class="producto-nombre">${p.nombre}</div>
+        <div class="producto-tagline">${p.tagline}</div>
+
+        <div class="rating-row">
+          <span class="estrellas">${'★'.repeat(p.estrellas)}</span>
+          <span class="rating-num">${p.rating}</span>
+          <span class="rating-total">(${p.resenas} reseñas)</span>
+        </div>
+
+        <ul class="beneficios-lista">
+          ${p.beneficios.slice(0,4).map(b => `<li>${b}</li>`).join('')}
+        </ul>
+
+        <div class="modo-uso">
+          <div class="modo-uso-titulo">🥄 Modo de uso</div>
+          <p>${p.modoUso}</p>
+        </div>
+
+        <div class="stack-section">
+          <div class="stack-titulo">Combina bien con</div>
+          <div class="stack-tags">
+            ${p.stack.map(s => `<span class="stack-tag">${s}</span>`).join('')}
+          </div>
+        </div>
+
+        <div class="precio-seccion">
+          <div class="precio-row">
+            <span class="precio">$${p.precio.toLocaleString('es-CL')}</span>
+            ${p.precioAntes ? `<span class="precio-antes">$${p.precioAntes.toLocaleString('es-CL')}</span>` : ''}
+            ${descuento ? `<span class="descuento-badge">-${descuento}%</span>` : ''}
+          </div>
+          <div class="btns-row">
+            <button class="btn-comprar" onclick="agregarYPedir('${p.nombre}', ${p.precio}, '${p.emoji}')">
+              🛒 Agregar al pedido
+            </button>
+            <a href="https://wa.me/56912345678?text=Hola%20NutriFit%2C%20quiero%20información%20sobre%3A%20${encodeURIComponent(p.nombre)}"
+               target="_blank" class="btn-wsp">💬</a>
+          </div>
+          <button class="btn-ver-mas" onclick="verNutricion(${p.id})">
+            Ver información nutricional ↓
+          </button>
+        </div>
+
+        <!-- TABLA NUTRICIONAL COLAPSABLE -->
+        <div id="nutricion-${p.id}" style="display:none;margin-top:16px;">
+          <table class="tabla-nutricional">
+            <thead>
+              <tr>
+                <th>Nutriente</th>
+                <th>Por porción</th>
+                <th>% VD</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${p.nutricion.map(n => `
+                <tr>
+                  <td>${n[0]}</td>
+                  <td>${n[1]}</td>
+                  <td>${n[2]}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  `}).join('');
+}
+
+// ==========================================
+// FILTRAR
+// ==========================================
+function filtrar(tipo, btn) {
+  filtroActual = tipo;
+  document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('activo'));
+  btn.classList.add('activo');
+  renderProductos();
+}
+
+// ==========================================
+// VER NUTRICIÓN
+// ==========================================
+function verNutricion(id) {
+  const el = document.getElementById(`nutricion-${id}`);
+  const btn = el.previousElementSibling;
+  if (el.style.display === 'none') {
+    el.style.display = 'block';
+    btn.textContent = 'Ocultar información nutricional ↑';
+  } else {
+    el.style.display = 'none';
+    btn.textContent = 'Ver información nutricional ↓';
+  }
+}
+
+// ==========================================
+// LIKE
+// ==========================================
+function toggleLike(btn) {
+  btn.classList.toggle('activo');
+  btn.textContent = btn.classList.contains('activo') ? '❤️' : '🤍';
+}
+
+// ==========================================
+// AGREGAR Y PEDIR
+// ==========================================
+let pedido = [];
+
+function agregarYPedir(nombre, precio, emoji) {
+  pedido.push({ nombre, precio, emoji });
+  mostrarToast(`✅ ${emoji} ${nombre} agregado al pedido`);
+}
+
+function pedirStackWsp(stackNombre, productos, total) {
+  const texto = `Hola NutriFit 👋%0AQuiero el ${encodeURIComponent(stackNombre)}:%0A${encodeURIComponent(productos)}%0ATotal: $${total.toLocaleString('es-CL')}`;
+  window.open(`https://wa.me/56912345678?text=${texto}`, '_blank');
+}
+
+// ==========================================
+// TOAST
+// ==========================================
+let toastTimer;
+function mostrarToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('visible');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('visible'), 3000);
+}
+
+// ==========================================
+// INIT
+// ==========================================
+renderProductos();
+</script>
+</body>
+</html>

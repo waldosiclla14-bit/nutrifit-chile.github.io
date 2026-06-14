@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NutriFit — Guía SEO Completa Chile</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --negro:       #000000;
+  --blanco:      #FFFFFF;
+  --verde:       #22C55E;
+  --verde-dark:  #16A34A;
+  --verde-light: rgba(34,197,94,0.08);
+  --gris-oscuro: #1A1A1A;
+  --gris-medio:  #6B7280;
+  --gris-claro:  #F5F5F5;
+  --gris-borde:  #E5E7EB;
+  --amarillo:    #F59E0B;
+  --rojo:        #EF4444;
+  --azul:        #3B82F6;
+  --morado:      #8B5CF6;
+  --radius:      16px;
+  --radius-sm:   10px;
+  --shadow:      0 4px 24px rgba(0,0,0,0.07);
+  --max-width:   1100px;
+}
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body { font-family:'Inter',sans-serif; background:var(--gris-claro); color:var(--gris-oscuro); }
+a { color:inherit; text-decoration:none; }
+
+/* NAVBAR */
+.navbar {
+  background:var(--negro); height:64px; display:flex; align-items:center;
+  padding:0 32px; position:sticky; top:0; z-index:100;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.logo { font-family:'Bebas Neue'; font-size:26px; color:var(--blanco); letter-spacing:3px; }
+.logo span { color:var(--verde); }
+.navbar-fase { font-family:'Montserrat'; font-weight:700; font-size:13px; color:rgba(255,255,255,0.45); margin-left:16px; }
+
+/* HERO */
+.hero {
+  background:linear-gradient(135deg,var(--negro) 0%,#0a1a0a 100%);
+  padding:56px 32px; text-align:center;
+}
+.hero-eyebrow {
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(34,197,94,0.12); border:1px solid rgba(34,197,94,0.25);
+  color:var(--verde); padding:6px 16px; border-radius:100px;
+  font-family:'Montserrat'; font-weight:700; font-size:12px; letter-spacing:1px;
+  text-transform:uppercase; margin-bottom:20px;
+}
+.hero h1 { font-family:'Bebas Neue'; font-size:clamp(36px,6vw,64px); color:var(--blanco); letter-spacing:3px; margin-bottom:12px; }
+.hero h1 span { color:var(--verde); }
+.hero p { color:rgba(255,255,255,0.5); font-size:16px; max-width:560px; margin:0 auto 28px; line-height:1.7; }
+.nav-pills { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+.pill {
+  padding:8px 18px; border-radius:100px; font-family:'Montserrat'; font-weight:700; font-size:12px;
+  background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12);
+  color:rgba(255,255,255,0.7); cursor:pointer; transition:all 0.2s;
+}
+.pill:hover { background:var(--verde); border-color:var(--verde); color:var(--negro); }
+
+/* LAYOUT */
+.main { max-width:var(--max-width); margin:0 auto; padding:40px 24px 80px; }
+.seccion { margin-bottom:40px; }
+.card { background:var(--blanco); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; }
+.card-header {
+  padding:24px 28px 20px;
+  border-bottom:1px solid var(--gris-borde);
+  display:flex; align-items:center; gap:12px;
+}
+.card-header-ico { font-size:28px; }
+.card-header-info h2 { font-family:'Montserrat'; font-weight:800; font-size:20px; color:var(--negro); }
+.card-header-info p { font-size:13px; color:var(--gris-medio); margin-top:3px; }
+.card-body { padding:28px; }
+
+/* BADGE DIFICULTAD */
+.badge {
+  display:inline-block; padding:3px 10px; border-radius:100px;
+  font-family:'Montserrat'; font-weight:800; font-size:11px; letter-spacing:0.3px;
+}
+.badge-verde  { background:rgba(34,197,94,0.12);  color:var(--verde-dark); }
+.badge-amarillo { background:rgba(245,158,11,0.12); color:#B45309; }
+.badge-rojo   { background:rgba(239,68,68,0.12);  color:#B91C1C; }
+.badge-azul   { background:rgba(59,130,246,0.12);  color:#1D4ED8; }
+.badge-morado { background:rgba(139,92,246,0.12);  color:#6D28D9; }
+.badge-negro  { background:rgba(0,0,0,0.08);       color:var(--negro); }
+
+/* TABLA PALABRAS CLAVE */
+.tabla-kw { width:100%; border-collapse:collapse; font-size:13px; }
+.tabla-kw thead tr { background:var(--negro); }
+.tabla-kw thead th {
+  padding:12px 16px; text-align:left;
+  font-family:'Montserrat'; font-weight:700; font-size:11px;
+  color:rgba(255,255,255,0.8); text-transform:uppercase; letter-spacing:0.5px;
+}
+.tabla-kw tbody tr { border-bottom:1px solid var(--gris-borde); transition:background 0.15s; }
+.tabla-kw tbody tr:hover { background:var(--gris-claro); }
+.tabla-kw tbody td { padding:12px 16px; vertical-align:middle; }
+.kw-keyword { font-family:'Montserrat'; font-weight:700; font-size:13px; color:var(--negro); }
+.kw-vol { font-family:'Montserrat'; font-weight:600; font-size:13px; }
+.vol-alto  { color:var(--verde-dark); }
+.vol-medio { color:#B45309; }
+.vol-bajo  { color:var(--gris-medio); }
+.intencion-badge { font-size:11px; }
+
+/* BARRA COMPETENCIA */
+.barra-comp { display:flex; align-items:center; gap:10px; }
+.barra-bg { flex:1; height:8px; background:var(--gris-borde); border-radius:100px; overflow:hidden; }
+.barra-fill { height:100%; border-radius:100px; }
+.fill-baja   { background:var(--verde); }
+.fill-media  { background:var(--amarillo); }
+.fill-alta   { background:var(--rojo); }
+.barra-txt { font-size:11px; color:var(--gris-medio); font-family:'Montserrat'; font-weight:600; white-space:nowrap; }
+
+/* CHECKLIST SEO */
+.checklist { display:flex; flex-direction:column; gap:12px; }
+.check-item {
+  display:flex; align-items:flex-start; gap:14px;
+  padding:16px; border-radius:var(--radius-sm);
+  border:1px solid var(--gris-borde); transition:all 0.2s;
+}
+.check-item:hover { border-color:var(--verde); background:var(--verde-light); }
+.check-item.completado { background:var(--verde-light); border-color:rgba(34,197,94,0.3); }
+.check-ico {
+  width:32px; height:32px; border-radius:50%;
+  border:2px solid var(--gris-borde); flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  font-size:14px; cursor:pointer; transition:all 0.2s; background:var(--blanco);
+}
+.check-item.completado .check-ico { background:var(--verde); border-color:var(--verde); color:var(--blanco); }
+.check-texto h4 { font-family:'Montserrat'; font-weight:700; font-size:14px; color:var(--negro); margin-bottom:3px; }
+.check-texto p  { font-size:13px; color:var(--gris-medio); line-height:1.5; }
+.check-texto code {
+  background:rgba(0,0,0,0.06); padding:2px 6px; border-radius:4px;
+  font-family:monospace; font-size:12px; color:var(--gris-oscuro);
+}
+
+/* META PREVIEW */
+.meta-preview {
+  background:#fff; border:1px solid #dfe1e5; border-radius:8px;
+  padding:16px 20px; max-width:600px;
+}
+.meta-url { font-size:13px; color:#006621; margin-bottom:3px; font-family:'Inter'; }
+.meta-title { font-size:20px; color:#1a0dab; font-family:'Arial',sans-serif; line-height:1.3; margin-bottom:4px; cursor:pointer; }
+.meta-title:hover { text-decoration:underline; }
+.meta-desc { font-size:14px; color:#545454; font-family:'Arial',sans-serif; line-height:1.4; }
+.meta-chars { font-size:11px; color:var(--gris-medio); margin-top:6px; font-family:'Montserrat'; font-weight:600; }
+.meta-chars span { color:var(--verde); font-weight:700; }
+.meta-input { width:100%; padding:10px 14px; border:2px solid var(--gris-borde); border-radius:var(--radius-sm); font-size:14px; font-family:'Inter'; margin-top:10px; transition:all 0.2s; }
+.meta-input:focus { outline:none; border-color:var(--verde); }
+
+/* SCHEMA PREVIEW */
+.schema-box {
+  background:#1a1a2e; border-radius:var(--radius-sm);
+  padding:20px; font-family:monospace; font-size:12px; line-height:1.7;
+  overflow-x:auto; position:relative;
+}
+.schema-box .key   { color:#82aaff; }
+.schema-box .val   { color:#c3e88d; }
+.schema-box .punct { color:#89ddff; }
+.schema-box .str   { color:#f78c6c; }
+.copy-btn {
+  position:absolute; top:12px; right:12px;
+  background:rgba(255,255,255,0.1); color:rgba(255,255,255,0.7);
+  border:1px solid rgba(255,255,255,0.15); border-radius:6px;
+  padding:6px 12px; font-size:11px; font-family:'Montserrat'; font-weight:700;
+  cursor:pointer; transition:all 0.2s;
+}
+.copy-btn:hover { background:var(--verde); color:var(--negro); border-color:var(--verde); }
+
+/* ARTÍCULOS BLOG */
+.articulos-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.articulo-card {
+  background:var(--blanco); border-radius:var(--radius-sm);
+  border:2px solid var(--gris-borde); padding:20px; transition:all 0.2s;
+}
+.articulo-card:hover { border-color:var(--verde); transform:translateY(-3px); box-shadow:var(--shadow); }
+.art-num { font-family:'Bebas Neue'; font-size:42px; color:rgba(34,197,94,0.2); line-height:1; margin-bottom:6px; }
+.art-kw { font-family:'Montserrat'; font-weight:700; font-size:11px; color:var(--verde); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px; }
+.art-titulo { font-family:'Montserrat'; font-weight:800; font-size:14px; color:var(--negro); margin-bottom:8px; line-height:1.4; }
+.art-meta { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
+.art-estructura { margin-top:12px; }
+.art-estructura-titulo { font-family:'Montserrat'; font-weight:700; font-size:11px; color:var(--gris-medio); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px; }
+.art-h { font-size:12px; color:var(--gris-oscuro); padding:4px 0; border-bottom:1px solid var(--gris-borde); }
+.art-h.h2 { font-weight:700; color:var(--negro); }
+.art-h.h3 { padding-left:12px; color:var(--gris-medio); }
+.art-h:last-child { border-bottom:none; }
+
+/* SEO LOCAL */
+.local-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+.local-card {
+  background:var(--gris-claro); border-radius:var(--radius-sm);
+  border:1px solid var(--gris-borde); padding:20px;
+}
+.local-card h4 { font-family:'Montserrat'; font-weight:800; font-size:15px; color:var(--negro); margin-bottom:6px; display:flex; align-items:center; gap:8px; }
+.local-card p  { font-size:13px; color:var(--gris-medio); line-height:1.6; margin-bottom:12px; }
+.local-card ul { display:flex; flex-direction:column; gap:6px; }
+.local-card ul li { font-size:13px; color:var(--gris-oscuro); display:flex; align-items:flex-start; gap:6px; }
+.local-card ul li::before { content:'→'; color:var(--verde); font-weight:700; flex-shrink:0; }
+
+/* CRONOGRAMA SEO */
+.cronograma { display:flex; flex-direction:column; gap:0; }
+.semana {
+  display:grid; grid-template-columns:120px 1fr;
+  border-bottom:1px solid var(--gris-borde);
+}
+.semana:last-child { border-bottom:none; }
+.semana-label {
+  background:var(--negro); color:var(--blanco); padding:20px 16px;
+  font-family:'Bebas Neue'; font-size:18px; letter-spacing:1px;
+  display:flex; align-items:center; justify-content:center; text-align:center;
+}
+.semana-tareas { padding:20px; display:flex; flex-direction:column; gap:8px; }
+.tarea {
+  display:flex; align-items:flex-start; gap:8px;
+  font-size:13px; color:var(--gris-oscuro); line-height:1.5;
+}
+.tarea-ico { flex-shrink:0; font-size:14px; margin-top:1px; }
+
+/* HERRAMIENTAS */
+.herramientas-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.herramienta-card {
+  border:2px solid var(--gris-borde); border-radius:var(--radius-sm);
+  padding:18px; transition:all 0.2s; text-align:center;
+}
+.herramienta-card:hover { border-color:var(--verde); }
+.herr-ico { font-size:32px; margin-bottom:10px; }
+.herr-nombre { font-family:'Montserrat'; font-weight:800; font-size:14px; color:var(--negro); margin-bottom:4px; }
+.herr-tipo { font-size:11px; margin-bottom:8px; }
+.herr-desc { font-size:12px; color:var(--gris-medio); line-height:1.5; }
+.herr-precio { font-family:'Montserrat'; font-weight:700; font-size:12px; color:var(--verde); margin-top:8px; }
+
+/* PROGRESO GLOBAL */
+.progreso-global {
+  background:var(--negro); border-radius:var(--radius); padding:28px; margin-bottom:32px;
+  display:flex; align-items:center; gap:24px; flex-wrap:wrap;
+}
+.prog-titulo { font-family:'Bebas Neue'; font-size:28px; color:var(--blanco); letter-spacing:2px; flex-shrink:0; }
+.prog-items { display:flex; gap:20px; flex:1; flex-wrap:wrap; }
+.prog-item { text-align:center; }
+.prog-num { font-family:'Bebas Neue'; font-size:32px; color:var(--verde); line-height:1; }
+.prog-label { font-size:11px; color:rgba(255,255,255,0.45); font-family:'Montserrat'; font-weight:600; }
+.prog-score {
+  margin-left:auto; width:80px; height:80px; border-radius:50%;
+  background:conic-gradient(var(--verde) 0%, var(--verde) 0%, rgba(255,255,255,0.1) 0%);
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  position:relative; transition:all 1s ease;
+}
+.prog-score-num { font-family:'Bebas Neue'; font-size:24px; color:var(--blanco); }
+
+/* RESPONSIVE */
+@media(max-width:768px) {
+  .articulos-grid  { grid-template-columns:1fr; }
+  .herramientas-grid { grid-template-columns:1fr 1fr; }
+  .local-grid      { grid-template-columns:1fr; }
+  .semana          { grid-template-columns:80px 1fr; }
+  .progreso-global { flex-direction:column; }
+}
+@media(max-width:480px) {
+  .herramientas-grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo">NUTRI<span>FIT</span></div>
+  <span class="navbar-fase">Fase 8 — SEO Chile</span>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">🔍 Posicionamiento Google Chile</div>
+  <h1>SEO <span>NUTRIFIT</span></h1>
+  <p>Todo lo que necesitas para aparecer primero en Google Chile cuando alguien busque suplementos deportivos.</p>
+  <div class="nav-pills">
+    <a href="#palabras-clave" class="pill">Palabras clave</a>
+    <a href="#on-page" class="pill">SEO On-Page</a>
+    <a href="#blog" class="pill">Blog</a>
+    <a href="#local" class="pill">SEO Local</a>
+    <a href="#herramientas" class="pill">Herramientas</a>
+    <a href="#cronograma" class="pill">Cronograma</a>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- PUNTUACIÓN SEO ACTUAL -->
+  <div class="progreso-global">
+    <div class="prog-titulo">ESTADO SEO NUTRIFIT</div>
+    <div class="prog-items">
+      <div class="prog-item">
+        <div class="prog-num" id="kw-count">0</div>
+        <div class="prog-label">Palabras clave<br>objetivo</div>
+      </div>
+      <div class="prog-item">
+        <div class="prog-num" id="check-count">0/20</div>
+        <div class="prog-label">Tareas SEO<br>completadas</div>
+      </div>
+      <div class="prog-item">
+        <div class="prog-num">3–6</div>
+        <div class="prog-label">Meses para<br>posicionar</div>
+      </div>
+      <div class="prog-item">
+        <div class="prog-num">🇨🇱</div>
+        <div class="prog-label">Mercado<br>objetivo</div>
+      </div>
+    </div>
+    <div class="prog-score" id="prog-score">
+      <span class="prog-score-num" id="prog-pct">0%</span>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════
+       1. PALABRAS CLAVE
+       ═══════════════════════════════════════════ -->
+  <div class="seccion" id="palabras-clave">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-header-ico">🎯</div>
+        <div class="card-header-info">
+          <h2>Investigación de Palabras Clave — Chile</h2>
+          <p>Las búsquedas reales que hacen tus clientes en Google Chile</p>
+        </div>
+      </div>
+      <div class="card-body">
+
+        <p style="font-size:14px;color:var(--gris-medio);margin-bottom:20px;line-height:1.7;">
+          Las palabras clave se dividen en 3 grupos según intención de búsqueda.
+          Enfócate primero en las de <strong>alta intención comercial</strong> (quieren comprar)
+          y luego en las <strong>informacionales</strong> (quieren aprender).
+        </p>
+
+        <!-- TABLA PRINCIPAL -->
+        <div style="overflow-x:auto;">
+          <table class="tabla-kw" id="tabla-kw">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Palabra clave</th>
+                <th>Búsquedas/mes</th>
+                <th>Competencia</th>
+                <th>Intención</th>
+                <th>Prioridad</th>
+                <th>Página destino</th>
+              </tr>
+            </thead>
+            <tbody id="kw-tbody"></tbody>
+          </table>
+        </div>
+
+        <div style="margin-top:20px;padding:16px;background:var(--verde-light);border-radius:var(--radius-sm);border-left:4px solid var(--verde);">
+          <p style="font-size:13px;color:var(--gris-oscuro);line-height:1.7;">
+            <strong>💡 Estrategia recomendada:</strong> Empieza por las palabras de
+            <span style="color:var(--verde);font-weight:700;">baja competencia</span> —
+            son más fáciles de posicionar y te traen tráfico más rápido. Las de alta competencia
+            las atacas con el tiempo cuando tu sitio ya tenga autoridad.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════
+       2. SEO ON-PAGE — CHECKLIST
+       ═══════════════════════════════════════════ -->
+  <div class="seccion" id="on-page">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-header-ico">⚙️</div>
+        <div class="card-header-info">
+          <h2>SEO On-Page — Checklist Completo</h2>
+          <p>Marca cada tarea a medida que la completas. Haz clic para marcar.</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="checklist" id="checklist-seo"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════
+       3. META TAGS — EDITOR EN VIVO
+       ═══════════════════════════════════════════ -->
+  <div class="seccion">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-header-ico">🏷️</div>
+        <div class="card-header-info">
+          <h2>Editor de Meta Tags en Vivo</h2>
+          <p>Edita y previsualiza cómo aparecerá NutriFit en Google</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start;">
+          <div>
+            <div style="margin-bottom:16px;">
+              <label style="font-family:'Montserrat';font-weight:700;font-size:13px;color:var(--negro);display:block;margin-bottom:6px;">
+                📌 Title Tag <span style="color:var(--gris-medio);font-weight:400">(50-60 caracteres)</span>
+              </label>
+              <input type="text" class="meta-input" id="meta-title-input"
+                value="Suplementos Deportivos Chile — NutriFit | Envío Rápido"
+                oninput="actualizarMeta()">
+              <div class="meta-chars" id="title-chars"></div>
+            </div>
+            <div style="margin-bottom:16px;">
+              <label style="font-family:'Montserrat';font-weight:700;font-size:13px;color:var(--negro);display:block;margin-bottom:6px;">
+                📝 Meta Description <span style="color:var(--gris-medio);font-weight:400">(150-160 caracteres)</span>
+              </label>
+              <textarea class="meta-input" id="meta-desc-input" rows="3"
+                oninput="actualizarMeta()"
+                style="resize:vertical;">Compra suplementos deportivos de calidad en Chile. Proteína Whey, Creatina, Ashwagandha y más. Envío en 24hrs a Santiago y regiones. ¡Asesoría gratis!</textarea>
+              <div class="meta-chars" id="desc-chars"></div>
+            </div>
+            <div>
+              <label style="font-family:'Montserrat';font-weight:700;font-size:13px;color:var(--negro);display:block;margin-bottom:6px;">
+                🌐 URL
+              </label>
+              <input type="text" class="meta-input" id="meta-url-input"
+                value="nutrifit.cl/suplementos-deportivos-chile"
+                oninput="actualizarMeta()">
+            </div>
+          </div>
+          <div>
+            <div style="font-family:'Montserrat';font-weight:700;font-size:13px;color:var(--negro);margin-bottom:12px;">
+              👁️ Así apareces en Google:
+            </div>
+            <div class="meta-preview">
+              <div class="meta-url" id="preview-url">nutrifit.cl › suplementos-deportivos-chile</div>
+              <div class="meta-title" id="preview-title">Suplementos Deportivos Chile — NutriFit | Envío Rápido</div>
+              <div class="meta-desc" id="preview-desc">Compra suplementos deportivos de calidad en Chile. Proteína Whey, Creatina, Ashwagandha y más. Envío en 24hrs a Santiago y regiones. ¡Asesoría gratis!</div>
+            </div>
+            <div style="margin-top:16px;background:var(--gris-claro);border-radius:var(--radius-sm);padding:14px;">
+              <div style="font-family:'Montserrat';font-weight:700;font-size:12px;color:var(--negro);margin-bottom:8px;">📋 Código para tu HTML:</div>
+              <div id="meta-code" style="font-family:monospace;font-size:11px;color:var(--gris-oscuro);line-height:1.8;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════
+       4. SCHEMA MARKUP
+       ═══════════════════════════════════════════ -->
+  <div class="seccion">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-header-ico">🧬</div>
+        <div class="card-header-info">
+          <h2>Schema Markup — Datos Estructurados</h2>
+          <p>Código que le dice a Google exactamente qué eres y qué vendes. Copia y pega en tu página.</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <p style="font-size:14px;color:var(--gris-medio);margin-bottom:20px;line-height:1.7;">
+          El Schema Markup puede hacer que Google muestre <strong>rich snippets</strong> (estrellas, precio, disponibilidad)
+          directamente en los resultados de búsqueda, aumentando tu CTR hasta un 30%.
+        </p>
+
+        <div style="display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;">
+          <button onclick="mostrarSchema('organizacion')" class="pill" id="tab-org" style="background:var(--verde);border-color:var(--verde);color:var(--negro);">Organización</button>
+          <button onclick="mostrarSchema('producto')" class="pill" id="tab-prod">Producto</button>
+          <button onclick="mostrarSchema('faq')" class="pill" id="tab-faq">FAQ</button>
+          <button onclick="mostrarSchema('breadcrumb')" class="pill" id="tab-bread">Breadcrumb</button>
+        </div>
+
+        <div class="schema-box" id="schema-output">
+          <button class="copy-btn" onclick="copiarSchema()">Copiar</button>
+          <div id="schema-content"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════
+       5. ARTÍCULOS DE BLOG — PLAN EDITORIAL
+       ═══════════════════════════════════════════ -->
+  <div class="seccion" id="blog">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-header-ico">📝</div>
+        <div class="card-header-info">
+          <h2>Plan Editorial de Blog — 12 Artículos SEO</h2>
+          <p>Artículos que atraen tráfico gratuito y posicionan a NutriFit como autoridad</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <p style="font-size:14px;color:var(--gris-medio);margin-bottom:24px;line-height:1.7;">
+          Cada artículo está diseñado para posicionar una keyword específica y guiar al lector
+          hacia la compra de un producto NutriFit. Publica 1 artículo por semana.
+        </p>
+        <div class="articulos-grid" id="articulos-grid"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════
+       6. SEO LOCAL
+       ═══════════════════════════════════════════ -->
+  <div class="seccion" id="local">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-header-ico">📍</div>
+        <div class="card-header-info">
+          <h2>SEO Local — Santiago & Chile</h2>
+          <p>Para aparecer cuando busquen "suplementos cerca de mí" o "suplementos Santiago"</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="local-grid">
+          <div class="local-card">
+            <h4>🗺️ Google My Business</h4>
+            <p>Aunque seas 100% online, tener un perfil de Google My Business activo mejora tu visibilidad local significativamente.</p>
+            <ul>
+              <li>Crea tu perfil en business.google.com</li>
+              <li>Categoría: "Tienda de artículos deportivos"</li>
+              <li>Agrega fotos de tus productos reales</li>
+              <li>Responde todas las reseñas (buenas y malas)</li>
+              <li>Publica una oferta o novedad cada semana</li>
+              <li>Agrega el link de WhatsApp en tu perfil</li>
+            </ul>
+          </div>
+          <div class="local-card">
+            <h4>🔑 Keywords Locales</h4>
+            <p>Integra estas frases en tus páginas, especialmente en títulos H1, H2 y meta descriptions.</p>
+            <ul>
+              <li>suplementos deportivos Santiago</li>
+              <li>proteína whey Chile precio</li>
+              <li>creatina Santiago envío rápido</li>
+              <li>suplementos gym Santiago</li>
+              <li>suplementos online Chile despacho</li>
+              <li>comprar proteína Chile barato</li>
+              <li>suplementos Providencia / Las Condes</li>
+            </ul>
+          </div>
+          <div class="local-card">
+            <h4>⭐ Reseñas y Reputación</h4>
+            <p>Las reseñas son un factor de posicionamiento local crítico. Así las consigues de forma natural.</p>
+            <ul>
+              <li>Pide reseña por WhatsApp después de cada venta</li>
+              <li>Mensaje: "¿Quedaste satisfecho? ¿Podrías dejarnos una reseña en Google?"</li>
+              <li>Responde TODAS las reseñas en menos de 24hrs</li>
+              <li>Ante una mala reseña: pide disculpas y soluciona públicamente</li>
+              <li>Meta: 20 reseñas en los primeros 3 meses</li>
+            </ul>
+          </div>
+          <div class="local-card">
+            <h4>🔗 Backlinks Locales</h4>
+            <p>Los backlinks (links desde otros sitios hacia el tuyo) son el factor SEO más poderoso.</p>
+            <ul>
+              <li>Directorios: Páginas Amarillas Chile, Buscapé</li>
+              <li>Foros: Reddit Chile, Foroatletismo.cl</li>
+              <li>Colabora con influencers fitness chilenos</li>
+              <li>Escribe artículos invitado en blogs de fitness</li>
+              <li>Menciones en comunidades de gym en Facebook</li>
+              <li>Prensa: busca periodistas de lifestyle y salud</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- NAP CONSISTENCY -->
+        <div style="margin-top:24px;background:var(--verde-light);border-radius:var(--radius-sm);padding:20px;border-left:4px solid var(--verde);">
+          <h4 style="font-family:'Montserrat';font-weight:800;font-size:15px;color:var(--negro);margin-bottom:12px;">
+            📌 NAP — Consistencia de Datos (CRÍTICO para SEO Local)
+          </h4>
+          <p style="font-size:13px;color:var(--gris-medio);margin-bottom:12px;line-height:1.6;">
+            Tu Nombre, Dirección y Teléfono (NAP) deben ser <strong>exactamente iguales</strong>
+            en tu web, Google My Business, redes sociales y cualquier directorio.
+            Una diferencia mínima confunde a Google y perjudica tu posicionamiento.
+          </p>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;" id="nap-editor">
+            <div>
+              <div style="font-family:'Montserrat';font-weight:700;font-size:12px;color:var(--negro);margin-bottom:4px;">Nombre del negocio</div>
+              <input type="text" value="NutriFit Chile"
+                style="width:100%;padding:8px 12px;border:2px solid var(--gris-borde);border-radius:8px;font-size:13px;font-family:'Inter';">
+            </div>
+            <div>
+              <div style="font-family:'Montserrat';font-weight:700;font-size:12px;color:var(--negro);margin-bottom:4px;">Teléfono / WhatsApp</div>
+              <input type="text" value="+56 9 XXXX XXXX"
+                style="width:100%;padding:8px 12px;border:2px solid var(--gris-borde);border-radius:8px;font-size:13px;font-family:'Inter';">
+            </div>
+            <div>
+              <div style="font-family:'Montserrat';font-weight:700;font-size:12px;color:var(--negro);margin-bottom:4px;">Email</div>
+              <input type="text" value="contacto@nutrifit.cl"
+                style="width:100%;padding:8px 12px;border:2px solid var(--gris-borde);border-radius:8px;font-size:13px;font-family:'Inter';">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════
+       7. HERRAMIENTAS SEO GRATUITAS
+       ═══════════════════════════════════════════ -->
+  <div class="seccion" id="herramientas">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-header-ico">🛠️</div>
+        <div class="card-header-info">
+          <h2>Herramientas SEO Recomendadas</h2>
+          <p>Las que realmente necesitas para posicionar NutriFit (la mayoría gratis)</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="herramientas-grid" id="herramientas-grid"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════
+       8. CRONOGRAMA SEO — 90 DÍAS
+       ═══════════════════════════════════════════ -->
+  <div class="seccion" id="cronograma">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-header-ico">📅</div>
+        <div class="card-header-info">
+          <h2>Cronograma SEO — Primeros 90 Días</h2>
+          <p>Qué hacer semana a semana para posicionar NutriFit en Google Chile</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="cronograma" id="cronograma-seo"></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+
+<script>
+
+/* ═══════════════════════════════════════════
+   DATOS PALABRAS CLAVE
+   ═══════════════════════════════════════════ */
+const KEYWORDS = [
+  { kw:'proteína whey chile',            vol:2400,  comp:'baja',   intencion:'💰 Comercial',  prioridad:'alta',  pagina:'Producto Whey'       },
+  { kw:'creatina monohidratada precio',  vol:1800,  comp:'baja',   intencion:'💰 Comercial',  prioridad:'alta',  pagina:'Producto Creatina'   },
+  { kw:'suplementos deportivos santiago',vol:1600,  comp:'media',  intencion:'💰 Comercial',  prioridad:'alta',  pagina:'Inicio'              },
+  { kw:'ashwagandha chile',              vol:1400,  comp:'baja',   intencion:'💰 Comercial',  prioridad:'alta',  pagina:'Producto Ashwagandha'},
+  { kw:'comprar proteína chile',         vol:1200,  comp:'media',  intencion:'💰 Comercial',  prioridad:'alta',  pagina:'Tienda'              },
+  { kw:'suplementos gym chile',          vol:1100,  comp:'media',  intencion:'💰 Comercial',  prioridad:'alta',  pagina:'Inicio'              },
+  { kw:'melena de leon suplemento',      vol:880,   comp:'baja',   intencion:'📚 Informacional','prioridad':'media',pagina:'Producto Melena'  },
+  { kw:'magnesio para dormir chile',     vol:820,   comp:'baja',   intencion:'📚 Informacional','prioridad':'media',pagina:'Producto Magnesio'},
+  { kw:'shilajit precio chile',          vol:760,   comp:'baja',   intencion:'💰 Comercial',  prioridad:'media', pagina:'Producto Shilajit'  },
+  { kw:'para qué sirve la creatina',     vol:3200,  comp:'alta',   intencion:'📚 Informacional','prioridad':'media',pagina:'Blog'            },
+  { kw:'proteína whey para bajar de peso',vol:1500, comp:'media',  intencion:'📚 Informacional','prioridad':'media',pagina:'Blog'            },
+  { kw:'ashwagandha para qué sirve',     vol:2800,  comp:'media',  intencion:'📚 Informacional','prioridad':'media',pagina:'Blog'            },
+  { kw:'mejores suplementos para gym',   vol:1900,  comp:'alta',   intencion:'📚 Informacional','prioridad':'baja', pagina:'Blog'            },
+  { kw:'suplementos online chile envio', vol:980,   comp:'baja',   intencion:'💰 Comercial',  prioridad:'alta',  pagina:'Inicio'             },
+  { kw:'nutrifit chile suplementos',     vol:400,   comp:'baja',   intencion:'🔎 Navegacional','prioridad':'alta', pagina:'Inicio'           },
+];
+
+const COMP_WIDTHS = { baja:25, media:55, alta:85 };
+const PRIORIDAD_MAP = {
+  alta:  '<span class="badge badge-verde">🔥 ALTA</span>',
+  media: '<span class="badge badge-amarillo">⚡ MEDIA</span>',
+  baja:  '<span class="badge badge-negro">📌 BAJA</span>',
+};
+
+function renderKW() {
+  const tbody = document.getElementById('kw-tbody');
+  tbody.innerHTML = KEYWORDS.map((k,i) => {
+    const w = COMP_WIDTHS[k.comp];
+    const fillClass = k.comp === 'baja' ? 'fill-baja' : k.comp === 'media' ? 'fill-media' : 'fill-alta';
+    const volClass  = k.vol >= 1500 ? 'vol-alto' : k.vol >= 800 ? 'vol-medio' : 'vol-bajo';
+    return `
+    <tr>
+      <td style="color:var(--gris-medio);font-size:12px;">${i+1}</td>
+      <td><span class="kw-keyword">${k.kw}</span></td>
+      <td><span class="kw-vol ${volClass}">${k.vol.toLocaleString('es-CL')}/mes</span></td>
+      <td>
+        <div class="barra-comp">
+          <div class="barra-bg"><div class="barra-fill ${fillClass}" style="width:${w}%"></div></div>
+          <span class="barra-txt">${k.comp.charAt(0).toUpperCase()+k.comp.slice(1)}</span>
+        </div>
+      </td>
+      <td><span class="intencion-badge">${k.intencion}</span></td>
+      <td>${PRIORIDAD_MAP[k.prioridad]}</td>
+      <td style="font-size:12px;color:var(--gris-medio);">${k.pagina}</td>
+    </tr>`;
+  }).join('');
+  document.getElementById('kw-count').textContent = KEYWORDS.length;
+}
+
+
+/* ═══════════════════════════════════════════
+   CHECKLIST SEO
+   ═══════════════════════════════════════════ */
+const CHECKLIST = [
+  { titulo:'Instala Google Search Console',
+    desc:'Ve a search.google.com/search-console → agrega tu sitio → verifica con el archivo HTML que te dan. Gratis y esencial.',
+    code:null },
+  { titulo:'Instala Google Analytics 4',
+    desc:'analytics.google.com → crea propiedad → copia el código GA4 y pégalo en el <head> de tu HTML.',
+    code:'<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXX"></script>' },
+  { titulo:'Crea y sube el sitemap.xml',
+    desc:'El sitemap le dice a Google todas las páginas de tu sitio. Publica en nutrifit.cl/sitemap.xml',
+    code:'<?xml version="1.0"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">...' },
+  { titulo:'Crea el archivo robots.txt',
+    desc:'Le dice a Google qué páginas indexar y cuáles no. Publica en nutrifit.cl/robots.txt',
+    code:'User-agent: *\nAllow: /\nSitemap: https://nutrifit.cl/sitemap.xml' },
+  { titulo:'Optimiza el Title Tag de inicio',
+    desc:'Máximo 60 caracteres. Incluye keyword principal + nombre de marca + diferenciador.',
+    code:'<title>Suplementos Deportivos Chile — NutriFit | Envío Rápido</title>' },
+  { titulo:'Escribe la Meta Description de inicio',
+    desc:'150-160 caracteres. Incluye keyword, beneficio y llamado a la acción.',
+    code:'<meta name="description" content="Compra suplementos deportivos en Chile...">' },
+  { titulo:'Agrega el H1 correcto en cada página',
+    desc:'Solo UN H1 por página. Debe contener la keyword principal de esa página.',
+    code:'<h1>Proteína Whey en Chile — NutriFit Pro Whey</h1>' },
+  { titulo:'Optimiza las imágenes con atributo alt',
+    desc:'Cada imagen debe tener un texto alternativo descriptivo con keyword cuando sea relevante.',
+    code:'<img src="proteina-whey.webp" alt="Proteína Whey NutriFit 1kg Chile">' },
+  { titulo:'URLs amigables para SEO',
+    desc:'Sin números ni caracteres raros. Usa guiones, no guiones bajos.',
+    code:'nutrifit.cl/proteina-whey-chile (✅)\nnutrifit.cl/producto?id=123 (❌)' },
+  { titulo:'Convierte todas las imágenes a WebP',
+    desc:'WebP pesa 30% menos que JPG. Google premia la velocidad de carga en el ranking.',
+    code:'squoosh.app (gratis online) o imageoptimizer.net' },
+  { titulo:'Velocidad de carga menor a 3 segundos',
+    desc:'Usa PageSpeed Insights (pagespeed.web.dev) para medir. Cada segundo extra baja el ranking.',
+    code:null },
+  { titulo:'Agrega el Schema de Organización',
+    desc:'Código JSON-LD que le dice a Google que eres un negocio real. Ver sección Schema arriba.',
+    code:null },
+  { titulo:'Schema de Producto en cada ficha',
+    desc:'Permite que Google muestre precio, estrellas y disponibilidad en los resultados de búsqueda.',
+    code:null },
+  { titulo:'Schema de FAQ en preguntas frecuentes',
+    desc:'Google puede mostrar las preguntas directamente en los resultados expandibles.',
+    code:null },
+  { titulo:'Open Graph para redes sociales',
+    desc:'Define cómo se ve tu link cuando alguien lo comparte en WhatsApp, Facebook o Twitter.',
+    code:'<meta property="og:title" content="NutriFit Chile">\n<meta property="og:image" content="...og-image.jpg">' },
+  { titulo:'Enlazado interno entre páginas',
+    desc:'Cada artículo del blog debe tener al menos 2-3 links a páginas de productos relacionados.',
+    code:null },
+  { titulo:'Página 404 personalizada',
+    desc:'Cuando un link falla, muestra una página útil con links a tu tienda en vez del error estándar.',
+    code:null },
+  { titulo:'Certificado SSL activo (HTTPS)',
+    desc:'Tu dominio debe mostrar https:// . Google penaliza sitios sin SSL. Mayoría de hostings lo incluyen gratis.',
+    code:null },
+  { titulo:'Versión móvil optimizada',
+    desc:'Usa la herramienta de prueba de optimización móvil de Google: search.google.com/test/mobile-friendly',
+    code:null },
+  { titulo:'Crea perfil en Google My Business',
+    desc:'business.google.com → agrega tu negocio → verifica → sube fotos → pide reseñas a clientes.',
+    code:null },
+];
+
+let completados = new Set();
+
+function renderChecklist() {
+  const el = document.getElementById('checklist-seo');
+  el.innerHTML = CHECKLIST.map((item,i) => `
+    <div class="check-item" id="check-${i}" onclick="toggleCheck(${i})">
+      <div class="check-ico" id="check-ico-${i}">☐</div>
+      <div class="check-texto">
+        <h4>${item.titulo}</h4>
+        <p>${item.desc}${item.code ? `<br><br><code>${item.code.replace(/\n/g,'<br>')}</code>` : ''}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleCheck(i) {
+  const item = document.getElementById(`check-${i}`);
+  const ico  = document.getElementById(`check-ico-${i}`);
+  if (completados.has(i)) {
+    completados.delete(i);
+    item.classList.remove('completado');
+    ico.textContent = '☐';
+  } else {
+    completados.add(i);
+    item.classList.add('completado');
+    ico.textContent = '✓';
+  }
+  actualizarProgreso();
+}
+
+function actualizarProgreso() {
+  const pct = Math.round((completados.size / CHECKLIST.length) * 100);
+  document.getElementById('check-count').textContent = `${completados.size}/${CHECKLIST.length}`;
+  document.getElementById('prog-pct').textContent = pct + '%';
+  const score = document.getElementById('prog-score');
+  score.style.background = `conic-gradient(var(--verde) ${pct * 3.6}deg, rgba(255,255,255,0.1) 0deg)`;
+}
+
+
+/* ═══════════════════════════════════════════
+   META TAGS EDITOR
+   ═══════════════════════════════════════════ */
+function actualizarMeta() {
+  const title = document.getElementById('meta-title-input').value;
+  const desc  = document.getElementById('meta-desc-input').value;
+  const url   = document.getElementById('meta-url-input').value;
+
+  document.getElementById('preview-title').textContent = title;
+  document.getElementById('preview-desc').textContent  = desc;
+  document.getElementById('preview-url').textContent   = url.replace('https://','').replace('http://','');
+
+  const tLen = title.length;
+  const dLen = desc.length;
+  const tOk  = tLen >= 50 && tLen <= 60;
+  const dOk  = dLen >= 150 && dLen <= 160;
+
+  document.getElementById('title-chars').innerHTML =
+    `${tLen} caracteres — <span style="color:${tOk ? 'var(--verde)' : 'var(--rojo)'};">${tOk ? '✅ Perfecto' : tLen < 50 ? '⚠️ Muy corto' : '⚠️ Muy largo'}</span>`;
+  document.getElementById('desc-chars').innerHTML  =
+    `${dLen} caracteres — <span style="color:${dOk ? 'var(--verde)' : 'var(--rojo)'};">${dOk ? '✅ Perfecto' : dLen < 150 ? '⚠️ Muy corto' : '⚠️ Muy largo'}</span>`;
+
+  document.getElementById('meta-code').innerHTML =
+    `&lt;title&gt;${title}&lt;/title&gt;<br>` +
+    `&lt;meta name="description" content="${desc}"&gt;<br>` +
+    `&lt;link rel="canonical" href="https://${url}"&gt;`;
+}
+
+
+/* ═══════════════════════════════════════════
+   SCHEMA MARKUP
+   ═══════════════════════════════════════════ */
+const SCHEMAS = {
+  organizacion: `<span class="punct">{</span>
+  <span class="key">"@context"</span><span class="punct">:</span> <span class="val">"https://schema.org"</span><span class="punct">,</span>
+  <span class="key">"@type"</span><span class="punct">:</span> <span class="val">"Organization"</span><span class="punct">,</span>
+  <span class="key">"name"</span><span class="punct">:</span> <span class="val">"NutriFit Chile"</span><span class="punct">,</span>
+  <span class="key">"url"</span><span class="punct">:</span> <span class="val">"https://nutrifit.cl"</span><span class="punct">,</span>
+  <span class="key">"logo"</span><span class="punct">:</span> <span class="val">"https://nutrifit.cl/logo.png"</span><span class="punct">,</span>
+  <span class="key">"contactPoint"</span><span class="punct">:</span> <span class="punct">{</span>
+    <span class="key">"@type"</span><span class="punct">:</span> <span class="val">"ContactPoint"</span><span class="punct">,</span>
+    <span class="key">"telephone"</span><span class="punct">:</span> <span class="val">"+56-9-XXXX-XXXX"</span><span class="punct">,</span>
+    <span class="key">"contactType"</span><span class="punct">:</span> <span class="val">"customer service"</span><span class="punct">,</span>
+    <span class="key">"areaServed"</span><span class="punct">:</span> <span class="val">"CL"</span><span class="punct">,</span>
+    <span class="key">"availableLanguage"</span><span class="punct">:</span> <span class="val">"Spanish"</span>
+  <span class="punct">},</span>
+  <span class="key">"sameAs"</span><span class="punct">:</span> <span class="punct">[</span>
+    <span class="val">"https://instagram.com/nutrifit.chile"</span><span class="punct">,</span>
+    <span class="val">"https://facebook.com/nutrifitchile"</span>
+  <span class="punct">]</span>
+<span class="punct">}</span>`,
+
+  producto: `<span class="punct">{</span>
+  <span class="key">"@context"</span><span class="punct">:</span> <span class="val">"https://schema.org"</span><span class="punct">,</span>
+  <span class="key">"@type"</span><span class="punct">:</span> <span class="val">"Product"</span><span class="punct">,</span>
+  <span class="key">"name"</span><span class="punct">:</span> <span class="val">"NutriFit Pro Whey 1kg"</span><span class="punct">,</span>
+  <span class="key">"description"</span><span class="punct">:</span> <span class="val">"Proteína Whey concentrada 80%. 25g de proteína por porción. Envío a todo Chile."</span><span class="punct">,</span>
+  <span class="key">"image"</span><span class="punct">:</span> <span class="val">"https://nutrifit.cl/img/whey.webp"</span><span class="punct">,</span>
+  <span class="key">"brand"</span><span class="punct">:</span> <span class="punct">{</span> <span class="key">"@type"</span><span class="punct">:</span> <span class="val">"Brand"</span><span class="punct">,</span> <span class="key">"name"</span><span class="punct">:</span> <span class="val">"NutriFit"</span> <span class="punct">},</span>
+  <span class="key">"offers"</span><span class="punct">:</span> <span class="punct">{</span>
+    <span class="key">"@type"</span><span class="punct">:</span> <span class="val">"Offer"</span><span class="punct">,</span>
+    <span class="key">"price"</span><span class="punct">:</span> <span class="val">"24990"</span><span class="punct">,</span>
+    <span class="key">"priceCurrency"</span><span class="punct">:</span> <span class="val">"CLP"</span><span class="punct">,</span>
+    <span class="key">"availability"</span><span class="punct">:</span> <span class="val">"https://schema.org/InStock"</span><span class="punct">,</span>
+    <span class="key">"seller"</span><span class="punct">:</span> <span class="punct">{</span> <span class="key">"@type"</span><span class="punct">:</span> <span class="val">"Organization"</span><span class="punct">,</span> <span class="key">"name"</span><span class="punct">:</span> <span class="val">"NutriFit Chile"</span> <span class="punct">}</span>
+  <span class="punct">},</span>
+  <span class="key">"aggregateRating"</span><span class="punct">:</span> <span class="punct">{</span>
+    <span class="key">"@type"</span><span class="punct">:</span> <span class="val">"AggregateRating"</span><span class="punct">,</span>
+    <span class="key">"ratingValue"</span><span class="punct">:</span> <span class="val">"4.9"</span><span class="punct">,</span>
+    <span class="key">"reviewCount"</span><span class="punct">:</span> <span class="val">"248"</span>
+  <span class="punct">}</span>
+<span class="punct">}</span>`,
+
+  faq: `<span class="punct">{</span>
+  <span class="key">"@context"</span><span class="punct">:</span> <span class="val">"https://schema.org"</span><span class="punct">,</span>
+  <span class="key">"@type"</span><span class="punct">:</span> <span class="val">"FAQPage"</span><span class="punct">,</span>
+  <span class="key">"mainEntity"</span><span class="punct">:</span> <span class="punct">[{</span>
+    <span class="key">"@type"</span><span class="punct">:</span> <span class="val">"Question"</span><span class="punct">,</span>
+    <span class="key">"name"</span><span class="punct">:</span> <span class="val">"¿Cuánto demora el envío en Santiago?"</span><span class="punct">,</span>
+    <span class="key">"acceptedAnswer"</span><span class="punct">:</span> <span class="punct">{</span>
+      <span class="key">"@type"</span><span class="punct">:</span> <span class="val">"Answer"</span><span class="punct">,</span>
+      <span class="key">"text"</span><span class="punct">:</span> <span class="val">"En Santiago Metropolitano: 24 a 48 horas hábiles."</span>
+    <span class="punct">}</span>
+  <span class="punct">},{</span>
+    <span class="key">"@type"</span><span class="punct">:</span> <span class="val">"Question"</span><span class="punct">,</span>
+    <span class="key">"name"</span><span class="punct">:</span> <span class="val">"¿Los productos son originales?"</span><span class="punct">,</span>
+    <span class="key">"acceptedAnswer"</span><span class="punct">:</span> <span class="punct">{</span>
+      <span class="key">"@type"</span><span class="punct">:</span> <span class="val">"Answer"</span><span class="punct">,</span>
+      <span class="key">"text"</span><span class="punct">:</span> <span class="val">"Sí, todos nuestros productos son originales y certificados."</span>
+    <span class="punct">}</span>
+  <span class="punct">}]</span>
+<span class="punct">}</span>`,
+
+  breadcrumb: `<span class="punct">{</span>
+  <span class="key">"@context"</span><span class="punct">:</span> <span class="val">"https://schema.org"</span><span class="punct">,</span>
+  <span class="key">"@type"</span><span class="punct">:</span> <span class="val">"BreadcrumbList"</span><span class="punct">,</span>
+  <span class="key">"itemListElement"</span><span class="punct">:</span> <span class="punct">[{</span>
+    <span class="key">"@type"</span><span class="punct">:</span> <span class="val">"ListItem"</span><span class="punct">,</span>
+    <span class="key">"position"</span><span class="punct">:</span> <span class="str">1</span><span class="punct">,</span>
+    <span class="key">"name"</span><span class="punct">:</span> <span class="val">"Inicio"</span><span class="punct">,</span>
+    <span class="key">"item"</span><span class="punct">:</span> <span class="val">"https://nutrifit.cl"</span>
+  <span class="punct">},{</span>
+    <span class="key">"@type"</span><span class="punct">:</span> <span class="val">"ListItem"</span><span class="punct">,</span>
+    <span class="key">"position"</span><span class="punct">:</span> <span class="str">2</span><span class="punct">,</span>
+    <span class="key">"name"</span><span class="punct">:</span> <span class="val">"Tienda"</span><span class="punct">,</span>
+    <span class="key">"item"</span><span class="punct">:</span> <span class="val">"https://nutrifit.cl/tienda"</span>
+  <span class="punct">},{</span>
+    <span class="key">"@type"</span><span class="punct">:</span> <span class="val">"ListItem"</span><span class="punct">,</span>
+    <span class="key">"position"</span><span class="punct">:</span> <span class="str">3</span><span class="punct">,</span>
+    <span class="key">"name"</span><span class="punct">:</span> <span class="val">"Proteína Whey"</span><span class="punct">,</span>
+    <span class="key">"item"</span><span class="punct">:</span> <span class="val">"https://nutrifit.cl/tienda/proteina-whey-chile"</span>
+  <span class="punct">}]</span>
+<span class="punct">}</span>`
+};
+
+function mostrarSchema(tipo) {
+  document.getElementById('schema-content').innerHTML = SCHEMAS[tipo];
+  ['org','prod','faq','bread'].forEach(t => {
+    const btn = document.getElementById('tab-' + t);
+    if(btn) btn.style.background = '';
+  });
+  const tabMap = { organizacion:'org', producto:'prod', faq:'faq', breadcrumb:'bread' };
+  const btn = document.getElementById('tab-' + tabMap[tipo]);
+  if(btn){ btn.style.background='var(--verde)'; btn.style.borderColor='var(--verde)'; btn.style.color='var(--negro)'; }
+}
+
+function copiarSchema() {
+  const texto = document.getElementById('schema-content').innerText;
+  navigator.clipboard.writeText(texto).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = '✅ Copiado';
+    setTimeout(() => btn.textContent = 'Copiar', 2000);
+  });
+}
+
+
+/* ═══════════════════════════════════════════
+   ARTÍCULOS DE BLOG
+   ═══════════════════════════════════════════ */
+const ARTICULOS = [
+  { num:'01', kw:'para qué sirve la creatina',
+    titulo:'Creatina: Qué es, para qué sirve y cómo tomarla (Guía Completa 2025)',
+    vol:'3.200/mes', dificultad:'Media', tiempo:'8 min', producto:'⚡ Creatina',
+    estructura:['H2: ¿Qué es la creatina monohidratada?','H3: Cómo funciona en el músculo','H2: Beneficios comprobados por la ciencia','H3: ¿Cuánto tomar al día?','H2: Mitos sobre la creatina','H2: ¿Dónde comprar creatina en Chile?'] },
+  { num:'02', kw:'proteína whey para bajar de peso',
+    titulo:'¿La Proteína Whey Engorda o Adelgaza? La Verdad que Nadie te Dice',
+    vol:'1.500/mes', dificultad:'Baja', tiempo:'6 min', producto:'🥛 Whey',
+    estructura:['H2: Whey y pérdida de peso: la evidencia','H3: Calorías por porción','H2: Cómo usar Whey para bajar de peso','H3: Mejor horario para tomarla','H2: Errores comunes','H2: Nuestra Whey para Chile'] },
+  { num:'03', kw:'ashwagandha para qué sirve',
+    titulo:'Ashwagandha: 7 Beneficios Comprobados y Cómo Tomarla Correctamente',
+    vol:'2.800/mes', dificultad:'Media', tiempo:'7 min', producto:'🌿 Ashwagandha',
+    estructura:['H2: ¿Qué es la Ashwagandha?','H3: KSM-66 vs extracto normal','H2: 7 beneficios con evidencia clínica','H3: Estrés y cortisol','H3: Sueño y recuperación','H2: Dosis recomendada','H2: Dónde comprar en Chile'] },
+  { num:'04', kw:'mejores suplementos para gym',
+    titulo:'Los 6 Suplementos que Realmente Valen la Pena si Vas al Gym',
+    vol:'1.900/mes', dificultad:'Alta', tiempo:'10 min', producto:'🏋️ Todos',
+    estructura:['H2: Cómo elegir un suplemento','H2: Los 6 que tienen evidencia real','H3: Whey proteína','H3: Creatina','H3: Magnesio','H2: Lo que NO necesitas comprar','H2: Por dónde empezar según tu objetivo'] },
+  { num:'05', kw:'melena de leon para qué sirve',
+    titulo:'Melena de León: El Hongo Nootrópico que Mejora tu Foco Mental',
+    vol:'880/mes', dificultad:'Baja', tiempo:'6 min', producto:'🍄 Melena',
+    estructura:['H2: ¿Qué es la Melena de León?','H3: NGF y salud neurológica','H2: Beneficios comprobados','H3: Foco y concentración','H3: Memoria','H2: Cómo tomarlo','H2: Dónde comprar en Chile'] },
+  { num:'06', kw:'magnesio para dormir mejor',
+    titulo:'Magnesio para Dormir: Por Qué el 70% de los Chilenos Necesita Suplementarlo',
+    vol:'820/mes', dificultad:'Baja', tiempo:'5 min', producto:'💊 Magnesio',
+    estructura:['H2: Déficit de magnesio en Chile','H3: Síntomas de falta de magnesio','H2: Magnesio y calidad del sueño','H3: Glicinato vs otras formas','H2: Dosis para sueño','H2: Dónde comprar en Chile'] },
+];
+
+function renderArticulos() {
+  const grid = document.getElementById('articulos-grid');
+  grid.innerHTML = ARTICULOS.map(a => `
+    <div class="articulo-card">
+      <div class="art-num">${a.num}</div>
+      <div class="art-kw">🎯 ${a.kw}</div>
+      <div class="art-titulo">${a.titulo}</div>
+      <div class="art-meta">
+        <span class="badge badge-azul">📊 ${a.vol}</span>
+        <span class="badge ${a.dificultad === 'Baja' ? 'badge-verde' : a.dificultad === 'Media' ? 'badge-amarillo' : 'badge-rojo'}">${a.dificultad}</span>
+        <span class="badge badge-negro">⏱ ${a.tiempo}</span>
+        <span class="badge badge-morado">🛒 ${a.producto}</span>
+      </div>
+      <div class="art-estructura">
+        <div class="art-estructura-titulo">Estructura sugerida:</div>
+        ${a.estructura.map(h => `
+          <div class="art-h ${h.startsWith('H2') ? 'h2' : 'h3'}">${h}</div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+
+/* ═══════════════════════════════════════════
+   HERRAMIENTAS
+   ═══════════════════════════════════════════ */
+const HERRAMIENTAS = [
+  { ico:'📊', nombre:'Google Search Console', tipo:'badge-verde', tipotxt:'Gratis',
+    desc:'Monitorea qué keywords te traen tráfico, errores de indexación y rendimiento general.',
+    precio:'100% Gratis' },
+  { ico:'📈', nombre:'Google Analytics 4', tipo:'badge-verde', tipotxt:'Gratis',
+    desc:'Analiza el comportamiento de tus visitantes: de dónde vienen, qué ven, cuánto compran.',
+    precio:'100% Gratis' },
+  { ico:'🔍', nombre:'Ubersuggest', tipo:'badge-amarillo', tipotxt:'Freemium',
+    desc:'Investiga palabras clave, ve qué hace tu competencia y monitorea tu posición en Google.',
+    precio:'Gratis (limitado) / $29 USD/mes' },
+  { ico:'⚡', nombre:'PageSpeed Insights', tipo:'badge-verde', tipotxt:'Gratis',
+    desc:'Mide la velocidad de tu página y te dice exactamente qué mejorar para cargar más rápido.',
+    precio:'100% Gratis' },
+  { ico:'🧬', nombre:'Schema Markup Validator', tipo:'badge-verde', tipotxt:'Gratis',
+    desc:'Verifica que tu código Schema esté correcto antes de publicarlo. De Google.',
+    precio:'100% Gratis' },
+  { ico:'🔗', nombre:'Ahrefs Webmaster Tools', tipo:'badge-verde', tipotxt:'Gratis',
+    desc:'Monitorea tus backlinks y detecta problemas técnicos SEO en tu sitio.',
+    precio:'100% Gratis (versión básica)' },
+  { ico:'🖼️', nombre:'Squoosh', tipo:'badge-verde', tipotxt:'Gratis',
+    desc:'Convierte y comprime imágenes a formato WebP. Esencial para velocidad y SEO.',
+    precio:'100% Gratis' },
+  { ico:'🗺️', nombre:'Google My Business', tipo:'badge-verde', tipotxt:'Gratis',
+    desc:'Perfil de negocio local en Google. Fundamental para aparecer en búsquedas locales de Chile.',
+    precio:'100% Gratis' },
+  { ico:'🤖', nombre:'Screaming Frog', tipo:'badge-amarillo', tipotxt:'Freemium',
+    desc:'Audita tu sitio completo: encuentra errores 404, títulos duplicados, imágenes sin alt y más.',
+    precio:'Gratis hasta 500 URLs / £259/año' },
+];
+
+function renderHerramientas() {
+  const grid = document.getElementById('herramientas-grid');
+  grid.innerHTML = HERRAMIENTAS.map(h => `
+    <div class="herramienta-card">
+      <div class="herr-ico">${h.ico}</div>
+      <div class="herr-nombre">${h.nombre}</div>
+      <div class="herr-tipo"><span class="badge ${h.tipo}">${h.tipotxt}</span></div>
+      <div class="herr-desc">${h.desc}</div>
+      <div class="herr-precio">${h.precio}</div>
+    </div>
+  `).join('');
+}
+
+
+/* ═══════════════════════════════════════════
+   CRONOGRAMA SEO
+   ═══════════════════════════════════════════ */
+const CRONOGRAMA = [
+  { label:'SEMANA 1-2\nFundamentos', color:'#16A34A', tareas:[
+    { ico:'⚙️', txt:'Instala Google Search Console y Google Analytics 4' },
+    { ico:'🏷️', txt:'Optimiza el Title Tag y Meta Description de todas las páginas' },
+    { ico:'🖼️', txt:'Convierte todas las imágenes a WebP y agrega atributos alt' },
+    { ico:'🔗', txt:'Crea URLs amigables para todos los productos' },
+    { ico:'📄', txt:'Crea y sube el sitemap.xml y robots.txt' },
+    { ico:'🔒', txt:'Verifica que tu sitio tenga HTTPS activo' },
+  ]},
+  { label:'SEMANA 3-4\nContenido', color:'#2563EB', tareas:[
+    { ico:'📝', txt:'Publica el artículo #1: Guía completa sobre creatina (3.200 búsquedas/mes)' },
+    { ico:'📝', txt:'Publica el artículo #2: Whey y pérdida de peso' },
+    { ico:'🧬', txt:'Agrega Schema de Organización y Producto en todas las fichas' },
+    { ico:'🧬', txt:'Agrega Schema de FAQ en la página de preguntas frecuentes' },
+    { ico:'🗺️', txt:'Crea y verifica tu perfil en Google My Business' },
+  ]},
+  { label:'SEMANA 5-6\nAutoridad', color:'#7C3AED', tareas:[
+    { ico:'📝', txt:'Publica artículo #3: Beneficios de Ashwagandha' },
+    { ico:'📝', txt:'Publica artículo #4: Los 6 suplementos que valen la pena' },
+    { ico:'🔗', txt:'Registra NutriFit en Páginas Amarillas Chile y otros directorios' },
+    { ico:'⭐', txt:'Pide reseñas a tus primeros clientes por WhatsApp' },
+    { ico:'📱', txt:'Crea contenido en Instagram y TikTok con links a tu web' },
+  ]},
+  { label:'SEMANA 7-8\nExpansión', color:'#B45309', tareas:[
+    { ico:'📝', txt:'Publica artículo #5: Melena de León y foco mental' },
+    { ico:'📝', txt:'Publica artículo #6: Magnesio para dormir mejor' },
+    { ico:'⚡', txt:'Audita velocidad con PageSpeed Insights y corrige problemas' },
+    { ico:'🔗', txt:'Busca colaboraciones con influencers fitness chilenos' },
+    { ico:'📊', txt:'Revisa Search Console: ¿qué keywords empiezan a aparecer?' },
+  ]},
+  { label:'MES 2-3\nMonitoreo', color:'#0F766E', tareas:[
+    { ico:'📊', txt:'Revisa rankings semanalmente en Search Console' },
+    { ico:'📝', txt:'Publica 2 artículos nuevos por mes' },
+    { ico:'🔗', txt:'Construye 2-4 backlinks por mes (foros, menciones, colaboraciones)' },
+    { ico:'⭐', txt:'Meta: 20+ reseñas en Google My Business' },
+    { ico:'📈', txt:'Analiza qué páginas tienen más tráfico y mejóralas con más contenido' },
+    { ico:'🎯', txt:'Empieza a atacar keywords de mayor competencia con artículos más largos' },
+  ]},
+];
+
+function renderCronograma() {
+  const el = document.getElementById('cronograma-seo');
+  el.innerHTML = CRONOGRAMA.map(s => `
+    <div class="semana">
+      <div class="semana-label" style="background:${s.color};">${s.label}</div>
+      <div class="semana-tareas">
+        ${s.tareas.map(t => `
+          <div class="tarea">
+            <span class="tarea-ico">${t.ico}</span>
+            <span>${t.txt}</span>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+
+/* ═══════════════════════════════════════════
+   INIT
+   ═══════════════════════════════════════════ */
+renderKW();
+renderChecklist();
+renderArticulos();
+renderHerramientas();
+renderCronograma();
+actualizarMeta();
+mostrarSchema('organizacion');
+</script>
+</body>
+</html>

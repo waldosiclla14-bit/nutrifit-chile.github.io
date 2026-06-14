@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="NutriFit Chile — Suplementos deportivos de calidad. Proteína Whey, Creatina, Ashwagandha, Melena de León, Magnesio y Shilajit. Envío rápido a todo Chile.">
+<title>NutriFit Chile — Suplementos que Generan Resultados Reales</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ============================================
+   VARIABLES Y RESET
+   ============================================ */
+:root {
+  --negro: #000000;
+  --blanco: #FFFFFF;
+  --verde: #22C55E;
+  --verde-dark: #16A34A;
+  --gris-oscuro: #1A1A1A;
+  --gris-medio: #6B7280;
+  --gris-claro: #F5F5F5;
+  --gris-borde: #E5E7EB;
+  --amarillo: #F59E0B;
+  --max-width: 1200px;
+  --radius: 16px;
+  --radius-sm: 8px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.08);
+  --shadow-hover: 0 12px 40px rgba(0,0,0,0.15);
+  --transition: all 0.3s ease;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; color: var(--gris-oscuro); background: var(--blanco); overflow-x: hidden; }
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+button { cursor: pointer; border: none; outline: none; font-family: inherit; }
+
+/* ============================================
+   TIPOGRAFÍA
+   ============================================ */
+.titulo-hero    { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 8vw, 80px); line-height: 1; letter-spacing: 2px; }
+.titulo-seccion { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: clamp(28px, 4vw, 42px); line-height: 1.2; }
+.subtitulo      { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: clamp(16px, 2vw, 20px); }
+
+/* ============================================
+   LAYOUT HELPERS
+   ============================================ */
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+.seccion    { padding: 80px 0; }
+.seccion-oscura { background: var(--negro); color: var(--blanco); }
+.seccion-gris   { background: var(--gris-claro); }
+.text-center { text-align: center; }
+.text-verde  { color: var(--verde); }
+
+/* ============================================
+   BOTONES
+   ============================================ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 14px 28px; border-radius: var(--radius-sm);
+  font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px;
+  transition: var(--transition); white-space: nowrap;
+}
+.btn-verde  { background: var(--verde); color: var(--negro); }
+.btn-verde:hover  { background: var(--verde-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(34,197,94,0.35); }
+.btn-outline { background: transparent; color: var(--blanco); border: 2px solid var(--blanco); }
+.btn-outline:hover { background: var(--blanco); color: var(--negro); }
+.btn-negro  { background: var(--negro); color: var(--blanco); }
+.btn-negro:hover  { background: var(--gris-oscuro); transform: translateY(-2px); }
+.btn-full   { width: 100%; }
+.btn-lg     { padding: 18px 36px; font-size: 16px; }
+
+/* ============================================
+   NAVBAR
+   ============================================ */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(0,0,0,0.95); backdrop-filter: blur(12px);
+  height: 70px; display: flex; align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  transition: var(--transition);
+}
+.navbar-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 0 24px;
+}
+.navbar-logo {
+  font-family: 'Bebas Neue', sans-serif; font-size: 28px;
+  color: var(--blanco); letter-spacing: 3px;
+}
+.navbar-logo span { color: var(--verde); }
+.navbar-links { display: flex; align-items: center; gap: 32px; }
+.navbar-links a {
+  font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 13px;
+  color: rgba(255,255,255,0.8); letter-spacing: 0.5px; text-transform: uppercase;
+  transition: var(--transition);
+}
+.navbar-links a:hover { color: var(--verde); }
+.navbar-carrito {
+  background: var(--verde); color: var(--negro); border: none;
+  width: 40px; height: 40px; border-radius: 50%; font-size: 18px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: var(--transition); position: relative;
+}
+.navbar-carrito:hover { background: var(--verde-dark); transform: scale(1.1); }
+.carrito-badge {
+  position: absolute; top: -4px; right: -4px;
+  background: #EF4444; color: white; font-size: 10px; font-weight: 700;
+  width: 18px; height: 18px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--blanco); border-radius: 2px; transition: var(--transition); }
+.menu-movil {
+  display: none; position: fixed; top: 70px; left: 0; right: 0; bottom: 0;
+  background: var(--negro); z-index: 999; flex-direction: column;
+  align-items: center; justify-content: center; gap: 32px;
+}
+.menu-movil.abierto { display: flex; }
+.menu-movil a {
+  font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: var(--blanco);
+  letter-spacing: 3px; transition: var(--transition);
+}
+.menu-movil a:hover { color: var(--verde); }
+
+/* ============================================
+   HERO
+   ============================================ */
+.hero {
+  min-height: 100vh; display: flex; align-items: center;
+  background: linear-gradient(135deg, #000000 0%, #0a1a0a 50%, #001a00 100%);
+  position: relative; overflow: hidden; padding-top: 70px;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 80% 50%, rgba(34,197,94,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 20% 80%, rgba(34,197,94,0.06) 0%, transparent 60%);
+}
+.hero-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center; gap: 60px; position: relative; z-index: 1;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3);
+  color: var(--verde); padding: 6px 14px; border-radius: 100px;
+  font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase; margin-bottom: 24px;
+}
+.hero-eyebrow::before { content: '●'; font-size: 8px; animation: pulse-dot 2s infinite; }
+@keyframes pulse-dot { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+.hero-titulo { color: var(--blanco); margin-bottom: 20px; }
+.hero-titulo .verde { color: var(--verde); }
+.hero-subtitulo {
+  color: rgba(255,255,255,0.65); font-size: 17px; line-height: 1.7;
+  margin-bottom: 36px; max-width: 480px;
+}
+.hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 48px; }
+.hero-badges { display: flex; gap: 24px; flex-wrap: wrap; }
+.hero-badge {
+  display: flex; align-items: center; gap: 8px;
+  font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 600;
+  color: rgba(255,255,255,0.7);
+}
+.hero-badge .icono { color: var(--verde); font-size: 16px; }
+
+/* Visual lado derecho del hero */
+.hero-visual {
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.hero-card-principal {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 24px; padding: 32px; width: 100%; max-width: 380px;
+  backdrop-filter: blur(8px);
+}
+.hero-producto-img {
+  width: 100%; height: 220px;
+  background: linear-gradient(135deg, rgba(34,197,94,0.15), rgba(34,197,94,0.05));
+  border-radius: 16px; display: flex; align-items: center; justify-content: center;
+  font-size: 80px; margin-bottom: 20px;
+}
+.hero-producto-nombre {
+  font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 20px;
+  color: var(--blanco); margin-bottom: 8px;
+}
+.hero-producto-precio {
+  font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 26px;
+  color: var(--verde); margin-bottom: 16px;
+}
+.hero-estrellas { color: var(--amarillo); font-size: 16px; margin-bottom: 20px; }
+.hero-tag {
+  position: absolute; top: -16px; right: -16px;
+  background: var(--verde); color: var(--negro);
+  font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 12px;
+  padding: 8px 14px; border-radius: 100px; letter-spacing: 0.5px;
+}
+.hero-flotante {
+  position: absolute; bottom: -20px; left: -20px;
+  background: rgba(0,0,0,0.85); border: 1px solid rgba(34,197,94,0.3);
+  border-radius: 14px; padding: 14px 18px; display: flex; align-items: center; gap: 12px;
+}
+.hero-flotante-icono { font-size: 28px; }
+.hero-flotante-texto { font-family: 'Montserrat', sans-serif; font-size: 12px; }
+.hero-flotante-texto strong { color: var(--verde); display: block; font-size: 14px; }
+
+/* ============================================
+   BARRA DE CONFIANZA
+   ============================================ */
+.barra-confianza {
+  background: var(--verde); padding: 14px 0; overflow: hidden;
+}
+.barra-inner {
+  display: flex; gap: 48px; align-items: center; justify-content: center;
+  flex-wrap: wrap;
+}
+.barra-item {
+  display: flex; align-items: center; gap: 8px;
+  font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px;
+  color: var(--negro); white-space: nowrap;
+}
+
+/* ============================================
+   OBJETIVOS
+   ============================================ */
+.objetivos-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px; margin-top: 48px;
+}
+.objetivo-card {
+  background: var(--blanco); border-radius: var(--radius);
+  padding: 32px; box-shadow: var(--shadow);
+  border: 2px solid transparent; transition: var(--transition);
+  cursor: pointer;
+}
+.objetivo-card:hover {
+  border-color: var(--verde); transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+.objetivo-emoji { font-size: 48px; margin-bottom: 16px; }
+.objetivo-titulo {
+  font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 20px;
+  color: var(--negro); margin-bottom: 12px;
+}
+.objetivo-desc {
+  font-size: 14px; color: var(--gris-medio); line-height: 1.6; margin-bottom: 20px;
+}
+.objetivo-productos {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px;
+}
+.objetivo-tag {
+  background: rgba(34,197,94,0.1); color: var(--verde-dark);
+  font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 12px;
+  padding: 4px 12px; border-radius: 100px;
+}
+.objetivo-link {
+  font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px;
+  color: var(--verde); display: flex; align-items: center; gap: 6px;
+  transition: var(--transition);
+}
+.objetivo-link:hover { gap: 10px; }
+
+/* ============================================
+   PRODUCTOS
+   ============================================ */
+.seccion-header { margin-bottom: 48px; }
+.seccion-header p {
+  font-size: 16px; color: var(--gris-medio); margin-top: 12px;
+}
+.productos-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+}
+.producto-card {
+  background: var(--blanco); border-radius: var(--radius);
+  box-shadow: var(--shadow); overflow: hidden;
+  transition: var(--transition); border: 1px solid var(--gris-borde);
+}
+.producto-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+.producto-imagen {
+  height: 220px; background: var(--gris-claro);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 72px; position: relative;
+}
+.producto-badge {
+  position: absolute; top: 12px; left: 12px;
+  background: var(--verde); color: var(--negro);
+  font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 11px;
+  padding: 4px 10px; border-radius: 100px; letter-spacing: 0.5px;
+}
+.producto-badge.badge-nuevo { background: #3B82F6; color: white; }
+.producto-badge.badge-oferta { background: #EF4444; color: white; }
+.producto-info { padding: 20px; }
+.producto-categoria {
+  font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 11px;
+  color: var(--verde); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;
+}
+.producto-nombre {
+  font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 16px;
+  color: var(--negro); margin-bottom: 8px; line-height: 1.3;
+}
+.producto-estrellas {
+  display: flex; align-items: center; gap: 6px; margin-bottom: 12px;
+}
+.estrellas { color: var(--amarillo); font-size: 14px; }
+.resenas {
+  font-size: 12px; color: var(--gris-medio);
+  font-family: 'Montserrat', sans-serif; font-weight: 600;
+}
+.producto-precio-row {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+}
+.precio {
+  font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 22px;
+  color: var(--negro);
+}
+.precio-tachado {
+  font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 14px;
+  color: var(--gris-medio); text-decoration: line-through;
+}
+.producto-btns { display: flex; gap: 8px; }
+.btn-carrito {
+  flex: 1; background: var(--negro); color: var(--blanco);
+  padding: 12px; border-radius: var(--radius-sm);
+  font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px;
+  transition: var(--transition);
+}
+.btn-carrito:hover { background: var(--verde); color: var(--negro); }
+.btn-wsp-producto {
+  background: #25D366; color: white; padding: 12px 14px;
+  border-radius: var(--radius-sm); font-size: 18px; transition: var(--transition);
+}
+.btn-wsp-producto:hover { background: #128C7E; transform: scale(1.05); }
+
+/* ============================================
+   POR QUÉ NUTRIFIT
+   ============================================ */
+.pilares-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 32px; margin-top: 48px;
+}
+.pilar {
+  text-align: center; padding: 32px 20px;
+  border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius);
+  transition: var(--transition);
+}
+.pilar:hover { border-color: rgba(34,197,94,0.4); background: rgba(34,197,94,0.04); }
+.pilar-icono { font-size: 40px; margin-bottom: 16px; }
+.pilar-titulo {
+  font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 16px;
+  color: var(--blanco); margin-bottom: 12px;
+}
+.pilar-desc { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+
+/* ============================================
+   TESTIMONIOS
+   ============================================ */
+.testimonios-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px; margin-top: 48px;
+}
+.testimonio-card {
+  background: var(--blanco); border-radius: var(--radius);
+  padding: 28px; box-shadow: var(--shadow);
+  border: 1px solid var(--gris-borde); transition: var(--transition);
+}
+.testimonio-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+.testimonio-header {
+  display: flex; align-items: center; gap: 14px; margin-bottom: 16px;
+}
+.testimonio-avatar {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--verde), var(--verde-dark));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; border: 2px solid var(--verde); flex-shrink: 0;
+}
+.testimonio-nombre {
+  font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px; color: var(--negro);
+}
+.testimonio-lugar { font-size: 13px; color: var(--gris-medio); }
+.testimonio-estrellas { color: var(--amarillo); font-size: 14px; margin-bottom: 12px; }
+.testimonio-texto {
+  font-size: 14px; color: #374151; line-height: 1.7;
+  font-style: italic;
+}
+.testimonio-producto {
+  margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--gris-borde);
+  font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 12px;
+  color: var(--verde); display: flex; align-items: center; gap: 6px;
+}
+
+/* ============================================
+   BANNER OFERTA
+   ============================================ */
+.banner-oferta {
+  background: linear-gradient(135deg, var(--verde) 0%, var(--verde-dark) 100%);
+  padding: 60px 0;
+}
+.banner-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 32px; flex-wrap: wrap;
+}
+.banner-texto h2 {
+  font-family: 'Bebas Neue', sans-serif; font-size: 52px;
+  color: var(--negro); line-height: 1; margin-bottom: 8px;
+}
+.banner-texto p { font-size: 17px; color: rgba(0,0,0,0.75); font-weight: 500; }
+.banner-codigo {
+  background: rgba(0,0,0,0.15); border: 2px dashed rgba(0,0,0,0.3);
+  border-radius: var(--radius-sm); padding: 16px 24px;
+  font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 4px;
+  color: var(--negro);
+}
+
+/* ============================================
+   FAQ
+   ============================================ */
+.faq-lista { margin-top: 48px; max-width: 800px; margin-left: auto; margin-right: auto; }
+.faq-item {
+  border: 1px solid var(--gris-borde); border-radius: var(--radius-sm);
+  margin-bottom: 12px; overflow: hidden;
+}
+.faq-pregunta {
+  width: 100%; display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 24px; background: var(--blanco);
+  font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px;
+  color: var(--negro); cursor: pointer; transition: var(--transition); text-align: left;
+}
+.faq-pregunta:hover { background: var(--gris-claro); }
+.faq-pregunta.activa { background: var(--negro); color: var(--blanco); }
+.faq-icono { font-size: 20px; transition: var(--transition); flex-shrink: 0; }
+.faq-pregunta.activa .faq-icono { transform: rotate(45deg); color: var(--verde); }
+.faq-respuesta {
+  max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease;
+}
+.faq-respuesta.abierta { max-height: 200px; }
+.faq-respuesta-inner {
+  padding: 0 24px 20px;
+  font-size: 15px; color: var(--gris-medio); line-height: 1.7;
+}
+
+/* ============================================
+   BLOG
+   ============================================ */
+.blog-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px; margin-top: 48px;
+}
+.blog-card {
+  background: var(--blanco); border-radius: var(--radius);
+  box-shadow: var(--shadow); overflow: hidden;
+  border: 1px solid var(--gris-borde); transition: var(--transition);
+}
+.blog-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+.blog-imagen {
+  height: 180px; display: flex; align-items: center; justify-content: center;
+  font-size: 52px; background: var(--gris-claro);
+}
+.blog-contenido { padding: 24px; }
+.blog-categoria {
+  font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11px;
+  color: var(--verde); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;
+}
+.blog-titulo {
+  font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 16px;
+  color: var(--negro); margin-bottom: 10px; line-height: 1.4;
+}
+.blog-extracto { font-size: 14px; color: var(--gris-medio); line-height: 1.6; margin-bottom: 20px; }
+.blog-meta {
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 12px; color: var(--gris-medio);
+  font-family: 'Montserrat', sans-serif; font-weight: 600;
+  border-top: 1px solid var(--gris-borde); padding-top: 16px;
+}
+.blog-leer { color: var(--verde); font-weight: 700; transition: var(--transition); }
+.blog-leer:hover { gap: 8px; }
+
+/* ============================================
+   CONTACTO
+   ============================================ */
+.contacto-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 60px; align-items: start; margin-top: 48px;
+}
+.contacto-info h3 {
+  font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 22px;
+  color: var(--negro); margin-bottom: 16px;
+}
+.contacto-info p { font-size: 15px; color: var(--gris-medio); line-height: 1.7; margin-bottom: 32px; }
+.contacto-items { display: flex; flex-direction: column; gap: 16px; }
+.contacto-item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 16px 20px; background: var(--gris-claro); border-radius: var(--radius-sm);
+}
+.contacto-item-icono { font-size: 22px; width: 36px; text-align: center; }
+.contacto-item-texto { font-family: 'Montserrat', sans-serif; font-size: 14px; }
+.contacto-item-texto strong { display: block; font-weight: 700; color: var(--negro); margin-bottom: 2px; }
+.contacto-item-texto span { color: var(--gris-medio); }
+.contacto-form { display: flex; flex-direction: column; gap: 16px; }
+.form-grupo { display: flex; flex-direction: column; gap: 6px; }
+.form-label {
+  font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; color: var(--negro);
+}
+.form-input, .form-textarea {
+  padding: 14px 16px; border: 2px solid var(--gris-borde); border-radius: var(--radius-sm);
+  font-family: 'Inter', sans-serif; font-size: 15px; color: var(--negro);
+  transition: var(--transition); background: var(--blanco);
+}
+.form-input:focus, .form-textarea:focus {
+  outline: none; border-color: var(--verde);
+  box-shadow: 0 0 0 4px rgba(34,197,94,0.1);
+}
+.form-textarea { resize: vertical; min-height: 120px; }
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer { background: var(--negro); color: rgba(255,255,255,0.7); padding: 64px 0 32px; }
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px; margin-bottom: 48px;
+}
+.footer-marca p {
+  font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.7;
+  margin: 16px 0 24px; max-width: 280px;
+}
+.footer-redes { display: flex; gap: 12px; }
+.red-social {
+  width: 38px; height: 38px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; transition: var(--transition);
+}
+.red-social:hover { border-color: var(--verde); background: rgba(34,197,94,0.1); }
+.footer-col h4 {
+  font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 13px;
+  color: var(--blanco); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px;
+}
+.footer-col ul { display: flex; flex-direction: column; gap: 10px; }
+.footer-col ul li a {
+  font-size: 14px; color: rgba(255,255,255,0.5); transition: var(--transition);
+}
+.footer-col ul li a:hover { color: var(--verde); padding-left: 4px; }
+.footer-divider { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin-bottom: 28px; }
+.footer-bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 16px; font-size: 13px; color: rgba(255,255,255,0.35);
+}
+.footer-bottom a { color: rgba(255,255,255,0.35); transition: var(--transition); }
+.footer-bottom a:hover { color: var(--verde); }
+
+/* ============================================
+   BOTÓN FLOTANTE WHATSAPP
+   ============================================ */
+.wsp-flotante {
+  position: fixed; bottom: 28px; right: 28px; z-index: 999;
+}
+.wsp-tooltip {
+  position: absolute; bottom: 70px; right: 0;
+  background: var(--negro); color: var(--blanco);
+  padding: 10px 16px; border-radius: 10px; white-space: nowrap;
+  font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 13px;
+  box-shadow: var(--shadow-hover); opacity: 0; pointer-events: none;
+  transition: var(--transition); transform: translateY(8px);
+}
+.wsp-tooltip::after {
+  content: ''; position: absolute; top: 100%; right: 20px;
+  border: 6px solid transparent; border-top-color: var(--negro);
+}
+.wsp-flotante:hover .wsp-tooltip { opacity: 1; transform: translateY(0); }
+.wsp-btn {
+  width: 60px; height: 60px; border-radius: 50%;
+  background: #25D366; display: flex; align-items: center; justify-content: center;
+  font-size: 28px; box-shadow: 0 4px 20px rgba(37,211,102,0.5);
+  animation: wsp-pulse 3s infinite; transition: var(--transition);
+  text-decoration: none;
+}
+.wsp-btn:hover { transform: scale(1.1); animation: none; }
+@keyframes wsp-pulse {
+  0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,0.5); }
+  50% { box-shadow: 0 4px 40px rgba(37,211,102,0.8); }
+}
+
+/* ============================================
+   CARRITO MODAL
+   ============================================ */
+.carrito-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+  z-index: 2000; opacity: 0; pointer-events: none; transition: var(--transition);
+}
+.carrito-overlay.abierto { opacity: 1; pointer-events: all; }
+.carrito-panel {
+  position: absolute; right: 0; top: 0; bottom: 0; width: 100%; max-width: 420px;
+  background: var(--blanco); transform: translateX(100%);
+  transition: transform 0.4s ease; display: flex; flex-direction: column;
+}
+.carrito-overlay.abierto .carrito-panel { transform: translateX(0); }
+.carrito-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 24px; border-bottom: 1px solid var(--gris-borde);
+}
+.carrito-header h3 {
+  font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 20px;
+}
+.carrito-cerrar {
+  width: 36px; height: 36px; border-radius: 50%; background: var(--gris-claro);
+  display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer;
+  transition: var(--transition);
+}
+.carrito-cerrar:hover { background: #FECACA; color: #EF4444; }
+.carrito-items { flex: 1; overflow-y: auto; padding: 24px; }
+.carrito-vacio {
+  text-align: center; padding: 48px 0; color: var(--gris-medio);
+}
+.carrito-vacio-icono { font-size: 48px; margin-bottom: 16px; }
+.carrito-vacio p { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 15px; }
+.carrito-item-row {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 0; border-bottom: 1px solid var(--gris-borde);
+}
+.carrito-item-emoji { font-size: 36px; width: 52px; text-align: center; flex-shrink: 0; }
+.carrito-item-info { flex: 1; }
+.carrito-item-nombre {
+  font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px;
+  color: var(--negro); margin-bottom: 4px;
+}
+.carrito-item-precio {
+  font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px; color: var(--verde);
+}
+.carrito-item-qty {
+  display: flex; align-items: center; gap: 8px;
+}
+.qty-btn {
+  width: 28px; height: 28px; border-radius: 50%; background: var(--gris-claro);
+  display: flex; align-items: center; justify-content: center; font-size: 16px;
+  cursor: pointer; transition: var(--transition); font-weight: 700; border: none;
+}
+.qty-btn:hover { background: var(--verde); color: var(--negro); }
+.qty-num { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px; min-width: 24px; text-align: center; }
+.carrito-footer { padding: 24px; border-top: 1px solid var(--gris-borde); }
+.carrito-total-row {
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;
+}
+.carrito-total-label { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 16px; }
+.carrito-total-monto { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 24px; color: var(--negro); }
+.carrito-envio-info {
+  text-align: center; font-size: 13px; color: var(--verde);
+  font-family: 'Montserrat', sans-serif; font-weight: 600;
+  margin-bottom: 16px;
+}
+
+/* ============================================
+   TOAST NOTIFICACION
+   ============================================ */
+.toast {
+  position: fixed; bottom: 100px; right: 28px; z-index: 3000;
+  background: var(--negro); color: var(--blanco);
+  padding: 14px 20px; border-radius: var(--radius-sm);
+  font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px;
+  display: flex; align-items: center; gap: 10px;
+  transform: translateY(100px); opacity: 0;
+  transition: all 0.3s ease; pointer-events: none;
+  border-left: 4px solid var(--verde);
+}
+.toast.visible { transform: translateY(0); opacity: 1; }
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+  .pilares-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+
+@media (max-width: 768px) {
+  .seccion { padding: 56px 0; }
+  .navbar-links { display: none; }
+  .hamburger { display: flex; }
+  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .hero-visual { display: none; }
+  .hero-ctas { flex-direction: column; }
+  .hero-ctas .btn { width: 100%; justify-content: center; }
+  .hero-badges { gap: 16px; }
+  .objetivos-grid { grid-template-columns: 1fr; }
+  .productos-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .pilares-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .testimonios-grid { grid-template-columns: 1fr; }
+  .banner-inner { flex-direction: column; text-align: center; }
+  .blog-grid { grid-template-columns: 1fr; }
+  .contacto-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .wsp-flotante { bottom: 20px; right: 20px; }
+  .wsp-btn { width: 54px; height: 54px; font-size: 24px; }
+}
+
+@media (max-width: 480px) {
+  .productos-grid { grid-template-columns: 1fr; }
+  .pilares-grid { grid-template-columns: 1fr; }
+  .barra-inner { gap: 20px; }
+}
+
+/* ============================================
+   ANIMACIONES DE ENTRADA
+   ============================================ */
+.reveal {
+  opacity: 0; transform: translateY(32px); transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     NAVBAR
+     ============================================ -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="#inicio" class="navbar-logo">NUTRI<span>FIT</span></a>
+    <div class="navbar-links">
+      <a href="#inicio">Inicio</a>
+      <a href="#productos">Tienda</a>
+      <a href="#objetivos">Objetivos</a>
+      <a href="#blog">Blog</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px;">
+      <button class="navbar-carrito" onclick="abrirCarrito()" aria-label="Carrito de compras">
+        🛒
+        <span class="carrito-badge" id="carrito-badge">0</span>
+      </button>
+      <div class="hamburger" onclick="toggleMenu()" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Menú móvil -->
+<div class="menu-movil" id="menu-movil">
+  <a href="#inicio" onclick="toggleMenu()">INICIO</a>
+  <a href="#productos" onclick="toggleMenu()">TIENDA</a>
+  <a href="#objetivos" onclick="toggleMenu()">OBJETIVOS</a>
+  <a href="#blog" onclick="toggleMenu()">BLOG</a>
+  <a href="#faq" onclick="toggleMenu()">FAQ</a>
+  <a href="#contacto" onclick="toggleMenu()">CONTACTO</a>
+</div>
+
+
+<!-- ============================================
+     HERO
+     ============================================ -->
+<section class="hero" id="inicio">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-eyebrow">🇨🇱 Envío a todo Chile</div>
+        <h1 class="titulo-hero hero-titulo">
+          SUPLEMENTOS<br>
+          QUE GENERAN<br>
+          <span class="verde">RESULTADOS.</span>
+        </h1>
+        <p class="hero-subtitulo">
+          Calidad certificada. Asesoría gratuita por WhatsApp.<br>
+          Entrega rápida en 24–48 horas a todo Chile.
+        </p>
+        <div class="hero-ctas">
+          <a href="#productos" class="btn btn-verde btn-lg">Ver Productos</a>
+          <a href="https://wa.me/56912345678?text=Hola%20NutriFit%20👋%20Vi%20su%20página%20web%20y%20me%20interesa%20saber%20más%20sobre%20sus%20productos.%20¿Me%20pueden%20ayudar%3F"
+             target="_blank" class="btn btn-outline btn-lg">💬 Hablar con un experto</a>
+        </div>
+        <div class="hero-badges">
+          <div class="hero-badge"><span class="icono">🚚</span> Envío gratis +$50k</div>
+          <div class="hero-badge"><span class="icono">🔒</span> Pago seguro</div>
+          <div class="hero-badge"><span class="icono">✅</span> Garantía total</div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div style="position:relative;">
+          <div class="hero-card-principal">
+            <div class="hero-tag">⭐ MÁS VENDIDO</div>
+            <div class="hero-producto-img">🥛</div>
+            <div class="hero-producto-nombre">NutriFit Pro Whey</div>
+            <div class="hero-estrellas">★★★★★ (248 reseñas)</div>
+            <div class="hero-producto-precio">$24.990</div>
+            <button class="btn btn-verde btn-full" onclick="agregarAlCarrito('Proteína Whey', 24990, '🥛')">
+              Agregar al carrito
+            </button>
+          </div>
+          <div class="hero-flotante">
+            <div class="hero-flotante-icono">🚚</div>
+            <div class="hero-flotante-texto">
+              <strong>Envío en 24hrs</strong>
+              Santiago Metropolitano
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     BARRA DE CONFIANZA
+     ============================================ -->
+<div class="barra-confianza">
+  <div class="barra-inner">
+    <div class="barra-item">🚚 Envío gratis sobre $50.000</div>
+    <div class="barra-item">🔒 Pago 100% seguro con Webpay</div>
+    <div class="barra-item">✅ Productos certificados y originales</div>
+    <div class="barra-item">💬 Asesoría gratis por WhatsApp</div>
+    <div class="barra-item">↩️ Garantía de satisfacción</div>
+  </div>
+</div>
+
+
+<!-- ============================================
+     OBJETIVOS
+     ============================================ -->
+<section class="seccion seccion-gris" id="objetivos">
+  <div class="container">
+    <div class="seccion-header text-center reveal">
+      <h2 class="titulo-seccion">¿Cuál es tu objetivo hoy?</h2>
+      <p>Elige tu meta y te mostramos exactamente lo que necesitas</p>
+    </div>
+    <div class="objetivos-grid">
+      <div class="objetivo-card reveal">
+        <div class="objetivo-emoji">💪</div>
+        <div class="objetivo-titulo">Ganar Músculo</div>
+        <p class="objetivo-desc">¿Entrenas duro pero no ves los resultados? Nuestro stack acelera tu ganancia muscular desde la primera semana.</p>
+        <div class="objetivo-productos">
+          <span class="objetivo-tag">Whey</span>
+          <span class="objetivo-tag">Creatina</span>
+        </div>
+        <a href="#productos" class="objetivo-link">Ver productos → </a>
+      </div>
+      <div class="objetivo-card reveal">
+        <div class="objetivo-emoji">🔥</div>
+        <div class="objetivo-titulo">Bajar de Peso</div>
+        <p class="objetivo-desc">No se trata de pasar hambre. Se trata de darle a tu cuerpo lo que necesita para quemar grasa y mantenerse en balance.</p>
+        <div class="objetivo-productos">
+          <span class="objetivo-tag">Ashwagandha</span>
+          <span class="objetivo-tag">Magnesio</span>
+        </div>
+        <a href="#productos" class="objetivo-link">Ver productos → </a>
+      </div>
+      <div class="objetivo-card reveal">
+        <div class="objetivo-emoji">🧠</div>
+        <div class="objetivo-titulo">Bienestar & Salud</div>
+        <p class="objetivo-desc">Duerme mejor. Reduce el estrés. Aclara tu mente. Los adaptógenos naturales que tu cuerpo moderno necesita.</p>
+        <div class="objetivo-productos">
+          <span class="objetivo-tag">Melena de León</span>
+          <span class="objetivo-tag">Shilajit</span>
+        </div>
+        <a href="#productos" class="objetivo-link">Ver productos → </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     PRODUCTOS MÁS VENDIDOS
+     ============================================ -->
+<section class="seccion" id="productos">
+  <div class="container">
+    <div class="seccion-header text-center reveal">
+      <h2 class="titulo-seccion">Más Vendidos</h2>
+      <p>Probados por cientos de clientes en Chile. Sin rellenos. Solo resultados.</p>
+    </div>
+    <div class="productos-grid" id="productos-grid">
+      <!-- Productos insertados por JS -->
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     POR QUÉ NUTRIFIT
+     ============================================ -->
+<section class="seccion seccion-oscura">
+  <div class="container">
+    <div class="seccion-header text-center reveal">
+      <h2 class="titulo-seccion">¿Por qué elegir <span class="text-verde">NutriFit</span>?</h2>
+      <p style="color:rgba(255,255,255,0.55);">Somos chilenos. Te hablamos en chileno. Y nos importa que veas resultados reales.</p>
+    </div>
+    <div class="pilares-grid">
+      <div class="pilar reveal">
+        <div class="pilar-icono">🚚</div>
+        <div class="pilar-titulo">Envío Rápido</div>
+        <p class="pilar-desc">Despachamos en 24 horas hábiles desde Santiago. Seguimiento en tiempo real por WhatsApp.</p>
+      </div>
+      <div class="pilar reveal">
+        <div class="pilar-icono">✅</div>
+        <div class="pilar-titulo">Calidad Certificada</div>
+        <p class="pilar-desc">Todos nuestros productos son originales y pasan controles de calidad estrictos. Lo que dice la etiqueta, está adentro.</p>
+      </div>
+      <div class="pilar reveal">
+        <div class="pilar-icono">💊</div>
+        <div class="pilar-titulo">Asesoría Gratuita</div>
+        <p class="pilar-desc">No te vendemos lo que no necesitas. Te orientamos hacia lo que realmente va a funcionar para tu objetivo.</p>
+      </div>
+      <div class="pilar reveal">
+        <div class="pilar-icono">🇨🇱</div>
+        <div class="pilar-titulo">Soporte Local</div>
+        <p class="pilar-desc">Atención real por WhatsApp, sin bots ni respuestas automáticas. En español chileno, directo y claro.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     TESTIMONIOS
+     ============================================ -->
+<section class="seccion seccion-gris" id="testimonios">
+  <div class="container">
+    <div class="seccion-header text-center reveal">
+      <h2 class="titulo-seccion">Resultados Reales</h2>
+      <p>Sin filtros. Sin actuaciones. Solo experiencias honestas de clientes NutriFit.</p>
+    </div>
+    <div class="testimonios-grid">
+      <div class="testimonio-card reveal">
+        <div class="testimonio-header">
+          <div class="testimonio-avatar">👨</div>
+          <div>
+            <div class="testimonio-nombre">Carlos M.</div>
+            <div class="testimonio-lugar">📍 Las Condes, Santiago</div>
+          </div>
+        </div>
+        <div class="testimonio-estrellas">★★★★★</div>
+        <p class="testimonio-texto">"Llevaba 2 años entrenando sin ver cambios reales. Empecé con la Whey y la Creatina de NutriFit y en 6 semanas noté una diferencia enorme en mi fuerza y definición. Además me asesoraron por WhatsApp sin cobrarme nada."</p>
+        <div class="testimonio-producto">🥛 Whey + ⚡ Creatina</div>
+      </div>
+      <div class="testimonio-card reveal">
+        <div class="testimonio-header">
+          <div class="testimonio-avatar">👩</div>
+          <div>
+            <div class="testimonio-nombre">Valentina R.</div>
+            <div class="testimonio-lugar">📍 Providencia, Santiago</div>
+          </div>
+        </div>
+        <div class="testimonio-estrellas">★★★★★</div>
+        <p class="testimonio-texto">"Comencé con la Ashwagandha para el estrés del trabajo y el Magnesio para dormir mejor. En menos de un mes dormía increíble y me sentía más tranquila. Los productos llegan rápido y bien empacados."</p>
+        <div class="testimonio-producto">🌿 Ashwagandha + 💊 Magnesio</div>
+      </div>
+      <div class="testimonio-card reveal">
+        <div class="testimonio-header">
+          <div class="testimonio-avatar">👨</div>
+          <div>
+            <div class="testimonio-nombre">Diego F.</div>
+            <div class="testimonio-lugar">📍 Concepción</div>
+          </div>
+        </div>
+        <div class="testimonio-estrellas">★★★★★</div>
+        <p class="testimonio-texto">"Compré el Shilajit con dudas porque nunca lo había probado. Me escribieron por WhatsApp para explicarme cómo usarlo. Dos meses después: más energía, mejor ánimo, y mi entrenamiento subió de nivel."</p>
+        <div class="testimonio-producto">🏔️ Shilajit Premium</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     BANNER OFERTA
+     ============================================ -->
+<div class="banner-oferta">
+  <div class="container">
+    <div class="banner-inner">
+      <div class="banner-texto">
+        <h2>🔥 OFERTA DE LANZAMIENTO</h2>
+        <p>20% de descuento en toda la tienda · Válido hasta el domingo</p>
+      </div>
+      <div class="banner-codigo">NUTRIFIT20</div>
+      <a href="#productos" class="btn btn-negro btn-lg">Aprovechar oferta</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================================
+     FAQ
+     ============================================ -->
+<section class="seccion" id="faq">
+  <div class="container">
+    <div class="seccion-header text-center reveal">
+      <h2 class="titulo-seccion">Preguntas Frecuentes</h2>
+      <p>Todo lo que necesitas saber antes de tu primer pedido</p>
+    </div>
+    <div class="faq-lista" id="faq-lista">
+      <!-- FAQ insertado por JS -->
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     BLOG
+     ============================================ -->
+<section class="seccion seccion-gris" id="blog">
+  <div class="container">
+    <div class="seccion-header text-center reveal">
+      <h2 class="titulo-seccion">Blog NutriFit</h2>
+      <p>Aprende más sobre nutrición deportiva, suplementos y rendimiento</p>
+    </div>
+    <div class="blog-grid">
+      <div class="blog-card reveal">
+        <div class="blog-imagen">🥩</div>
+        <div class="blog-contenido">
+          <div class="blog-categoria">Nutrición</div>
+          <h3 class="blog-titulo">¿Cuánta proteína necesito al día si entreno en el gym?</h3>
+          <p class="blog-extracto">La respuesta depende de tu peso, objetivo y tipo de entrenamiento. En este artículo te explicamos todo sin complicaciones.</p>
+          <div class="blog-meta">
+            <span>5 min de lectura</span>
+            <a href="#" class="blog-leer">Leer artículo →</a>
+          </div>
+        </div>
+      </div>
+      <div class="blog-card reveal">
+        <div class="blog-imagen">⚡</div>
+        <div class="blog-contenido">
+          <div class="blog-categoria">Suplementos</div>
+          <h3 class="blog-titulo">Creatina: mitos y verdades para principiantes en Chile</h3>
+          <p class="blog-extracto">¿Hincha? ¿Da caída de cabello? ¿Necesito ciclarla? Respondemos las 10 preguntas más comunes sobre creatina.</p>
+          <div class="blog-meta">
+            <span>7 min de lectura</span>
+            <a href="#" class="blog-leer">Leer artículo →</a>
+          </div>
+        </div>
+      </div>
+      <div class="blog-card reveal">
+        <div class="blog-imagen">🧠</div>
+        <div class="blog-contenido">
+          <div class="blog-categoria">Bienestar</div>
+          <h3 class="blog-titulo">Los mejores adaptógenos para reducir el estrés en 2025</h3>
+          <p class="blog-extracto">Ashwagandha, Melena de León, Shilajit: qué hace cada uno y cómo combinarlos para máximo beneficio.</p>
+          <div class="blog-meta">
+            <span>6 min de lectura</span>
+            <a href="#" class="blog-leer">Leer artículo →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     CONTACTO
+     ============================================ -->
+<section class="seccion" id="contacto">
+  <div class="container">
+    <div class="seccion-header text-center reveal">
+      <h2 class="titulo-seccion">Contáctanos</h2>
+      <p>¿Tienes dudas? Estamos aquí para ayudarte</p>
+    </div>
+    <div class="contacto-grid">
+      <div class="contacto-info reveal">
+        <h3>Hablemos sin compromiso</h3>
+        <p>Somos reales. Respondemos rápido. Si tienes dudas sobre qué suplemento es mejor para ti, solo pregúntanos — sin costo, sin presión.</p>
+        <div class="contacto-items">
+          <div class="contacto-item">
+            <div class="contacto-item-icono">💬</div>
+            <div class="contacto-item-texto">
+              <strong>WhatsApp</strong>
+              <span>+56 9 XXXX XXXX · Lun–Sáb 9:00–20:00</span>
+            </div>
+          </div>
+          <div class="contacto-item">
+            <div class="contacto-item-icono">📧</div>
+            <div class="contacto-item-texto">
+              <strong>Email</strong>
+              <span>contacto@nutrifit.cl</span>
+            </div>
+          </div>
+          <div class="contacto-item">
+            <div class="contacto-item-icono">📱</div>
+            <div class="contacto-item-texto">
+              <strong>Instagram</strong>
+              <span>@nutrifit.chile</span>
+            </div>
+          </div>
+          <div class="contacto-item">
+            <div class="contacto-item-icono">🚚</div>
+            <div class="contacto-item-texto">
+              <strong>Despachos</strong>
+              <span>Lun–Vie · Envío a todo Chile</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contacto-form reveal">
+        <div class="form-grupo">
+          <label class="form-label">Tu nombre</label>
+          <input type="text" class="form-input" placeholder="Ej: Carlos Martínez" id="form-nombre">
+        </div>
+        <div class="form-grupo">
+          <label class="form-label">Tu email o WhatsApp</label>
+          <input type="text" class="form-input" placeholder="email@gmail.com o +56 9 XXXX XXXX" id="form-contacto">
+        </div>
+        <div class="form-grupo">
+          <label class="form-label">¿En qué te ayudamos?</label>
+          <textarea class="form-textarea" placeholder="Cuéntanos tu objetivo o tu consulta..." id="form-mensaje"></textarea>
+        </div>
+        <button class="btn btn-verde btn-full btn-lg" onclick="enviarFormulario()">
+          Enviar mensaje 💬
+        </button>
+        <p style="font-size:13px;color:var(--gris-medio);text-align:center;margin-top:12px;">
+          O escríbenos directamente por
+          <a href="https://wa.me/56912345678" target="_blank" style="color:var(--verde);font-weight:700;">WhatsApp</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-marca">
+        <div class="navbar-logo" style="font-size:32px;">NUTRI<span style="color:var(--verde)">FIT</span></div>
+        <p>Tu mejor versión, un suplemento a la vez. Suplementos de calidad para el Chile que entrena.</p>
+        <div class="footer-redes">
+          <a href="#" class="red-social">📸</a>
+          <a href="#" class="red-social">🎵</a>
+          <a href="#" class="red-social">👍</a>
+          <a href="https://wa.me/56912345678" target="_blank" class="red-social">💬</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Tienda</h4>
+        <ul>
+          <li><a href="#productos">Proteína Whey</a></li>
+          <li><a href="#productos">Creatina</a></li>
+          <li><a href="#productos">Ashwagandha</a></li>
+          <li><a href="#productos">Melena de León</a></li>
+          <li><a href="#productos">Magnesio</a></li>
+          <li><a href="#productos">Shilajit</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Información</h4>
+        <ul>
+          <li><a href="#objetivos">¿Qué necesito?</a></li>
+          <li><a href="#faq">Preguntas frecuentes</a></li>
+          <li><a href="#blog">Blog educativo</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+          <li><a href="#">Política de envíos</a></li>
+          <li><a href="#">Devoluciones</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="https://wa.me/56912345678" target="_blank">💬 WhatsApp</a></li>
+          <li><a href="mailto:contacto@nutrifit.cl">📧 contacto@nutrifit.cl</a></li>
+          <li><a href="#">📸 @nutrifit.chile</a></li>
+          <li><a href="#">🇨🇱 Santiago, Chile</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-bottom">
+      <span>© 2025 NutriFit Chile. Todos los derechos reservados.</span>
+      <span>Productos para uso en personas sanas. Consulta a tu médico si tienes condiciones previas.</span>
+      <div style="display:flex;gap:16px;">
+        <a href="#">Privacidad</a>
+        <a href="#">Términos</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ============================================
+     BOTÓN FLOTANTE WHATSAPP
+     ============================================ -->
+<div class="wsp-flotante">
+  <div class="wsp-tooltip">¿Tienes dudas? ¡Escríbenos!</div>
+  <a href="https://wa.me/56912345678?text=Hola%20NutriFit%20👋%20Vi%20su%20página%20web%20y%20me%20interesa%20saber%20más%20sobre%20sus%20productos.%20¿Me%20pueden%20ayudar%3F"
+     target="_blank" class="wsp-btn" aria-label="Contactar por WhatsApp">
+    💬
+  </a>
+</div>
+
+
+<!-- ============================================
+     CARRITO
+     ============================================ -->
+<div class="carrito-overlay" id="carrito-overlay" onclick="cerrarCarritoOverlay(event)">
+  <div class="carrito-panel">
+    <div class="carrito-header">
+      <h3>🛒 Tu carrito</h3>
+      <div class="carrito-cerrar" onclick="cerrarCarrito()">✕</div>
+    </div>
+    <div class="carrito-items" id="carrito-items">
+      <div class="carrito-vacio">
+        <div class="carrito-vacio-icono">🛒</div>
+        <p>Tu carrito está vacío</p>
+      </div>
+    </div>
+    <div class="carrito-footer" id="carrito-footer" style="display:none;">
+      <div class="carrito-total-row">
+        <span class="carrito-total-label">Total:</span>
+        <span class="carrito-total-monto" id="carrito-total">$0</span>
+      </div>
+      <div class="carrito-envio-info" id="carrito-envio-info"></div>
+      <a id="btn-checkout-wsp" href="#" target="_blank" class="btn btn-verde btn-full btn-lg" style="margin-bottom:12px;">
+        Pedir por WhatsApp 💬
+      </a>
+      <button class="btn btn-negro btn-full" onclick="cerrarCarrito()">Seguir comprando</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+
+<!-- ============================================
+     JAVASCRIPT
+     ============================================ -->
+<script>
+
+// ==========================================
+// DATOS DE PRODUCTOS
+// ==========================================
+const productos = [
+  {
+    id: 1, emoji: '🥛', nombre: 'NutriFit Pro Whey',
+    categoria: 'Ganar músculo', precio: 24990, precioAntes: 29990,
+    estrellas: 5, resenas: 248, badge: 'Más vendido',
+    descripcion: '25g proteína por servicio. Sin azúcar añadida. 33 servicios.',
+  },
+  {
+    id: 2, emoji: '⚡', nombre: 'Creatina Monohidratada',
+    categoria: 'Ganar músculo', precio: 19990, precioAntes: null,
+    estrellas: 5, resenas: 189, badge: 'Top ciencia',
+    descripcion: '60 servicios. 5g por dosis. Sin sabor, mezcla con todo.',
+  },
+  {
+    id: 3, emoji: '🌿', nombre: 'Ashwagandha KSM-66',
+    categoria: 'Bienestar', precio: 18990, precioAntes: 22990,
+    estrellas: 5, resenas: 134, badge: 'Nuevo',
+    badgeTipo: 'badge-nuevo',
+    descripcion: '60 cápsulas (2 meses). Extracto de máxima potencia.',
+  },
+  {
+    id: 4, emoji: '🍄', nombre: 'Melena de León',
+    categoria: 'Bienestar', precio: 21990, precioAntes: null,
+    estrellas: 5, resenas: 97, badge: 'Trending',
+    descripcion: '60 cápsulas. Nootrópico natural. Foco y claridad mental.',
+  },
+  {
+    id: 5, emoji: '💊', nombre: 'Magnesio Glicinato',
+    categoria: 'Recuperación', precio: 16990, precioAntes: 19990,
+    estrellas: 5, resenas: 201, badge: 'Oferta',
+    badgeTipo: 'badge-oferta',
+    descripcion: '90 cápsulas (3 meses). Sueño profundo. Sin calambres.',
+  },
+  {
+    id: 6, emoji: '🏔️', nombre: 'Shilajit Himalaya Premium',
+    categoria: 'Premium', precio: 27990, precioAntes: null,
+    estrellas: 5, resenas: 76, badge: 'Premium',
+    descripcion: '30g resina pura. 85+ minerales. 2-3 meses de uso.',
+  },
+];
+
+// ==========================================
+// RENDERIZAR PRODUCTOS
+// ==========================================
+function renderProductos() {
+  const grid = document.getElementById('productos-grid');
+  grid.innerHTML = productos.map(p => `
+    <div class="producto-card reveal">
+      <div class="producto-imagen">
+        ${p.emoji}
+        <div class="producto-badge ${p.badgeTipo || ''}">${p.badge}</div>
+      </div>
+      <div class="producto-info">
+        <div class="producto-categoria">${p.categoria}</div>
+        <div class="producto-nombre">${p.nombre}</div>
+        <div class="producto-estrellas">
+          <span class="estrellas">${'★'.repeat(p.estrellas)}</span>
+          <span class="resenas">(${p.resenas} reseñas)</span>
+        </div>
+        <p style="font-size:13px;color:var(--gris-medio);margin-bottom:12px;line-height:1.5;">${p.descripcion}</p>
+        <div class="producto-precio-row">
+          <span class="precio">$${p.precio.toLocaleString('es-CL')}</span>
+          ${p.precioAntes ? `<span class="precio-tachado">$${p.precioAntes.toLocaleString('es-CL')}</span>` : ''}
+        </div>
+        <div class="producto-btns">
+          <button class="btn-carrito" onclick="agregarAlCarrito('${p.nombre}', ${p.precio}, '${p.emoji}')">
+            Agregar al carrito
+          </button>
+          <a href="https://wa.me/56912345678?text=Hola%20NutriFit%2C%20me%20interesa%20el%20producto%3A%20${encodeURIComponent(p.nombre)}"
+             target="_blank" class="btn-wsp-producto">💬</a>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  observarReveal();
+}
+
+// ==========================================
+// FAQ
+// ==========================================
+const faqs = [
+  { q: '¿Cómo hago mi pedido?', r: 'Puedes comprar directamente en nuestra tienda online, agregar productos al carrito y pedirlo por WhatsApp. También puedes escribirnos directamente y te ayudamos a hacer tu pedido paso a paso.' },
+  { q: '¿Cuánto demora el envío?', r: 'En Santiago Metropolitano: 24 a 48 horas hábiles. Regiones: 3 a 5 días hábiles vía Starken o Chilexpress. Te enviamos el código de seguimiento por WhatsApp.' },
+  { q: '¿Qué métodos de pago aceptan?', r: 'Aceptamos Webpay (débito y crédito), Mercado Pago y transferencia bancaria. También puedes coordinar tu pago directamente por WhatsApp.' },
+  { q: '¿Los productos son originales y seguros?', r: 'Sí. Todos nuestros productos son originales, de marcas certificadas y aptos para consumo humano. No vendemos productos falsificados ni de procedencia dudosa.' },
+  { q: '¿Puedo combinar varios suplementos?', r: '¡Absolutamente! Muchos clientes usan stacks (combinaciones). Escríbenos por WhatsApp y te armamos un stack personalizado según tu objetivo y presupuesto, sin costo adicional.' },
+  { q: '¿Son aptos para principiantes?', r: 'Todos nuestros productos son seguros para principiantes. Si es tu primera vez, escríbenos y te decimos por dónde empezar sin gastar de más.' },
+  { q: '¿Tienen garantía de satisfacción?', r: 'Sí. Si tu producto llega dañado o en mal estado, lo reponemos sin costo adicional. Tu satisfacción es nuestra prioridad.' },
+  { q: '¿Tienen despacho a regiones?', r: 'Sí, despachamos a todo Chile. El costo de envío varía según la región y el proveedor (Starken, Chilexpress o Correos de Chile). Envío gratis en compras sobre $50.000.' },
+];
+
+function renderFAQ() {
+  const lista = document.getElementById('faq-lista');
+  lista.innerHTML = faqs.map((f, i) => `
+    <div class="faq-item">
+      <button class="faq-pregunta" onclick="toggleFAQ(${i})" id="faq-btn-${i}">
+        ${f.q}
+        <span class="faq-icono">+</span>
+      </button>
+      <div class="faq-respuesta" id="faq-resp-${i}">
+        <div class="faq-respuesta-inner">${f.r}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleFAQ(i) {
+  const btn = document.getElementById(`faq-btn-${i}`);
+  const resp = document.getElementById(`faq-resp-${i}`);
+  const estaAbierto = resp.classList.contains('abierta');
+  document.querySelectorAll('.faq-respuesta').forEach(r => r.classList.remove('abierta'));
+  document.querySelectorAll('.faq-pregunta').forEach(b => b.classList.remove('activa'));
+  if (!estaAbierto) {
+    resp.classList.add('abierta');
+    btn.classList.add('activa');
+  }
+}
+
+// ==========================================
+// CARRITO
+// ==========================================
+let carrito = [];
+
+function agregarAlCarrito(nombre, precio, emoji) {
+  const existente = carrito.find(i => i.nombre === nombre);
+  if (existente) {
+    existente.qty++;
+  } else {
+    carrito.push({ nombre, precio, emoji, qty: 1 });
+  }
+  actualizarCarrito();
+  mostrarToast(`✅ ${nombre} agregado al carrito`);
+  abrirCarrito();
+}
+
+function actualizarCarrito() {
+  const badge = document.getElementById('carrito-badge');
+  const total = carrito.reduce((s, i) => s + i.precio * i.qty, 0);
+  const totalQty = carrito.reduce((s, i) => s + i.qty, 0);
+  badge.textContent = totalQty;
+  const itemsDiv = document.getElementById('carrito-items');
+  const footerDiv = document.getElementById('carrito-footer');
+
+  if (carrito.length === 0) {
+    itemsDiv.innerHTML = `<div class="carrito-vacio"><div class="carrito-vacio-icono">🛒</div><p>Tu carrito está vacío</p></div>`;
+    footerDiv.style.display = 'none';
+    return;
+  }
+
+  itemsDiv.innerHTML = carrito.map((item, idx) => `
+    <div class="carrito-item-row">
+      <div class="carrito-item-emoji">${item.emoji}</div>
+      <div class="carrito-item-info">
+        <div class="carrito-item-nombre">${item.nombre}</div>
+        <div class="carrito-item-precio">$${(item.precio * item.qty).toLocaleString('es-CL')}</div>
+      </div>
+      <div class="carrito-item-qty">
+        <button class="qty-btn" onclick="cambiarQty(${idx}, -1)">−</button>
+        <span class="qty-num">${item.qty}</span>
+        <button class="qty-btn" onclick="cambiarQty(${idx}, 1)">+</button>
+      </div>
+    </div>
+  `).join('');
+
+  footerDiv.style.display = 'block';
+  document.getElementById('carrito-total').textContent = `$${total.toLocaleString('es-CL')}`;
+
+  const envioInfo = document.getElementById('carrito-envio-info');
+  if (total >= 50000) {
+    envioInfo.textContent = '🚚 ¡Envío gratis incluido!';
+  } else {
+    const faltante = 50000 - total;
+    envioInfo.textContent = `Agrega $${faltante.toLocaleString('es-CL')} más para envío gratis`;
+  }
+
+  const resumen = carrito.map(i => `${i.qty}x ${i.nombre} ($${(i.precio*i.qty).toLocaleString('es-CL')})`).join('%0A');
+  const wspLink = `https://wa.me/56912345678?text=Hola%20NutriFit%20👋%20Quiero%20hacer%20el%20siguiente%20pedido:%0A${resumen}%0A%0ATotal:%20$${total.toLocaleString('es-CL')}`;
+  document.getElementById('btn-checkout-wsp').href = wspLink;
+}
+
+function cambiarQty(idx, delta) {
+  carrito[idx].qty += delta;
+  if (carrito[idx].qty <= 0) carrito.splice(idx, 1);
+  actualizarCarrito();
+}
+
+function abrirCarrito() {
+  document.getElementById('carrito-overlay').classList.add('abierto');
+  document.body.style.overflow = 'hidden';
+}
+
+function cerrarCarrito() {
+  document.getElementById('carrito-overlay').classList.remove('abierto');
+  document.body.style.overflow = '';
+}
+
+function cerrarCarritoOverlay(e) {
+  if (e.target === document.getElementById('carrito-overlay')) cerrarCarrito();
+}
+
+// ==========================================
+// TOAST
+// ==========================================
+let toastTimer;
+function mostrarToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('visible');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('visible'), 3000);
+}
+
+// ==========================================
+// MENÚ MÓVIL
+// ==========================================
+function toggleMenu() {
+  const menu = document.getElementById('menu-movil');
+  menu.classList.toggle('abierto');
+  document.body.style.overflow = menu.classList.contains('abierto') ? 'hidden' : '';
+}
+
+// ==========================================
+// FORMULARIO CONTACTO
+// ==========================================
+function enviarFormulario() {
+  const nombre = document.getElementById('form-nombre').value.trim();
+  const contacto = document.getElementById('form-contacto').value.trim();
+  const mensaje = document.getElementById('form-mensaje').value.trim();
+  if (!nombre || !contacto || !mensaje) {
+    mostrarToast('⚠️ Por favor completa todos los campos');
+    return;
+  }
+  const texto = `Hola NutriFit 👋%0ANombre: ${encodeURIComponent(nombre)}%0AContacto: ${encodeURIComponent(contacto)}%0AMensaje: ${encodeURIComponent(mensaje)}`;
+  window.open(`https://wa.me/56912345678?text=${texto}`, '_blank');
+  mostrarToast('✅ Redirigiendo a WhatsApp...');
+  document.getElementById('form-nombre').value = '';
+  document.getElementById('form-contacto').value = '';
+  document.getElementById('form-mensaje').value = '';
+}
+
+// ==========================================
+// SCROLL REVEAL
+// ==========================================
+function observarReveal() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
+
+// ==========================================
+// INIT
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+  renderProductos();
+  renderFAQ();
+  observarReveal();
+  actualizarCarrito();
+});
+
+</script>
+</body>
+</html>
